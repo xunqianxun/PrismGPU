@@ -17,7 +17,7 @@ Signature="$Windows NT$"
 Class=Display
 ClassGUID={4d36e968-e325-11ce-bfc1-08002be10318}
 Provider=%ProviderString%
-DriverVer = 12/25/2024,18.48.57.609
+DriverVer = 01/04/2025,17.29.14.983
 CatalogFile=SampleDisplay.cat
 PnpLockdown=1
 

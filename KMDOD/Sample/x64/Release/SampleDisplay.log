@@ -1,11 +1,7 @@
 ﻿  Building 'SampleDisplay' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
   Stamping x64\Release\sampledisplay.inf
-  Stamping [Version] section with DriverVer=12/25/2024,18.48.57.609
-  BDD.cxx
-  SampleDisplay.vcxproj -> C:\Users\86156\Desktop\WDDMdemo\Windows-driver-samples\video\KMDOD\Sample\x64\Release\SampleDisplay.sys
-  Done Adding Additional Store
-  Successfully signed: C:\Users\86156\Desktop\WDDMdemo\Windows-driver-samples\video\KMDOD\Sample\x64\Release\SampleDisplay.sys
-  
+  Stamping [Version] section with DriverVer=01/04/2025,17.29.14.983
+  SampleDisplay.vcxproj -> D:\PrismGPU\-PrismGPU\KMDOD\Sample\x64\Release\SampleDisplay.sys
   Driver is 'Universal'.
   .........................
   Signability test complete.
@@ -17,7 +13,7 @@
   None
   
   Catalog generation complete.
-  C:\Users\86156\Desktop\WDDMdemo\Windows-driver-samples\video\KMDOD\Sample\x64\Release\SampleDisplay\sampledisplay.cat
+  D:\PrismGPU\-PrismGPU\KMDOD\Sample\x64\Release\SampleDisplay\sampledisplay.cat
   Done Adding Additional Store
   Successfully signed: x64\Release\SampleDisplay\sampledisplay.cat
   

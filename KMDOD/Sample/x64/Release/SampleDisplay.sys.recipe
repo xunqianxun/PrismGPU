@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\86156\Desktop\WDDMdemo\Windows-driver-samples\video\KMDOD\Sample\x64\Release\SampleDisplay.sys</FullPath>
+      <FullPath>D:\PrismGPU\-PrismGPU\KMDOD\Sample\x64\Release\SampleDisplay.sys</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

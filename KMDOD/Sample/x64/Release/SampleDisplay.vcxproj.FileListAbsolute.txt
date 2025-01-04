@@ -1,1 +1,2 @@
 C:\Users\86156\Desktop\WDDMdemo\Windows-driver-samples\video\KMDOD\Sample\x64\Release\SampleDisplay.sys
+D:\PrismGPU\-PrismGPU\KMDOD\Sample\x64\Release\SampleDisplay.sys

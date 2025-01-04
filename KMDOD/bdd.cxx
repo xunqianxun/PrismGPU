@@ -1,4 +1,4 @@
-/******************************Module*Header*******************************\
+ï»¿/******************************Module*Header*******************************\
 * Module Name: bdd.cxx
 *
 * Basic Display Driver functions implementation
@@ -12,7 +12,7 @@
 
 #pragma code_seg("PAGE")
 
-
+//è¿™ä¸ªç»“æ„ä½“æœ¬èº«å°±æ˜¯dispaly onlyçš„ä¸€ä¸ªå¯¹è±¡çš„ç»“æ„ã€‚
 BASIC_DISPLAY_DRIVER::BASIC_DISPLAY_DRIVER(_In_ DEVICE_OBJECT* pPhysicalDeviceObject) : m_pPhysicalDevice(pPhysicalDeviceObject),
                                                                                         m_MonitorPowerState(PowerDeviceD0),
                                                                                         m_AdapterPowerState(PowerDeviceD0)
@@ -31,7 +31,7 @@ BASIC_DISPLAY_DRIVER::BASIC_DISPLAY_DRIVER(_In_ DEVICE_OBJECT* pPhysicalDeviceOb
         m_HardwareBlt[i].Initialize(this,i);
     }
 }
- //µ±ÊµÀı»¯µÄÉè±¸ÉúÃüÖÜÆÚ½áÊøµÄÊ±ºòµ÷ÓÃÇåÀí·½·¨
+ //å½“å®ä¾‹åŒ–çš„è®¾å¤‡ç”Ÿå‘½å‘¨æœŸç»“æŸçš„æ—¶å€™è°ƒç”¨æ¸…ç†æ–¹æ³•
 BASIC_DISPLAY_DRIVER::~BASIC_DISPLAY_DRIVER()
 {
     PAGED_CODE();
@@ -40,7 +40,7 @@ BASIC_DISPLAY_DRIVER::~BASIC_DISPLAY_DRIVER()
     CleanUp();
 }
 
-//Çı¶¯Éè±¸Æô¶¯º¯Êı NTSTATUS¼ì²éº¯ÊıÔ¤ÆÚ
+//é©±åŠ¨è®¾å¤‡å¯åŠ¨å‡½æ•° NTSTATUSæ£€æŸ¥å‡½æ•°é¢„æœŸ
 NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartInfo,
                                            _In_  DXGKRNL_INTERFACE* pDxgkInterface,
                                            _Out_ ULONG*             pNumberOfViews,
@@ -53,13 +53,13 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
     BDD_ASSERT(pNumberOfViews != NULL);
     BDD_ASSERT(pNumberOfChildren != NULL);
 
-    //¸´ÖÆÆô¶¯ĞÅÏ¢µ½½á¹¹Ìå
+    //å¤åˆ¶å¯åŠ¨ä¿¡æ¯åˆ°ç»“æ„ä½“
     RtlCopyMemory(&m_StartInfo, pDxgkStartInfo, sizeof(m_StartInfo));
     RtlCopyMemory(&m_DxgkInterface, pDxgkInterface, sizeof(m_DxgkInterface));
-    RtlZeroMemory(m_CurrentModes, sizeof(m_CurrentModes));  // Çå¿Õ²¢³õÊ¼»¯
+    RtlZeroMemory(m_CurrentModes, sizeof(m_CurrentModes));  // æ¸…ç©ºå¹¶åˆå§‹åŒ–
     m_CurrentModes[0].DispInfo.TargetId = D3DDDI_ID_UNINITIALIZED;
 
-    // Get device information from OS. ´Ó²Ù×÷ÏµÍ³»ñÈ¡Éè±¸ĞÅÏ¢
+    // Get device information from OS. ä»æ“ä½œç³»ç»Ÿè·å–è®¾å¤‡ä¿¡æ¯
     NTSTATUS Status = m_DxgkInterface.DxgkCbGetDeviceInformation(m_DxgkInterface.DeviceHandle, &m_DeviceInfo);
     if (!NT_SUCCESS(Status))
     {
@@ -69,7 +69,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
     }
 
     // Ignore return value, since it's not the end of the world if we failed to write these values to the registry
-    // ºöÂÔ×¢²áÓ²¼şĞÅÏ¢µÄ·µ»ØÖµ£¬ÒòÎªĞ´Èë×¢²á±íÊ§°Ü²¢²»ÖÂÃü
+    // å¿½ç•¥æ³¨å†Œç¡¬ä»¶ä¿¡æ¯çš„è¿”å›å€¼ï¼Œå› ä¸ºå†™å…¥æ³¨å†Œè¡¨å¤±è´¥å¹¶ä¸è‡´å‘½
     RegisterHWInfo();
 
     // TODO: Uncomment the line below after updating the TODOs in the function CheckHardware
@@ -89,13 +89,13 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
         return STATUS_UNSUCCESSFUL;
     }
     m_Flags.DriverStarted = TRUE;
-    *pNumberOfViews = MAX_VIEWS; // ÉèÖÃÊÓÍ¼ÊıÁ¿
-    *pNumberOfChildren = MAX_CHILDREN; //ÉèÖÃ×ÓÉè±¸ÊıÁ¿
+    *pNumberOfViews = MAX_VIEWS; // è®¾ç½®è§†å›¾æ•°é‡
+    *pNumberOfChildren = MAX_CHILDREN; //è®¾ç½®å­è®¾å¤‡æ•°é‡
 
 
    return STATUS_SUCCESS;
 }
-//Çı¶¯Í£Ö¹
+//é©±åŠ¨åœæ­¢
 NTSTATUS BASIC_DISPLAY_DRIVER::StopDevice(VOID)
 {
     PAGED_CODE();
@@ -106,7 +106,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StopDevice(VOID)
 
     return STATUS_SUCCESS;
 }
-
+//å¾ªç¯æ¸…é™¤é©±åŠ¨è®¾å¤‡å†…å®¹
 VOID BASIC_DISPLAY_DRIVER::CleanUp()
 {
     PAGED_CODE();
@@ -122,7 +122,6 @@ VOID BASIC_DISPLAY_DRIVER::CleanUp()
     }
 
 }
- // 2024Äê9ÔÂ27ÈÕ23£º30 µ½´Ë
 
 NTSTATUS BASIC_DISPLAY_DRIVER::DispatchIoRequest(_In_  ULONG                 VidPnSourceId,
                                                  _In_  VIDEO_REQUEST_PACKET* pVideoRequestPacket)
