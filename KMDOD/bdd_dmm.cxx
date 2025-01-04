@@ -11,12 +11,12 @@
 
 #pragma code_seg("PAGE")
 
-// Display-Only Devices can only return display modes of D3DDDIFMT_A8R8G8B8.
-// Color conversion takes place if the app's fullscreen backbuffer has different format.
-// Full display drivers can add more if the hardware supports them.
+//只显示设备只能返回D3DDDIFMT_A8R8G8B8的显示模式。
+//如果应用程序的全屏backbuffer有不同的格式，则发生颜色转换。
+//如果硬件支持，完整显示驱动程序可以添加更多。
 D3DDDIFORMAT gBddPixelFormats[] = {
     D3DDDIFMT_A8R8G8B8
-};
+}; //枚举类型包含标识图面格式的值。
 
 // TODO: Need to also check pinned modes and the path parameters, not just topology
 NTSTATUS BASIC_DISPLAY_DRIVER::IsSupportedVidPn(_Inout_ DXGKARG_ISSUPPORTEDVIDPN* pIsSupportedVidPn)
@@ -483,7 +483,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::SetVidPnSourceVisibility(_In_ CONST DXGKARG_SETVI
         {
             
             
-            [SourceId].Flags.FullscreenPresent = TRUE;
+            m_CurrentModes[SourceId].Flags.FullscreenPresent = TRUE;
         }
         else
         {
