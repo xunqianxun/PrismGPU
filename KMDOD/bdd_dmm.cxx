@@ -481,7 +481,9 @@ NTSTATUS BASIC_DISPLAY_DRIVER::SetVidPnSourceVisibility(_In_ CONST DXGKARG_SETVI
     {
         if (pSetVidPnSourceVisibility->Visible)
         {
-            m_CurrentModes[SourceId].Flags.FullscreenPresent = TRUE;
+            
+            
+            [SourceId].Flags.FullscreenPresent = TRUE;
         }
         else
         {

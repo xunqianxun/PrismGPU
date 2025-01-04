@@ -1,4 +1,4 @@
-/******************************Module*Header*******************************\
+ï»¿/******************************Module*Header*******************************\
 * Module Name: BDD_DDI.cxx
 *
 * Basic Display Driver DDI entry points redirects
@@ -32,7 +32,7 @@ DriverEntry(
 
     InitialData.Version = DXGKDDI_INTERFACE_VERSION;
 
-    //ÏµÍ³IRP»Øµ÷¼°WDDM¿ò¼ÜÏà¹Ø
+    //ç³»ç»ŸIRPå›è°ƒåŠWDDMæ¡†æ¶ç›¸å…³
     InitialData.DxgkDdiAddDevice                    = BddDdiAddDevice;     
     InitialData.DxgkDdiStartDevice                  = BddDdiStartDevice;
     InitialData.DxgkDdiStopDevice                   = BddDdiStopDevice;
@@ -114,7 +114,7 @@ BddDdiAddDevice(
 
     *ppDeviceContext = pBDD;
 
-    return STATUS_SUCCESS;   //´Ëº¯ÊıÊµÖÊÉÏ¾ÍÊÇÔÚÎªPDOÉè±¸·ÖÅäÒ»¸öÉÏÏÂÎÄ¿Õ¼ä
+    return STATUS_SUCCESS;   //æ­¤å‡½æ•°å®è´¨ä¸Šå°±æ˜¯åœ¨ä¸ºPDOè®¾å¤‡åˆ†é…ä¸€ä¸ªä¸Šä¸‹æ–‡ç©ºé—´
 }
 
 NTSTATUS
@@ -131,24 +131,24 @@ BddDdiRemoveDevice(
         pBDD = NULL;
     }
 
-    return STATUS_SUCCESS; //´Ëº¯ÊıÓÃÓÚdeleteÒÑ¾­´´½¨µÄÉè±¸
+    return STATUS_SUCCESS; //æ­¤å‡½æ•°ç”¨äºdeleteå·²ç»åˆ›å»ºçš„è®¾å¤‡
 }
 
 NTSTATUS
 BddDdiStartDevice(
     _In_  VOID*              pDeviceContext,
-    _In_  DXGK_START_INFO*   pDxgkStartInfo,//DXGK_START_INFO½á¹¹Ìå³ÉÔ±±äÁ¿RequiredDmaQueueEntry±£´æÁËĞèÒª·ÖÅäµÄDMA¶ÓÁĞÖĞ
-                                            //Ô¤·ÖÅäBUFFERµÄÊıÁ¿¡£ AdapterGuidºÍAdapterLuidÔòÎªÊÊÅäÆ÷µÄ±êÊ¶¡£
-    _In_  DXGKRNL_INTERFACE* pDxgkInterface,//Í¨¹ıÏµÍ³¿ò¼Ü¼ä½Ó»ñÈ¡Ó²¼ş×ÊÔ´ĞÅÏ¢,ÆäÁíÍâÒ»²¿·Ö¹¦ÄÜÊÇÓëÏµÍ³¿ò¼ÜÇı¶¯µÄÍ¨ĞÅ¡£
-    _Out_ ULONG*             pNumberOfViews,//ÎªKMODĞèÒª·µ»Ø¸øÏµÍ³¿ò¼ÜµÄÊÓÆµÔ´ÊıÁ¿¡£
-    _Out_ ULONG*             pNumberOfChildren)//ÎªÔÚÏÔ¿¨ÉÏÃ¶¾Ùµ½µÄÏÔÊ¾Æ÷ÊıÁ¿¡£
+    _In_  DXGK_START_INFO*   pDxgkStartInfo,//DXGK_START_INFOç»“æ„ä½“æˆå‘˜å˜é‡RequiredDmaQueueEntryä¿å­˜äº†éœ€è¦åˆ†é…çš„DMAé˜Ÿåˆ—ä¸­
+                                            //é¢„åˆ†é…BUFFERçš„æ•°é‡ã€‚ AdapterGuidå’ŒAdapterLuidåˆ™ä¸ºé€‚é…å™¨çš„æ ‡è¯†ã€‚
+    _In_  DXGKRNL_INTERFACE* pDxgkInterface,//é€šè¿‡ç³»ç»Ÿæ¡†æ¶é—´æ¥è·å–ç¡¬ä»¶èµ„æºä¿¡æ¯,å…¶å¦å¤–ä¸€éƒ¨åˆ†åŠŸèƒ½æ˜¯ä¸ç³»ç»Ÿæ¡†æ¶é©±åŠ¨çš„é€šä¿¡ã€‚
+    _Out_ ULONG*             pNumberOfViews,//ä¸ºKMODéœ€è¦è¿”å›ç»™ç³»ç»Ÿæ¡†æ¶çš„è§†é¢‘æºæ•°é‡ã€‚
+    _Out_ ULONG*             pNumberOfChildren)//ä¸ºåœ¨æ˜¾å¡ä¸Šæšä¸¾åˆ°çš„æ˜¾ç¤ºå™¨æ•°é‡ã€‚
 {
     PAGED_CODE();
     BDD_ASSERT_CHK(pDeviceContext != NULL);
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(pDeviceContext);
     return pBDD->StartDevice(pDxgkStartInfo, pDxgkInterface, pNumberOfViews, pNumberOfChildren);
-} //Æô¶¯Éè±¸
+} //å¯åŠ¨è®¾å¤‡
 
 NTSTATUS
 BddDdiStopDevice(
@@ -159,7 +159,7 @@ BddDdiStopDevice(
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(pDeviceContext);
     return pBDD->StopDevice();
-} //¹Ø±ÕÉè±¸
+} //å…³é—­è®¾å¤‡
 
 
 NTSTATUS
@@ -178,7 +178,7 @@ BddDdiDispatchIoRequest(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->DispatchIoRequest(VidPnSourceId, pVideoRequestPacket);
-}//Éè±¸¸´Î»
+}//è®¾å¤‡å¤ä½
 
 NTSTATUS
 BddDdiSetPowerState(
@@ -213,7 +213,7 @@ BddDdiQueryChildRelations(
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(pDeviceContext);
     return pBDD->QueryChildRelations(pChildRelations, ChildRelationsSize);
-}//Ã¶¾Ù×ÓÉè±¸º¯Êı
+}//æšä¸¾å­è®¾å¤‡å‡½æ•°
 
 NTSTATUS
 BddDdiQueryChildStatus(
@@ -226,7 +226,7 @@ BddDdiQueryChildStatus(
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(pDeviceContext);
     return pBDD->QueryChildStatus(pChildStatus, NonDestructiveOnly);
-}//×ÓÉè±¸×´Ì¬º¯Êı
+}//å­è®¾å¤‡çŠ¶æ€å‡½æ•°
 
 NTSTATUS
 BddDdiQueryDeviceDescriptor(
@@ -248,7 +248,7 @@ BddDdiQueryDeviceDescriptor(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->QueryDeviceDescriptor(ChildUid, pDeviceDescriptor);
-}//×ÓÉè±¸ÃèÊöº¯Êı
+}//å­è®¾å¤‡æè¿°å‡½æ•°
 
 
 //
@@ -256,7 +256,7 @@ BddDdiQueryDeviceDescriptor(
 //
 
 NTSTATUS
-APIENTRY //apientryÔò±íÃ÷´Ëº¯ÊıÊÇÓ¦ÓÃ³ÌĞòµÄÈë¿Úµã£¬Ïàµ±ÓÚcµÄmain()º¯Êı¡£
+APIENTRY //apientryåˆ™è¡¨æ˜æ­¤å‡½æ•°æ˜¯åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ï¼Œç›¸å½“äºcçš„main()å‡½æ•°ã€‚
 BddDdiQueryAdapterInfo(
     _In_ CONST HANDLE                    hAdapter,
     _In_ CONST DXGKARG_QUERYADAPTERINFO* pQueryAdapterInfo)
@@ -266,7 +266,7 @@ BddDdiQueryAdapterInfo(
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(hAdapter);
     return pBDD->QueryAdapterInfo(pQueryAdapterInfo);
-}//»ñÈ¡ÅäÖÃĞÅÏ¢
+}//è·å–é…ç½®ä¿¡æ¯
 
 NTSTATUS
 APIENTRY
@@ -284,7 +284,7 @@ BddDdiSetPointerPosition(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->SetPointerPosition(pSetPointerPosition);
-} //º¯ÊıÉèÖÃÊó±êÖ¸ÕëµÄÎ»ÖÃºÍ¿É¼ûĞÔ×´Ì¬¡£
+} //å‡½æ•°è®¾ç½®é¼ æ ‡æŒ‡é’ˆçš„ä½ç½®å’Œå¯è§æ€§çŠ¶æ€ã€‚
 
 NTSTATUS
 APIENTRY
@@ -302,7 +302,7 @@ BddDdiSetPointerShape(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->SetPointerShape(pSetPointerShape);
-}//º¯ÊıÉèÖÃÊó±êÖ¸ÕëµÄÍâ¹ÛºÍÎ»ÖÃ¡£
+}//å‡½æ•°è®¾ç½®é¼ æ ‡æŒ‡é’ˆçš„å¤–è§‚å’Œä½ç½®ã€‚
 
 
 
@@ -323,7 +323,7 @@ BddDdiPresentDisplayOnly(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->PresentDisplayOnly(pPresentDisplayOnly);
-}//½«ÆÁÄ»Í¼Ïñ³ÊÏÖ¸øÄÚºËÄ£Ê½½öÏÔÊ¾Çı¶¯³ÌĞò £¨KMDOD£© µÄÏÔÊ¾Éè±¸¡£
+}//å°†å±å¹•å›¾åƒå‘ˆç°ç»™å†…æ ¸æ¨¡å¼ä»…æ˜¾ç¤ºé©±åŠ¨ç¨‹åº ï¼ˆKMDODï¼‰ çš„æ˜¾ç¤ºè®¾å¤‡ã€‚
 
 NTSTATUS
 APIENTRY
@@ -337,7 +337,7 @@ BddDdiStopDeviceAndReleasePostDisplayOwnership(
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(pDeviceContext);
     return pBDD->StopDeviceAndReleasePostDisplayOwnership(TargetId, DisplayInfo);
-}//ÓÉ²Ù×÷ÏµÍ³µ÷ÓÃ£¬ÒÔÇëÇóÏÔÊ¾Î¢ĞÍ¶Ë¿ÚÇı¶¯³ÌĞòÖØÖÃÏÔÊ¾Éè±¸²¢ÊÍ·Åµ±Ç°¿ª»ú×Ô¼ì £¨POST£© Éè±¸µÄËùÓĞÈ¨¡£
+}//ç”±æ“ä½œç³»ç»Ÿè°ƒç”¨ï¼Œä»¥è¯·æ±‚æ˜¾ç¤ºå¾®å‹ç«¯å£é©±åŠ¨ç¨‹åºé‡ç½®æ˜¾ç¤ºè®¾å¤‡å¹¶é‡Šæ”¾å½“å‰å¼€æœºè‡ªæ£€ ï¼ˆPOSTï¼‰ è®¾å¤‡çš„æ‰€æœ‰æƒã€‚
 
 NTSTATUS
 APIENTRY
@@ -358,7 +358,7 @@ BddDdiIsSupportedVidPn(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->IsSupportedVidPn(pIsSupportedVidPn);
-}//Ö¸Ê¾ VidPN ÊÇÊÜÖ§³Ö £¨TRUE£© »¹ÊÇ²»Ö§³Ö £¨FALSE£©¡£
+}//æŒ‡ç¤º VidPN æ˜¯å—æ”¯æŒ ï¼ˆTRUEï¼‰ è¿˜æ˜¯ä¸æ”¯æŒ ï¼ˆFALSEï¼‰ã€‚
 
 NTSTATUS
 APIENTRY
@@ -376,7 +376,7 @@ BddDdiRecommendFunctionalVidPn(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->RecommendFunctionalVidPn(pRecommendFunctionalVidPn);
-}//º¯Êı´´½¨¿ÉÔÚÖ¸¶¨ÏÔÊ¾ÊÊÅäÆ÷ÉÏÊµÏÖµÄ¹¦ÄÜĞÔ VidPN¡£ËùÎ½VidPN¾ÍÊÇ ÊÓÆµ³ÊÍø×´¹ÜÀíÆ÷¡£
+}//å‡½æ•°åˆ›å»ºå¯åœ¨æŒ‡å®šæ˜¾ç¤ºé€‚é…å™¨ä¸Šå®ç°çš„åŠŸèƒ½æ€§ VidPNã€‚æ‰€è°“VidPNå°±æ˜¯ è§†é¢‘å‘ˆç½‘çŠ¶ç®¡ç†å™¨ã€‚
 
 NTSTATUS
 APIENTRY
@@ -412,7 +412,7 @@ BddDdiRecommendMonitorModes(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->RecommendMonitorModes(pRecommendMonitorModes);
-}//º¯Êı¼ì²éÓëÌØ¶¨ÊÓÆµµ±Ç°Ä¿±ê¹ØÁªµÄ¼àÊÓÆ÷Ô´Ä£Ê½¼¯£¬²¢¿ÉÄÜ½«Ä£Ê½Ìí¼Óµ½¸Ã¼¯¡£
+}//å‡½æ•°æ£€æŸ¥ä¸ç‰¹å®šè§†é¢‘å½“å‰ç›®æ ‡å…³è”çš„ç›‘è§†å™¨æºæ¨¡å¼é›†ï¼Œå¹¶å¯èƒ½å°†æ¨¡å¼æ·»åŠ åˆ°è¯¥é›†ã€‚
 
 NTSTATUS
 APIENTRY
@@ -430,7 +430,7 @@ BddDdiEnumVidPnCofuncModality(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->EnumVidPnCofuncModality(pEnumCofuncModality);
-}//º¯ÊıÊ¹ VidPN µÄÔ´Ä£Ê½¼¯ºÍÄ¿±êÄ£Ê½¼¯Óë VidPN µÄÍØÆËºÍÒÑ¹Ì¶¨µÄÄ£Ê½Ğ­Í¬ÔËĞĞ¡£
+}//å‡½æ•°ä½¿ VidPN çš„æºæ¨¡å¼é›†å’Œç›®æ ‡æ¨¡å¼é›†ä¸ VidPN çš„æ‹“æ‰‘å’Œå·²å›ºå®šçš„æ¨¡å¼ååŒè¿è¡Œã€‚
 
 NTSTATUS
 APIENTRY
@@ -448,7 +448,7 @@ BddDdiSetVidPnSourceVisibility(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->SetVidPnSourceVisibility(pSetVidPnSourceVisibility);
-}//º¯Êı¶ÔÓëÖ¸¶¨ÊÓÆµÑİÊ¾Ô´¹ØÁªµÄÊÓÆµÊä³ö±à½âÂëÆ÷½øĞĞ±à³Ì£¬ÒÔ¿ªÊ¼É¨Ãè»òÍ£Ö¹É¨ÃèÔ´µÄÖ÷Í¼Ãæ
+}//å‡½æ•°å¯¹ä¸æŒ‡å®šè§†é¢‘æ¼”ç¤ºæºå…³è”çš„è§†é¢‘è¾“å‡ºç¼–è§£ç å™¨è¿›è¡Œç¼–ç¨‹ï¼Œä»¥å¼€å§‹æ‰«ææˆ–åœæ­¢æ‰«ææºçš„ä¸»å›¾é¢
 
 NTSTATUS
 APIENTRY
@@ -466,7 +466,7 @@ BddDdiCommitVidPn(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->CommitVidPn(pCommitVidPn);
-}//º¯ÊıÊ¹Ö¸¶¨µÄÊÓÆµÑİÊ¾ÍøÂç £¨VidPN£© ÔÚÏÔÊ¾ÊÊÅäÆ÷ÉÏ´¦ÓÚ»î¶¯×´Ì¬¡£
+}//å‡½æ•°ä½¿æŒ‡å®šçš„è§†é¢‘æ¼”ç¤ºç½‘ç»œ ï¼ˆVidPNï¼‰ åœ¨æ˜¾ç¤ºé€‚é…å™¨ä¸Šå¤„äºæ´»åŠ¨çŠ¶æ€ã€‚
 
 NTSTATUS
 APIENTRY
@@ -484,7 +484,7 @@ BddDdiUpdateActiveVidPnPresentPath(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->UpdateActiveVidPnPresentPath(pUpdateActiveVidPnPresentPath);
-}//º¯Êı¸üĞÂÏÔÊ¾ÊÊÅäÆ÷ÉÏµ±Ç°´¦ÓÚ»î¶¯×´Ì¬µÄÊÓÆµÑİÊ¾Â·¾¶Ö®Ò»¡£
+}//å‡½æ•°æ›´æ–°æ˜¾ç¤ºé€‚é…å™¨ä¸Šå½“å‰å¤„äºæ´»åŠ¨çŠ¶æ€çš„è§†é¢‘æ¼”ç¤ºè·¯å¾„ä¹‹ä¸€ã€‚
 
 NTSTATUS
 APIENTRY
@@ -502,7 +502,7 @@ BddDdiQueryVidPnHWCapability(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->QueryVidPnHWCapability(pVidPnHWCaps);
-}//º¯ÊıÇëÇóÏÔÊ¾Î¢ĞÍ¶Ë¿ÚÇı¶¯³ÌĞò±¨¸æ¹¦ÄÜÕı³£µÄ VidPn Â·¾¶ÉÏµÄÓ²¼ş¹¦ÄÜ¡£
+}//å‡½æ•°è¯·æ±‚æ˜¾ç¤ºå¾®å‹ç«¯å£é©±åŠ¨ç¨‹åºæŠ¥å‘ŠåŠŸèƒ½æ­£å¸¸çš„ VidPn è·¯å¾„ä¸Šçš„ç¡¬ä»¶åŠŸèƒ½ã€‚
 //END: Paged Code
 #pragma code_seg(pop)
 
@@ -534,7 +534,7 @@ BddDdiInterruptRoutine(
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(pDeviceContext);
     return pBDD->InterruptRoutine(MessageNumber);
-}//º¯Êı´¦ÀíÏÔÊ¾ÊÊÅäÆ÷Éú³ÉµÄÖĞ¶Ï¡£
+}//å‡½æ•°å¤„ç†æ˜¾ç¤ºé€‚é…å™¨ç”Ÿæˆçš„ä¸­æ–­ã€‚
 
 VOID
 BddDdiResetDevice(
@@ -544,7 +544,7 @@ BddDdiResetDevice(
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(pDeviceContext);
     pBDD->ResetDevice();
-}//º¯Êı½«ÏÔÊ¾ÊÊÅäÆ÷ÉèÖÃÎª VGA ×Ö·ûÄ£Ê½
+}//å‡½æ•°å°†æ˜¾ç¤ºé€‚é…å™¨è®¾ç½®ä¸º VGA å­—ç¬¦æ¨¡å¼
 
 NTSTATUS
 APIENTRY
@@ -560,7 +560,7 @@ BddDdiSystemDisplayEnable(
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(pDeviceContext);
     return pBDD->SystemDisplayEnable(TargetId, Flags, Width, Height, ColorFormat);
-}//£¬ÒÔÇëÇóÏÔÊ¾Î¢ĞÍ¶Ë¿ÚÇı¶¯³ÌĞò½«µ±Ç°ÏÔÊ¾Éè±¸ÖØÖÃÎªÖ¸¶¨×´Ì¬¡£
+}//ï¼Œä»¥è¯·æ±‚æ˜¾ç¤ºå¾®å‹ç«¯å£é©±åŠ¨ç¨‹åºå°†å½“å‰æ˜¾ç¤ºè®¾å¤‡é‡ç½®ä¸ºæŒ‡å®šçŠ¶æ€ã€‚
 
 VOID
 APIENTRY
@@ -577,7 +577,7 @@ BddDdiSystemDisplayWrite(
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(pDeviceContext);
     pBDD->SystemDisplayWrite(Source, SourceWidth, SourceHeight, SourceStride, PositionX, PositionY);
-}//ÓÉ²Ù×÷ÏµÍ³µ÷ÓÃ£¬ÒÔÇëÇóÏÔÊ¾Î¢ĞÍ¶Ë¿ÚÇı¶¯³ÌĞò½«Í¼Ïñ¿éĞ´ÈëÏÔÊ¾Éè±¸¡£
+}//ç”±æ“ä½œç³»ç»Ÿè°ƒç”¨ï¼Œä»¥è¯·æ±‚æ˜¾ç¤ºå¾®å‹ç«¯å£é©±åŠ¨ç¨‹åºå°†å›¾åƒå—å†™å…¥æ˜¾ç¤ºè®¾å¤‡ã€‚
 
 // END: Non-Paged Code
 #pragma code_seg(pop)

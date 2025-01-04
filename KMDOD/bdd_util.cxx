@@ -1,4 +1,4 @@
-/******************************Module*Header*******************************\
+﻿/******************************Module*Header*******************************\
 * Module Name: bdd_util.cxx
 *
 * Basic Display Driver utility functions
