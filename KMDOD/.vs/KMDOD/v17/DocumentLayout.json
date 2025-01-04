@@ -1,0 +1,177 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\BDD_DDI.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|solutionrelative:BDD_DDI.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\BltHw.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|solutionrelative:BltHw.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\memory.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|solutionrelative:memory.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\BltFuncs.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|solutionrelative:BltFuncs.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\BDD_Util.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|solutionrelative:BDD_Util.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\BDD_DMM.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|solutionrelative:BDD_DMM.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\BDD.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|solutionrelative:BDD.cxx||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|C:\\USERS\\86156\\DESKTOP\\WDDMDEMO\\WINDOWS-DRIVER-SAMPLES\\VIDEO\\KMDOD\\BDD.HXX||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|solutionrelative:BDD.HXX||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\Sample\\sampledisplay.inf||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{D3C62015-3845-4DA8-8522-5DC45B735063}|Sample\\SampleDisplay.vcxproj|solutionrelative:Sample\\sampledisplay.inf||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BDD_DDI.cxx",
+              "DocumentMoniker": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bdd_ddi.cxx",
+              "RelativeDocumentMoniker": "bdd_ddi.cxx",
+              "ToolTip": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bdd_ddi.cxx",
+              "RelativeToolTip": "bdd_ddi.cxx",
+              "ViewState": "AgIAAHUBAAAAAAAAAAAAAIYBAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-01-04T02:24:24.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BltFuncs.cxx",
+              "DocumentMoniker": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bltfuncs.cxx",
+              "RelativeDocumentMoniker": "bltfuncs.cxx",
+              "ToolTip": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bltfuncs.cxx",
+              "RelativeToolTip": "bltfuncs.cxx",
+              "ViewState": "AgIAADQBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-28T05:22:47.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BDD_Util.cxx",
+              "DocumentMoniker": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bdd_util.cxx",
+              "RelativeDocumentMoniker": "bdd_util.cxx",
+              "ToolTip": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bdd_util.cxx",
+              "RelativeToolTip": "bdd_util.cxx",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-28T05:22:21.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "memory.cxx",
+              "DocumentMoniker": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\memory.cxx",
+              "RelativeDocumentMoniker": "memory.cxx",
+              "ToolTip": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\memory.cxx",
+              "RelativeToolTip": "memory.cxx",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAiwF0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-27T13:53:55.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BltHw.cxx",
+              "DocumentMoniker": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\blthw.cxx",
+              "RelativeDocumentMoniker": "blthw.cxx",
+              "ToolTip": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\blthw.cxx",
+              "RelativeToolTip": "blthw.cxx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-27T13:52:47.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BDD_DMM.cxx",
+              "DocumentMoniker": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bdd_dmm.cxx",
+              "RelativeDocumentMoniker": "bdd_dmm.cxx",
+              "ToolTip": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bdd_dmm.cxx",
+              "RelativeToolTip": "bdd_dmm.cxx",
+              "ViewState": "AgIAAA8EAAAAAAAAAAAAAAMAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-27T13:52:03.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "bdd.hxx",
+              "DocumentMoniker": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bdd.hxx",
+              "RelativeDocumentMoniker": "bdd.hxx",
+              "ToolTip": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bdd.hxx",
+              "RelativeToolTip": "bdd.hxx",
+              "ViewState": "AgIAAAkCAAAAAAAAAAASwBQCAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-27T05:03:41.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BDD.cxx",
+              "DocumentMoniker": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bdd.cxx",
+              "RelativeDocumentMoniker": "bdd.cxx",
+              "ToolTip": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\bdd.cxx",
+              "RelativeToolTip": "bdd.cxx",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAOYCAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-27T04:34:54.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "sampledisplay.inf",
+              "DocumentMoniker": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\Sample\\sampledisplay.inf",
+              "RelativeDocumentMoniker": "Sample\\sampledisplay.inf",
+              "ToolTip": "C:\\Users\\86156\\Desktop\\WDDMdemo\\Windows-driver-samples\\video\\KMDOD\\Sample\\sampledisplay.inf",
+              "RelativeToolTip": "Sample\\sampledisplay.inf",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002933|",
+              "WhenOpened": "2024-09-28T05:41:25.674Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
