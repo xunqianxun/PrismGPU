@@ -11,12 +11,12 @@
 
 #pragma code_seg("PAGE")
 
-//ֻ��ʾ�豸ֻ�ܷ���D3DDDIFMT_A8R8G8B8����ʾģʽ��
-//���Ӧ�ó����ȫ��backbuffer�в�ͬ�ĸ�ʽ��������ɫת����
-//���Ӳ��֧�֣�������ʾ��������������Ӹ��ࡣ
+//只显示设备只能返回D3DDDIFMT_A8R8G8B8的显示模式。
+//如果应用程序的全屏backbuffer有不同的格式，则发生颜色转换。
+//如果硬件支持，完整显示驱动程序可以添加更多。
 D3DDDIFORMAT gBddPixelFormats[] = {
     D3DDDIFMT_A8R8G8B8
-}; //ö�����Ͱ�����ʶͼ���ʽ��ֵ��
+}; //枚举类型包含标识图面格式的值。
 
 // TODO: Need to also check pinned modes and the path parameters, not just topology
 NTSTATUS BASIC_DISPLAY_DRIVER::IsSupportedVidPn(_Inout_ DXGKARG_ISSUPPORTEDVIDPN* pIsSupportedVidPn)
