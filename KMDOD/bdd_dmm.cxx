@@ -1020,11 +1020,12 @@ NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleTargetMode(_In_ CONST DXGK_VIDPNTARGETMO
 }
 
 
-NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleMonitorMode(_In_ CONST DXGKARG_RECOMMENDMONITORMODES* CONST pRecommendMonitorModes)
+NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleMonitorMode(_In_ CONST DXGKARG_RECOMMENDMONITORMODES* CONST pRecommendMonitorModes) //像操作系统推荐适合的视频输出模式与形式
 {
     PAGED_CODE();
 
     D3DKMDT_MONITOR_SOURCE_MODE* pMonitorSourceMode = NULL;
+    //创建一个源模式
     NTSTATUS Status = pRecommendMonitorModes->pMonitorSourceModeSetInterface->pfnCreateNewModeInfo(pRecommendMonitorModes->hMonitorSourceModeSet, &pMonitorSourceMode);
     if (!NT_SUCCESS(Status))
     {
@@ -1033,25 +1034,25 @@ NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleMonitorMode(_In_ CONST DXGKARG_RECOMMEND
         return Status;
     }
 
-    D3DDDI_VIDEO_PRESENT_SOURCE_ID CorrespondingSourceId = FindSourceForTarget(pRecommendMonitorModes->VideoPresentTargetId, TRUE);
+    D3DDDI_VIDEO_PRESENT_SOURCE_ID CorrespondingSourceId = FindSourceForTarget(pRecommendMonitorModes->VideoPresentTargetId, TRUE); 
 
     // Since we don't know the real monitor timing information, just use the current display mode (from the POST device) with unknown frequencies
-    pMonitorSourceMode->VideoSignalInfo.VideoStandard = D3DKMDT_VSS_OTHER;
-    pMonitorSourceMode->VideoSignalInfo.TotalSize.cx = m_CurrentModes[CorrespondingSourceId].DispInfo.Width;
-    pMonitorSourceMode->VideoSignalInfo.TotalSize.cy = m_CurrentModes[CorrespondingSourceId].DispInfo.Height;
-    pMonitorSourceMode->VideoSignalInfo.ActiveSize = pMonitorSourceMode->VideoSignalInfo.TotalSize;
-    pMonitorSourceMode->VideoSignalInfo.VSyncFreq.Numerator = D3DKMDT_FREQUENCY_NOTSPECIFIED;
-    pMonitorSourceMode->VideoSignalInfo.VSyncFreq.Denominator = D3DKMDT_FREQUENCY_NOTSPECIFIED;
-    pMonitorSourceMode->VideoSignalInfo.HSyncFreq.Numerator = D3DKMDT_FREQUENCY_NOTSPECIFIED;
+    pMonitorSourceMode->VideoSignalInfo.VideoStandard = D3DKMDT_VSS_OTHER; //表示当前使用的是非标准的视频信号，可能是自定义的视频信号标准。
+    pMonitorSourceMode->VideoSignalInfo.TotalSize.cx = m_CurrentModes[CorrespondingSourceId].DispInfo.Width; //设置了显示模式的分辨率（总尺寸）。 m_CurrentModes是BASIC_DISPLAY_DRIVER的私有成员
+    pMonitorSourceMode->VideoSignalInfo.TotalSize.cy = m_CurrentModes[CorrespondingSourceId].DispInfo.Height;//TotalSize.cx 和 TotalSize.cy 分别表示显示器的宽度和高度（以像素为单位）
+    pMonitorSourceMode->VideoSignalInfo.ActiveSize = pMonitorSourceMode->VideoSignalInfo.TotalSize; //这行代码将显示模式的“有效大小” (ActiveSize) 设置为和总尺寸（TotalSize）一样。
+    pMonitorSourceMode->VideoSignalInfo.VSyncFreq.Numerator = D3DKMDT_FREQUENCY_NOTSPECIFIED; //表示没有指定垂直同步频率。通常，垂直同步频率是显示器的刷新率，但在某些情况下可能不适用，因此将其设置为“不指定”。
+    pMonitorSourceMode->VideoSignalInfo.VSyncFreq.Denominator = D3DKMDT_FREQUENCY_NOTSPECIFIED; 
+    pMonitorSourceMode->VideoSignalInfo.HSyncFreq.Numerator = D3DKMDT_FREQUENCY_NOTSPECIFIED;//水平同步同上
     pMonitorSourceMode->VideoSignalInfo.HSyncFreq.Denominator = D3DKMDT_FREQUENCY_NOTSPECIFIED;
-    pMonitorSourceMode->VideoSignalInfo.PixelRate = D3DKMDT_FREQUENCY_NOTSPECIFIED;
-    pMonitorSourceMode->VideoSignalInfo.ScanLineOrdering = D3DDDI_VSSLO_PROGRESSIVE;
+    pMonitorSourceMode->VideoSignalInfo.PixelRate = D3DKMDT_FREQUENCY_NOTSPECIFIED; //表示没有指定像素速率。像素速率是指每秒钟传输的像素数
+    pMonitorSourceMode->VideoSignalInfo.ScanLineOrdering = D3DDDI_VSSLO_PROGRESSIVE; //逐行扫描
 
     // We set the preference to PREFERRED since this is the only supported mode
-    pMonitorSourceMode->Origin = D3DKMDT_MCO_DRIVER;
-    pMonitorSourceMode->Preference = D3DKMDT_MP_PREFERRED;
-    pMonitorSourceMode->ColorBasis = D3DKMDT_CB_SRGB;
-    pMonitorSourceMode->ColorCoeffDynamicRanges.FirstChannel = 8;
+    pMonitorSourceMode->Origin = D3DKMDT_MCO_DRIVER; //设置了显示模式的来源为驱动程序（D3DKMDT_MCO_DRIVER）
+    pMonitorSourceMode->Preference = D3DKMDT_MP_PREFERRED; //表示这是驱动程序推荐的显示模式，操作系统或显示设备应该优先选择该模式
+    pMonitorSourceMode->ColorBasis = D3DKMDT_CB_SRGB; //表示该模式采用标准的sRGB色彩空间进行色彩编码。
+    pMonitorSourceMode->ColorCoeffDynamicRanges.FirstChannel = 8; //设置了每个颜色通道的动态范围系数为8，通常表示色彩的位深度
     pMonitorSourceMode->ColorCoeffDynamicRanges.SecondChannel = 8;
     pMonitorSourceMode->ColorCoeffDynamicRanges.ThirdChannel = 8;
     pMonitorSourceMode->ColorCoeffDynamicRanges.FourthChannel = 8;

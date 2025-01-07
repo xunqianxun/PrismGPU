@@ -81,7 +81,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
 
     // This sample driver only uses the frame buffer of the POST device. DxgkCbAcquirePostDisplayOwnership
     // gives you the frame buffer address and ensures that no one else is drawing to it. Be sure to give it back!
-    Status = m_DxgkInterface.DxgkCbAcquirePostDisplayOwnership(m_DxgkInterface.DeviceHandle, &(m_CurrentModes[0].DispInfo));
+    Status = m_DxgkInterface.DxgkCbAcquirePostDisplayOwnership(m_DxgkInterface.DeviceHandle, &(m_CurrentModes[0].DispInfo));  //此处通过设备句柄创建的m_CurrentModes信息包含了设备的输出信息存放在bdd.hxx中
     if (!NT_SUCCESS(Status) || m_CurrentModes[0].DispInfo.Width == 0)
     {
         // The most likely cause of failure is that the driver is simply not running on a POST device, or we are running
