@@ -736,7 +736,8 @@ D3DDDI_VIDEO_PRESENT_SOURCE_ID BASIC_DISPLAY_DRIVER::FindSourceForTarget(D3DDDI_
 
 VOID BASIC_DISPLAY_DRIVER::DpcRoutine(VOID)
 {
-    m_DxgkInterface.DxgkCbNotifyDpc((HANDLE)m_DxgkInterface.DeviceHandle);
+    m_DxgkInterface.DxgkCbNotifyDpc((HANDLE)m_DxgkInterface.DeviceHandle); //在延迟过程调用 （DPC） 时通知图形处理单元 （GPU） 调度程序图形硬件更新,通过对图形硬件的直接内存访问 （DMA） 流，通知 GPU 调度程序对栅栏的更新
+                                                                           //本质就是GPU完成了一帧渲染之后通知驱动可以输入下一帧的内容啦。
 }
 
 BOOLEAN BASIC_DISPLAY_DRIVER::InterruptRoutine(_In_  ULONG MessageNumber)

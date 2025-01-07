@@ -178,7 +178,7 @@ BddDdiDispatchIoRequest(
         return STATUS_UNSUCCESSFUL;
     }
     return pBDD->DispatchIoRequest(VidPnSourceId, pVideoRequestPacket);
-}//设备复位
+}//图形驱动的IO设备请求
 
 NTSTATUS
 BddDdiSetPowerState(
