@@ -276,7 +276,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryAdapterInfo(_In_ CONST DXGKARG_QUERYADAPTERI
 
     switch (pQueryAdapterInfo->Type)
     {
-        case DXGKQAITYPE_DRIVERCAPS:
+        case DXGKQAITYPE_DRIVERCAPS: //KMD 应使用其驱动程序功能填充 DXGK_DRIVERCAPS 结构。
         {
             if (pQueryAdapterInfo->OutputDataSize < sizeof(DXGK_DRIVERCAPS))
             {

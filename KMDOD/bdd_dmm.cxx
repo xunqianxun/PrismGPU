@@ -114,7 +114,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::EnumVidPnCofuncModality(_In_ CONST DXGKARG_ENUMVI
 
     BDD_ASSERT(pEnumCofuncModality != NULL);
 
-    D3DKMDT_HVIDPNTOPOLOGY                   hVidPnTopology = 0;
+    D3DKMDT_HVIDPNTOPOLOGY                   hVidPnTopology = 0;        
     D3DKMDT_HVIDPNSOURCEMODESET              hVidPnSourceModeSet = 0;
     D3DKMDT_HVIDPNTARGETMODESET              hVidPnTargetModeSet = 0;
     CONST DXGK_VIDPN_INTERFACE*              pVidPnInterface = NULL;
