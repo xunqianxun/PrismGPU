@@ -17,6 +17,16 @@
 //
 // Driver Entry point
 //
+VOID KmdUnload(DRIVER_OBJECT* pdevice) {
+
+    //BddDdiUnload();
+
+    if (pdevice->DeviceObject) {
+        IoDeleteDevice(pdevice->DeviceObject);
+    }
+
+    DbgPrint("卸载KMD成功\n");
+}
 
 extern "C"
 NTSTATUS
@@ -26,6 +36,9 @@ DriverEntry(
 {
     PAGED_CODE();
 
+    DbgPrint("安装KMD成功\n");
+
+    pDriverObject->DriverUnload = KmdUnload;
 
     // Initialize DDI function pointers and dxgkrnl
     KMDDOD_INITIALIZATION_DATA InitialData = {0};
@@ -83,11 +96,14 @@ DriverEntry(
 // PnP DDIs
 //
 
+
 VOID
 BddDdiUnload(VOID)
 {
     PAGED_CODE();
 }
+
+
 
 NTSTATUS
 BddDdiAddDevice(
@@ -266,7 +282,7 @@ BddDdiQueryAdapterInfo(
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(hAdapter);
     return pBDD->QueryAdapterInfo(pQueryAdapterInfo);
-}//获取配置信息
+}//获取GPU硬件的信息
 
 NTSTATUS
 APIENTRY
