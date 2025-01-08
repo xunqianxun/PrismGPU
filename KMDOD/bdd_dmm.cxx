@@ -127,7 +127,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::EnumVidPnCofuncModality(_In_ CONST DXGKARG_ENUMVI
     CONST D3DKMDT_VIDPN_TARGET_MODE*         pVidPnPinnedTargetModeInfo = NULL;
 
     // Get the VidPn Interface so we can get the 'Source Mode Set', 'Target Mode Set' and 'VidPn Topology' interfaces
-    NTSTATUS Status = m_DxgkInterface.DxgkCbQueryVidPnInterface(pEnumCofuncModality->hConstrainingVidPn, DXGK_VIDPN_INTERFACE_VERSION_V1, &pVidPnInterface);
+    NTSTATUS Status = m_DxgkInterface.DxgkCbQueryVidPnInterface(pEnumCofuncModality->hConstrainingVidPn, DXGK_VIDPN_INTERFACE_VERSION_V1, &pVidPnInterface); //获取视频路径接口
     if (!NT_SUCCESS(Status))
     {
         BDD_LOG_ERROR2("DxgkCbQueryVidPnInterface failed with Status = 0x%I64x, hFunctionalVidPn = 0x%I64x", Status, pEnumCofuncModality->hConstrainingVidPn);
@@ -135,7 +135,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::EnumVidPnCofuncModality(_In_ CONST DXGKARG_ENUMVI
     }
 
     // Get the VidPn Topology interface so we can enumerate all paths
-    Status = pVidPnInterface->pfnGetTopology(pEnumCofuncModality->hConstrainingVidPn, &hVidPnTopology, &pVidPnTopologyInterface);
+    Status = pVidPnInterface->pfnGetTopology(pEnumCofuncModality->hConstrainingVidPn, &hVidPnTopology, &pVidPnTopologyInterface); //获取视频路径拓扑接口，拓扑结构表示了显示器连接的信息
     if (!NT_SUCCESS(Status))
     {
         BDD_LOG_ERROR2("pfnGetTopology failed with Status = 0x%I64x, hFunctionalVidPn = 0x%I64x", Status, pEnumCofuncModality->hConstrainingVidPn);
@@ -143,7 +143,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::EnumVidPnCofuncModality(_In_ CONST DXGKARG_ENUMVI
     }
 
     // Get the first path before we start looping through them
-    Status = pVidPnTopologyInterface->pfnAcquireFirstPathInfo(hVidPnTopology, &pVidPnPresentPath);
+    Status = pVidPnTopologyInterface->pfnAcquireFirstPathInfo(hVidPnTopology, &pVidPnPresentPath); //获取第一个视频路径信息
     if (!NT_SUCCESS(Status))
     {
         BDD_LOG_ERROR2("pfnAcquireFirstPathInfo failed with Status = 0x%I64x, hVidPnTopology = 0x%I64x", Status, hVidPnTopology);
@@ -151,10 +151,10 @@ NTSTATUS BASIC_DISPLAY_DRIVER::EnumVidPnCofuncModality(_In_ CONST DXGKARG_ENUMVI
     }
 
     // Loop through all available paths.
-    while (Status != STATUS_GRAPHICS_NO_MORE_ELEMENTS_IN_DATASET)
+    while (Status != STATUS_GRAPHICS_NO_MORE_ELEMENTS_IN_DATASET) //循环遍历所有的视频路径
     {
         // Get the Source Mode Set interface so the pinned mode can be retrieved
-        Status = pVidPnInterface->pfnAcquireSourceModeSet(pEnumCofuncModality->hConstrainingVidPn,
+        Status = pVidPnInterface->pfnAcquireSourceModeSet(pEnumCofuncModality->hConstrainingVidPn, //获取源模式集接口   
                                                           pVidPnPresentPath->VidPnSourceId,
                                                           &hVidPnSourceModeSet,
                                                           &pVidPnSourceModeSetInterface);
@@ -165,15 +165,15 @@ NTSTATUS BASIC_DISPLAY_DRIVER::EnumVidPnCofuncModality(_In_ CONST DXGKARG_ENUMVI
             break;
         }
 
-        // Get the pinned mode, needed when VidPnSource isn't pivot, and when VidPnTarget isn't pivot
-        Status = pVidPnSourceModeSetInterface->pfnAcquirePinnedModeInfo(hVidPnSourceModeSet, &pVidPnPinnedSourceModeInfo);
+        // Get the pinned mode, needed when VidPnSource isn't pivot, and when VidPnTarget isn't pivot 
+        Status = pVidPnSourceModeSetInterface->pfnAcquirePinnedModeInfo(hVidPnSourceModeSet, &pVidPnPinnedSourceModeInfo); //获取源模式集中的固定模式信息
         if (!NT_SUCCESS(Status))
         {
             BDD_LOG_ERROR2("pfnAcquirePinnedModeInfo failed with Status = 0x%I64x, hVidPnSourceModeSet = 0x%I64x", Status, hVidPnSourceModeSet);
             break;
         }
 
-        // SOURCE MODES: If this source mode isn't the pivot point, do work on the source mode set
+        // SOURCE MODES: If this source mode isn't the pivot point, do work on the source mode set 如果当前路径的源模式不是枢轴点（即未被固定），则进行源模式相关的工作。
         if (!((pEnumCofuncModality->EnumPivotType == D3DKMDT_EPT_VIDPNSOURCE) &&
               (pEnumCofuncModality->EnumPivot.VidPnSourceId == pVidPnPresentPath->VidPnSourceId)))
         {
@@ -524,7 +524,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
     }
 
     // Get the VidPn Interface so we can get the 'Source Mode Set' and 'VidPn Topology' interfaces
-    Status = m_DxgkInterface.DxgkCbQueryVidPnInterface(pCommitVidPn->hFunctionalVidPn, DXGK_VIDPN_INTERFACE_VERSION_V1, &pVidPnInterface);
+    Status = m_DxgkInterface.DxgkCbQueryVidPnInterface(pCommitVidPn->hFunctionalVidPn, DXGK_VIDPN_INTERFACE_VERSION_V1, &pVidPnInterface); //获取视频路径和显示模式设置所需的接口
     if (!NT_SUCCESS(Status))
     {
         BDD_LOG_ERROR2("DxgkCbQueryVidPnInterface failed with Status = 0x%I64x, hFunctionalVidPn = 0x%I64x", Status, pCommitVidPn->hFunctionalVidPn);
@@ -532,7 +532,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
     }
 
     // Get the VidPn Topology interface so can enumerate paths from source
-    Status = pVidPnInterface->pfnGetTopology(pCommitVidPn->hFunctionalVidPn, &hVidPnTopology, &pVidPnTopologyInterface);
+    Status = pVidPnInterface->pfnGetTopology(pCommitVidPn->hFunctionalVidPn, &hVidPnTopology, &pVidPnTopologyInterface); //获取视频路径的拓扑信息
     if (!NT_SUCCESS(Status))
     {
         BDD_LOG_ERROR2("pfnGetTopology failed with Status = 0x%I64x, hFunctionalVidPn = 0x%I64x", Status, pCommitVidPn->hFunctionalVidPn);
@@ -540,7 +540,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
     }
 
     // Find out the number of paths now, if it's 0 don't bother with source mode set and pinned mode, just clear current and then quit
-    Status = pVidPnTopologyInterface->pfnGetNumPaths(hVidPnTopology, &NumPaths);
+    Status = pVidPnTopologyInterface->pfnGetNumPaths(hVidPnTopology, &NumPaths); //获取视频路径的数量
     if (!NT_SUCCESS(Status))
     {
         BDD_LOG_ERROR2("pfnGetNumPaths failed with Status = 0x%I64x, hVidPnTopology = 0x%I64x", Status, hVidPnTopology);
@@ -549,7 +549,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
 
     if (NumPaths != 0)
     {
-        // Get the Source Mode Set interface so we can get the pinned mode
+        // Get the Source Mode Set interface so we can get the pinned mode  获取源模式设置和接口
         Status = pVidPnInterface->pfnAcquireSourceModeSet(pCommitVidPn->hFunctionalVidPn,
                                                           pCommitVidPn->AffectedVidPnSourceId,
                                                           &hVidPnSourceModeSet,
@@ -560,7 +560,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
             goto CommitVidPnExit;
         }
 
-        // Get the mode that is being pinned
+        // Get the mode that is being pinned  获取当前固定的源模式信息
         Status = pVidPnSourceModeSetInterface->pfnAcquirePinnedModeInfo(hVidPnSourceModeSet, &pPinnedVidPnSourceModeInfo);
         if (!NT_SUCCESS(Status))
         {
@@ -574,8 +574,8 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
         pPinnedVidPnSourceModeInfo = NULL;
     }
 
-    if (m_CurrentModes[pCommitVidPn->AffectedVidPnSourceId].FrameBuffer.Ptr &&
-        !m_CurrentModes[pCommitVidPn->AffectedVidPnSourceId].Flags.DoNotMapOrUnmap)
+    if (m_CurrentModes[pCommitVidPn->AffectedVidPnSourceId].FrameBuffer.Ptr &&   //如果当前模式的帧缓冲区存在且未标记为不进行映射或解除映射，
+        !m_CurrentModes[pCommitVidPn->AffectedVidPnSourceId].Flags.DoNotMapOrUnmap) //则解除映射帧缓冲区。解除映射操作通常用于释放资源
     {
         Status = UnmapFrameBuffer(m_CurrentModes[pCommitVidPn->AffectedVidPnSourceId].FrameBuffer.Ptr,
                                   m_CurrentModes[pCommitVidPn->AffectedVidPnSourceId].DispInfo.Pitch * m_CurrentModes[pCommitVidPn->AffectedVidPnSourceId].DispInfo.Height);
@@ -588,20 +588,20 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
         }
     }
 
-    if (pPinnedVidPnSourceModeInfo == NULL)
+    if (pPinnedVidPnSourceModeInfo == NULL) //无源模式可用返回成功状态？
     {
         // There is no mode to pin on this source, any old paths here have already been cleared
         Status = STATUS_SUCCESS;
         goto CommitVidPnExit;
     }
 
-    Status = IsVidPnSourceModeFieldsValid(pPinnedVidPnSourceModeInfo);
+    Status = IsVidPnSourceModeFieldsValid(pPinnedVidPnSourceModeInfo); //检查源模式的有效性
     if (!NT_SUCCESS(Status))
     {
         goto CommitVidPnExit;
     }
 
-    // Get the number of paths from this source so we can loop through all paths
+    // Get the number of paths from this source so we can loop through all paths 获取从源到目标的路径数
     SIZE_T NumPathsFromSource = 0;
     Status = pVidPnTopologyInterface->pfnGetNumPathsFromSource(hVidPnTopology, pCommitVidPn->AffectedVidPnSourceId, &NumPathsFromSource);
     if (!NT_SUCCESS(Status))
@@ -843,7 +843,7 @@ struct SampleSourceMode
 const static SampleSourceMode C_SampleSourceMode[] = {{800,600},{1024,768},{1152,864},{1280,800},{1280,1024},{1400,1050},{1600,1200},{1680,1050},{1920,1200}};
 const static UINT C_SampleSourceModeMax = sizeof(C_SampleSourceMode)/sizeof(C_SampleSourceMode[0]);
 
-NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleSourceMode(_In_ CONST DXGK_VIDPNSOURCEMODESET_INTERFACE* pVidPnSourceModeSetInterface,
+NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleSourceMode(_In_ CONST DXGK_VIDPNSOURCEMODESET_INTERFACE* pVidPnSourceModeSetInterface, //视频源模式设置
                                                    D3DKMDT_HVIDPNSOURCEMODESET hVidPnSourceModeSet,
                                                    D3DDDI_VIDEO_PRESENT_SOURCE_ID SourceId)
 {
@@ -855,7 +855,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleSourceMode(_In_ CONST DXGK_VIDPNSOURCEMO
     {
         // Create new mode info that will be populated
         D3DKMDT_VIDPN_SOURCE_MODE* pVidPnSourceModeInfo = NULL;
-        NTSTATUS Status = pVidPnSourceModeSetInterface->pfnCreateNewModeInfo(hVidPnSourceModeSet, &pVidPnSourceModeInfo);
+        NTSTATUS Status = pVidPnSourceModeSetInterface->pfnCreateNewModeInfo(hVidPnSourceModeSet, &pVidPnSourceModeInfo);  //创建一个视频源对象
         if (!NT_SUCCESS(Status))
         {
             // If failed to create a new mode info, mode doesn't need to be released since it was never created
@@ -865,21 +865,21 @@ NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleSourceMode(_In_ CONST DXGK_VIDPNSOURCEMO
 
         // Populate mode info with values from current mode and hard-coded values
         // Always report 32 bpp format, this will be color converted during the present if the mode is < 32bpp
-        pVidPnSourceModeInfo->Type = D3DKMDT_RMT_GRAPHICS;
-        pVidPnSourceModeInfo->Format.Graphics.PrimSurfSize.cx = m_CurrentModes[SourceId].DispInfo.Width;
+        pVidPnSourceModeInfo->Type = D3DKMDT_RMT_GRAPHICS; //视频呈现源的类型,表示仅输出类型
+        pVidPnSourceModeInfo->Format.Graphics.PrimSurfSize.cx = m_CurrentModes[SourceId].DispInfo.Width; //设置了显示主界面的大小
         pVidPnSourceModeInfo->Format.Graphics.PrimSurfSize.cy = m_CurrentModes[SourceId].DispInfo.Height;
-        pVidPnSourceModeInfo->Format.Graphics.VisibleRegionSize = pVidPnSourceModeInfo->Format.Graphics.PrimSurfSize;
-        pVidPnSourceModeInfo->Format.Graphics.Stride = m_CurrentModes[SourceId].DispInfo.Pitch;
-        pVidPnSourceModeInfo->Format.Graphics.PixelFormat = gBddPixelFormats[PelFmtIdx];
-        pVidPnSourceModeInfo->Format.Graphics.ColorBasis = D3DKMDT_CB_SCRGB;
-        pVidPnSourceModeInfo->Format.Graphics.PixelValueAccessMode = D3DKMDT_PVAM_DIRECT;
+        pVidPnSourceModeInfo->Format.Graphics.VisibleRegionSize = pVidPnSourceModeInfo->Format.Graphics.PrimSurfSize; //显示主界面大小
+        pVidPnSourceModeInfo->Format.Graphics.Stride = m_CurrentModes[SourceId].DispInfo.Pitch; //图形显示模式的 Stride，即每行像素的字节数
+        pVidPnSourceModeInfo->Format.Graphics.PixelFormat = gBddPixelFormats[PelFmtIdx]; //设置了图形显示模式的像素格式
+        pVidPnSourceModeInfo->Format.Graphics.ColorBasis = D3DKMDT_CB_SCRGB; //图形显示模式的颜色基准
+        pVidPnSourceModeInfo->Format.Graphics.PixelValueAccessMode = D3DKMDT_PVAM_DIRECT; //表示直接访问像素值。在这种模式下，驱动程序可以直接访问每个像素的数据，而不需要额外的转换或处理
 
         // Add the mode to the source mode set
         Status = pVidPnSourceModeSetInterface->pfnAddMode(hVidPnSourceModeSet, pVidPnSourceModeInfo);
         if (!NT_SUCCESS(Status))
         {
             // If adding the mode failed, release the mode, if this doesn't work there is nothing that can be done, some memory will get leaked
-            NTSTATUS TempStatus = pVidPnSourceModeSetInterface->pfnReleaseModeInfo(hVidPnSourceModeSet, pVidPnSourceModeInfo);
+            NTSTATUS TempStatus = pVidPnSourceModeSetInterface->pfnReleaseModeInfo(hVidPnSourceModeSet, pVidPnSourceModeInfo); //添加之后释放
             UNREFERENCED_PARAMETER(TempStatus);
             NT_ASSERT(NT_SUCCESS(TempStatus));
 
@@ -895,7 +895,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleSourceMode(_In_ CONST DXGK_VIDPNSOURCEMO
     UINT HeightMax = m_CurrentModes[SourceId].DispInfo.Height;
 
     // Add all predefined modes that fit within the bounds of the required (POST) mode
-    for (UINT ModeIndex = 0; ModeIndex < C_SampleSourceModeMax; ++ModeIndex)
+    for (UINT ModeIndex = 0; ModeIndex < C_SampleSourceModeMax; ++ModeIndex)     //这一段以及后续按照监视器输出的需求从既定的模式里面选出最适合的标准输出
     {
         if (C_SampleSourceMode[ModeIndex].ModeWidth > WidthMax)
         {
@@ -972,7 +972,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleTargetMode(_In_ CONST DXGK_VIDPNTARGETMO
     PAGED_CODE();
 
     D3DKMDT_VIDPN_TARGET_MODE* pVidPnTargetModeInfo = NULL;
-    NTSTATUS Status = pVidPnTargetModeSetInterface->pfnCreateNewModeInfo(hVidPnTargetModeSet, &pVidPnTargetModeInfo);
+    NTSTATUS Status = pVidPnTargetModeSetInterface->pfnCreateNewModeInfo(hVidPnTargetModeSet, &pVidPnTargetModeInfo);  //创建一个目标输出的对象
     if (!NT_SUCCESS(Status))
     {
         // If failed to create a new mode info, mode doesn't need to be released since it was never created
@@ -980,19 +980,19 @@ NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleTargetMode(_In_ CONST DXGK_VIDPNTARGETMO
         return Status;
     }
 
-    pVidPnTargetModeInfo->VideoSignalInfo.VideoStandard = D3DKMDT_VSS_OTHER;
+    pVidPnTargetModeInfo->VideoSignalInfo.VideoStandard = D3DKMDT_VSS_OTHER; //表示视频信号标准不是标准的视频格式
     UNREFERENCED_PARAMETER(pVidPnPinnedSourceModeInfo);
-    pVidPnTargetModeInfo->VideoSignalInfo.TotalSize.cx = m_CurrentModes[SourceId].DispInfo.Width;
+    pVidPnTargetModeInfo->VideoSignalInfo.TotalSize.cx = m_CurrentModes[SourceId].DispInfo.Width; //目标视频对象的像素
     pVidPnTargetModeInfo->VideoSignalInfo.TotalSize.cy = m_CurrentModes[SourceId].DispInfo.Height;
     pVidPnTargetModeInfo->VideoSignalInfo.ActiveSize = pVidPnTargetModeInfo->VideoSignalInfo.TotalSize;
-    pVidPnTargetModeInfo->VideoSignalInfo.VSyncFreq.Numerator = D3DKMDT_FREQUENCY_NOTSPECIFIED;
+    pVidPnTargetModeInfo->VideoSignalInfo.VSyncFreq.Numerator = D3DKMDT_FREQUENCY_NOTSPECIFIED; //表示垂直同步频率没有被指定
     pVidPnTargetModeInfo->VideoSignalInfo.VSyncFreq.Denominator = D3DKMDT_FREQUENCY_NOTSPECIFIED;
     pVidPnTargetModeInfo->VideoSignalInfo.HSyncFreq.Numerator = D3DKMDT_FREQUENCY_NOTSPECIFIED;
     pVidPnTargetModeInfo->VideoSignalInfo.HSyncFreq.Denominator = D3DKMDT_FREQUENCY_NOTSPECIFIED;
-    pVidPnTargetModeInfo->VideoSignalInfo.PixelRate = D3DKMDT_FREQUENCY_NOTSPECIFIED;
-    pVidPnTargetModeInfo->VideoSignalInfo.ScanLineOrdering = D3DDDI_VSSLO_PROGRESSIVE;
+    pVidPnTargetModeInfo->VideoSignalInfo.PixelRate = D3DKMDT_FREQUENCY_NOTSPECIFIED;//像素率没有被指定
+    pVidPnTargetModeInfo->VideoSignalInfo.ScanLineOrdering = D3DDDI_VSSLO_PROGRESSIVE;//逐行扫描
     // We add this as PREFERRED since it is the only supported target
-    pVidPnTargetModeInfo->Preference = D3DKMDT_MP_PREFERRED;
+    pVidPnTargetModeInfo->Preference = D3DKMDT_MP_PREFERRED; //优选模式
 
     Status = pVidPnTargetModeSetInterface->pfnAddMode(hVidPnTargetModeSet, pVidPnTargetModeInfo);
     if (!NT_SUCCESS(Status))
@@ -1057,7 +1057,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleMonitorMode(_In_ CONST DXGKARG_RECOMMEND
     pMonitorSourceMode->ColorCoeffDynamicRanges.ThirdChannel = 8;
     pMonitorSourceMode->ColorCoeffDynamicRanges.FourthChannel = 8;
 
-    Status = pRecommendMonitorModes->pMonitorSourceModeSetInterface->pfnAddMode(pRecommendMonitorModes->hMonitorSourceModeSet, pMonitorSourceMode);
+    Status = pRecommendMonitorModes->pMonitorSourceModeSetInterface->pfnAddMode(pRecommendMonitorModes->hMonitorSourceModeSet, pMonitorSourceMode);//将这个设置的模式添加为推荐模式
     if (!NT_SUCCESS(Status))
     {
         if (Status != STATUS_GRAPHICS_MODE_ALREADY_IN_MODESET)
@@ -1071,7 +1071,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleMonitorMode(_In_ CONST DXGKARG_RECOMMEND
         }
 
         // If adding the mode failed, release the mode, if this doesn't work there is nothing that can be done, some memory will get leaked
-        NTSTATUS TempStatus = pRecommendMonitorModes->pMonitorSourceModeSetInterface->pfnReleaseModeInfo(pRecommendMonitorModes->hMonitorSourceModeSet, pMonitorSourceMode);
+        NTSTATUS TempStatus = pRecommendMonitorModes->pMonitorSourceModeSetInterface->pfnReleaseModeInfo(pRecommendMonitorModes->hMonitorSourceModeSet, pMonitorSourceMode); //释放
         UNREFERENCED_PARAMETER(TempStatus);
         NT_ASSERT(NT_SUCCESS(TempStatus));
         return Status;

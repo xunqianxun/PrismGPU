@@ -12,7 +12,7 @@
 
 #pragma code_seg("PAGE")
 
-//这个结构体本身就是dispaly only的一个对象的结构。
+//创建一个BDD结构对象
 BASIC_DISPLAY_DRIVER::BASIC_DISPLAY_DRIVER(_In_ DEVICE_OBJECT* pPhysicalDeviceObject) : m_pPhysicalDevice(pPhysicalDeviceObject),
                                                                                         m_MonitorPowerState(PowerDeviceD0),
                                                                                         m_AdapterPowerState(PowerDeviceD0)
@@ -334,7 +334,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryAdapterInfo(_In_ CONST DXGKARG_QUERYADAPTERI
 }
 
 
-NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()
+NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()  //没搞清楚
 {
     PAGED_CODE();
 
@@ -348,8 +348,8 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()
 
     // Get the Vendor & Device IDs on non-PCI system
     ACPI_EVAL_INPUT_BUFFER_COMPLEX AcpiInputBuffer = {0};
-    AcpiInputBuffer.Signature = ACPI_EVAL_INPUT_BUFFER_COMPLEX_SIGNATURE;
-    AcpiInputBuffer.MethodNameAsUlong = ACPI_METHOD_HARDWARE_ID;
+    AcpiInputBuffer.Signature = ACPI_EVAL_INPUT_BUFFER_COMPLEX_SIGNATURE; //用于验证输入缓冲区的类型
+    AcpiInputBuffer.MethodNameAsUlong = ACPI_METHOD_HARDWARE_ID; //表示查询硬件 ID 的方法,通常，ACPI 方法是通过字符串标识的，但此处用 ULONG 类型来存储。
     AcpiInputBuffer.Size = 0;
     AcpiInputBuffer.ArgumentCount = 0;
 
@@ -657,10 +657,10 @@ NTSTATUS BASIC_DISPLAY_DRIVER::RegisterHWInfo()
     NTSTATUS Status;
 
     // TODO: Replace these strings with proper information
-    PCSTR StrHWInfoChipType = "Replace with the chip name";
-    PCSTR StrHWInfoDacType = "Replace with the DAC name or identifier (ID)";
-    PCSTR StrHWInfoAdapterString = "Replace with the name of the adapter";
-    PCSTR StrHWInfoBiosString = "Replace with information about the BIOS";
+    PCSTR StrHWInfoChipType = "PrismV1";
+    PCSTR StrHWInfoDacType = "DAC/NA";
+    PCSTR StrHWInfoAdapterString = "PingMu"; //屏幕数据应该由屏幕设备处信息copy过来，暂时先这样
+    PCSTR StrHWInfoBiosString = "PrismODGPU";
 
     HANDLE DevInstRegKeyHandle;
     Status = IoOpenDeviceRegistryKey(m_pPhysicalDevice, PLUGPLAY_REGKEY_DRIVER, KEY_SET_VALUE, &DevInstRegKeyHandle);
@@ -697,7 +697,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::RegisterHWInfo()
     // MemorySize is a ULONG, unlike the others which are all strings
     UNICODE_STRING ValueNameMemorySize;
     RtlInitUnicodeString(&ValueNameMemorySize, L"HardwareInformation.MemorySize");
-    DWORD MemorySize = 0; // BDD has no access to video memory
+    DWORD MemorySize = 0; // BDD has no access to video memory 不需要访问显存
     Status = ZwSetValueKey(DevInstRegKeyHandle,
                            &ValueNameMemorySize,
                            0,
