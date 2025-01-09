@@ -32,7 +32,7 @@ extern "C"
 NTSTATUS
 DriverEntry(
     _In_  DRIVER_OBJECT*  pDriverObject,
-    _In_  UNICODE_STRING* pRegistryPath)
+    _In_  UNICODE_STRING* pRegistryPath) //代表了驱动在注册表中的参数所存放的位置
 {
     PAGED_CODE();
 
@@ -153,7 +153,7 @@ BddDdiRemoveDevice(
 NTSTATUS
 BddDdiStartDevice(
     _In_  VOID*              pDeviceContext,
-    _In_  DXGK_START_INFO*   pDxgkStartInfo,//DXGK_START_INFO结构体成员变量RequiredDmaQueueEntry保存了需要分配的DMA队列中
+    _In_  DXGK_START_INFO*   pDxgkStartInfo,//DXGK_START_INFO结构体成员变量RequiredDmaQueueEntry保存了需要分配的DMA队列
                                             //预分配BUFFER的数量。 AdapterGuid和AdapterLuid则为适配器的标识。
     _In_  DXGKRNL_INTERFACE* pDxgkInterface,//通过系统框架间接获取硬件资源信息,其另外一部分功能是与系统框架驱动的通信。
     _Out_ ULONG*             pNumberOfViews,//为KMOD需要返回给系统框架的视频源数量。

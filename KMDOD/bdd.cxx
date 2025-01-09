@@ -335,7 +335,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryAdapterInfo(_In_ CONST DXGKARG_QUERYADAPTERI
 }
 
 
-NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()  //没搞清楚
+NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()  //没搞清楚 。现在搞清楚啦，这个就是从PICE总线上精确检测到自己的设备的核心函数
 {
     PAGED_CODE();
 
@@ -500,7 +500,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::PresentDisplayOnly(_In_ CONST DXGKARG_PRESENT_DIS
     return STATUS_SUCCESS;
 }
 
-NTSTATUS BASIC_DISPLAY_DRIVER::StopDeviceAndReleasePostDisplayOwnership(_In_  D3DDDI_VIDEO_PRESENT_TARGET_ID TargetId,
+NTSTATUS BASIC_DISPLAY_DRIVER::StopDeviceAndReleasePostDisplayOwnership(_In_  D3DDDI_VIDEO_PRESENT_TARGET_ID TargetId, //停止设备的工作并释放显示设备的所有权
                                                                         _Out_ DXGK_DISPLAY_INFORMATION*      pDisplayInfo)
 {
     PAGED_CODE();
@@ -512,13 +512,13 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StopDeviceAndReleasePostDisplayOwnership(_In_  D3
 
     // In case BDD is the next driver to run, the monitor should not be off, since
     // this could cause the BIOS to hang when the EDID is retrieved on Start.
-    if (m_MonitorPowerState > PowerDeviceD0)
+    if (m_MonitorPowerState > PowerDeviceD0) //如果监视器已关闭或处于低功耗状态，应该将其恢复到开启状态
     {
-        SetPowerState(TargetId, PowerDeviceD0, PowerActionNone);
+        SetPowerState(TargetId, PowerDeviceD0, PowerActionNone); //避免当 BDD 驱动程序启动时，显示器处于关闭状态，从而可能导致 BIOS 在获取 EDID（显示设备信息）时挂起。
     }
 
     // The driver has to black out the display and ensure it is visible when releasing ownership
-    BlackOutScreen(SourceId);
+    BlackOutScreen(SourceId); //保在释放显示设备的所有权时，显示器的内容不会继续显示，避免出现不完整的显示内容
 
     *pDisplayInfo = m_CurrentModes[SourceId].DispInfo;
 
@@ -609,8 +609,8 @@ VOID BASIC_DISPLAY_DRIVER::BlackOutScreen(D3DDDI_VIDEO_PRESENT_SOURCE_ID SourceI
     m_CurrentModes[SourceId].ZeroedOutEnd.QuadPart = NewPhysAddrEnd.QuadPart;
 
 }
-
-NTSTATUS BASIC_DISPLAY_DRIVER::WriteHWInfoStr(_In_ HANDLE DevInstRegKeyHandle, _In_ PCWSTR pszwValueName, _In_ PCSTR pszValue)
+                                                         //指向设备的注册表路径            注册表键值名称            需要写入注册表的字符串值
+NTSTATUS BASIC_DISPLAY_DRIVER::WriteHWInfoStr(_In_ HANDLE DevInstRegKeyHandle, _In_ PCWSTR pszwValueName, _In_ PCSTR pszValue) //将字符串值写入注册表的函数
 {
     PAGED_CODE();
 
@@ -633,7 +633,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::WriteHWInfoStr(_In_ HANDLE DevInstRegKeyHandle, _
     }
 
     // Write the value to the registry
-    Status = ZwSetValueKey(DevInstRegKeyHandle,
+    Status = ZwSetValueKey(DevInstRegKeyHandle, //将转换后的 Unicode 字符串写入设备实例的注册表项
                            &UnicodeStrValueName,
                            0,
                            REG_SZ,
@@ -767,11 +767,11 @@ NTSTATUS BASIC_DISPLAY_DRIVER::SystemDisplayEnable(_In_  D3DDDI_VIDEO_PRESENT_TA
     BDD_ASSERT((TargetId < MAX_CHILDREN) || (TargetId == D3DDDI_ID_UNINITIALIZED));
 
     // Find the frame buffer for displaying the bugcheck, if it was successfully mapped
-    if (TargetId == D3DDDI_ID_UNINITIALIZED)
+    if (TargetId == D3DDDI_ID_UNINITIALIZED) //如果传入的目标ID是未初始化
     {
-        for (UINT SourceIdx = 0; SourceIdx < MAX_VIEWS; ++SourceIdx)
+        for (UINT SourceIdx = 0; SourceIdx < MAX_VIEWS; ++SourceIdx)//遍历
         {
-            if (m_CurrentModes[SourceIdx].FrameBuffer.Ptr != NULL)
+            if (m_CurrentModes[SourceIdx].FrameBuffer.Ptr != NULL) //若帧缓冲区非空
             {
                 m_SystemDisplaySourceId = SourceIdx;
                 break;
@@ -783,14 +783,14 @@ NTSTATUS BASIC_DISPLAY_DRIVER::SystemDisplayEnable(_In_  D3DDDI_VIDEO_PRESENT_TA
         m_SystemDisplaySourceId = FindSourceForTarget(TargetId, FALSE);
     }
 
-    if (m_SystemDisplaySourceId == D3DDDI_ID_UNINITIALIZED)
+    if (m_SystemDisplaySourceId == D3DDDI_ID_UNINITIALIZED)//显示源显示未初始化
     {
         {
-            return STATUS_UNSUCCESSFUL;
+            return STATUS_UNSUCCESSFUL; 
         }
     }
 
-    if ((m_CurrentModes[m_SystemDisplaySourceId].Rotation == D3DKMDT_VPPR_ROTATE90) ||
+    if ((m_CurrentModes[m_SystemDisplaySourceId].Rotation == D3DKMDT_VPPR_ROTATE90) ||   // 检查当前显示源的旋转角度，如果是 90° 或 270° 旋转则交换宽度和高度
         (m_CurrentModes[m_SystemDisplaySourceId].Rotation == D3DKMDT_VPPR_ROTATE270))
     {
         *pHeight = m_CurrentModes[m_SystemDisplaySourceId].DispInfo.Width;
@@ -809,16 +809,16 @@ NTSTATUS BASIC_DISPLAY_DRIVER::SystemDisplayEnable(_In_  D3DDDI_VIDEO_PRESENT_TA
 }
 
 // Must be Non-Paged, as it is called to display the bugcheck screen
-VOID BASIC_DISPLAY_DRIVER::SystemDisplayWrite(_In_reads_bytes_(SourceHeight * SourceStride) VOID* pSource,
+VOID BASIC_DISPLAY_DRIVER::SystemDisplayWrite(_In_reads_bytes_(SourceHeight * SourceStride) VOID* pSource, //将图像数据从源缓冲区复制到目标帧缓冲区
                                               _In_ UINT SourceWidth,
                                               _In_ UINT SourceHeight,
                                               _In_ UINT SourceStride,
                                               _In_ INT PositionX,
-                                              _In_ INT PositionY)
+                                              _In_ INT PositionY) //PositionX 和 PositionY: 目标位置的起始点，即将源图像绘制到目标帧缓冲区的位置
 {
 
     // Rect will be Offset by PositionX/Y in the src to reset it back to 0
-    RECT Rect;
+    RECT Rect; //构建一个矩形
     Rect.left = PositionX;
     Rect.top = PositionY;
     Rect.right =  Rect.left + SourceWidth;
@@ -826,31 +826,31 @@ VOID BASIC_DISPLAY_DRIVER::SystemDisplayWrite(_In_reads_bytes_(SourceHeight * So
 
     // Set up destination blt info
     BLT_INFO DstBltInfo;
-    DstBltInfo.pBits = m_CurrentModes[m_SystemDisplaySourceId].FrameBuffer.Ptr;
-    DstBltInfo.Pitch = m_CurrentModes[m_SystemDisplaySourceId].DispInfo.Pitch;
-    DstBltInfo.BitsPerPel = BPPFromPixelFormat(m_CurrentModes[m_SystemDisplaySourceId].DispInfo.ColorFormat);
-    DstBltInfo.Offset.x = 0;
+    DstBltInfo.pBits = m_CurrentModes[m_SystemDisplaySourceId].FrameBuffer.Ptr; // 指向目标帧缓冲区的指针，屏幕显示区域的数据地址
+    DstBltInfo.Pitch = m_CurrentModes[m_SystemDisplaySourceId].DispInfo.Pitch; //每行的字节数，用于行间距计算
+    DstBltInfo.BitsPerPel = BPPFromPixelFormat(m_CurrentModes[m_SystemDisplaySourceId].DispInfo.ColorFormat); //每个像素的位数,从当前的颜色模式选择
+    DstBltInfo.Offset.x = 0; //源数据的偏移量
     DstBltInfo.Offset.y = 0;
-    DstBltInfo.Rotation = m_CurrentModes[m_SystemDisplaySourceId].Rotation;
+    DstBltInfo.Rotation = m_CurrentModes[m_SystemDisplaySourceId].Rotation; //: 目标显示源的旋转角度
     DstBltInfo.Width = m_CurrentModes[m_SystemDisplaySourceId].DispInfo.Width;
     DstBltInfo.Height = m_CurrentModes[m_SystemDisplaySourceId].DispInfo.Height;
 
     // Set up source blt info
     BLT_INFO SrcBltInfo;
-    SrcBltInfo.pBits = pSource;
-    SrcBltInfo.Pitch = SourceStride;
-    SrcBltInfo.BitsPerPel = 32;
+    SrcBltInfo.pBits = pSource;//源图像数据的指针即原图像的帧缓冲区
+    SrcBltInfo.Pitch = SourceStride; //源每行的字节数
+    SrcBltInfo.BitsPerPel = 32; //源每个像素的位数
 
-    SrcBltInfo.Offset.x = -PositionX;
+    SrcBltInfo.Offset.x = -PositionX;//预留出显示源的数据大小空间
     SrcBltInfo.Offset.y = -PositionY;
-    SrcBltInfo.Rotation = D3DKMDT_VPPR_IDENTITY;
+    SrcBltInfo.Rotation = D3DKMDT_VPPR_IDENTITY; //无旋转
     SrcBltInfo.Width = SourceWidth;
     SrcBltInfo.Height = SourceHeight;
 
     BltBits(&DstBltInfo,
             &SrcBltInfo,
             1, // NumRects
-            &Rect);
+            &Rect); //进行位块传输
 }
 
 #pragma code_seg(pop) // End Non-Paged Code
