@@ -9,6 +9,7 @@
 
 
 #include "BDD.hxx"
+#include "HW.hxx"
 
 #pragma code_seg("PAGE")
 
@@ -73,7 +74,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
     RegisterHWInfo();
 
     // TODO: Uncomment the line below after updating the TODOs in the function CheckHardware
-//    Status = CheckHardware();
+    Status = CheckHardware();
     if (!NT_SUCCESS(Status))
     {
         return Status;
@@ -345,7 +346,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()  //没搞清楚 。现在搞清�
 
 // TODO: If developing a driver for PCI based hardware, then use the second method to retrieve Vendor/Device IDs.
 // If developing for non-PCI based hardware (i.e. ACPI based hardware), use the first method to retrieve the IDs.
-#if 1 // ACPI-based device
+#if (BDD_DRIVER_PRESENT_MODE == BDD_DRIVER_APIC) // ACPI-based device
 
     // Get the Vendor & Device IDs on non-PCI system
     ACPI_EVAL_INPUT_BUFFER_COMPLEX AcpiInputBuffer = {0};
@@ -397,14 +398,15 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()  //没搞清楚 。现在搞清�
 
 #endif
 
-    // TODO: Replace 0x1414 with your Vendor ID
+    // TODO: Replace 0x1414 with your Vendor ID    OK
     if (VendorID == 0x1414)
     {
         switch (DeviceID)
         {
             // TODO: Replace the case statements below with the Device IDs supported by this driver
-            case 0x0000:
-            case 0xFFFF: return STATUS_SUCCESS;
+            case 0x0010: return STATUS_SUCCESS;
+
+            default:     return STATUS_UNSUCCESSFUL;
         }
     }
 
@@ -657,11 +659,11 @@ NTSTATUS BASIC_DISPLAY_DRIVER::RegisterHWInfo()
 
     NTSTATUS Status;
 
-    // TODO: Replace these strings with proper information
-    PCSTR StrHWInfoChipType = "PrismV1";
-    PCSTR StrHWInfoDacType = "DAC/NA";
-    PCSTR StrHWInfoAdapterString = "PingMu"; //屏幕数据应该由屏幕设备处信息copy过来，暂时先这样
-    PCSTR StrHWInfoBiosString = "PrismODGPU";
+    // TODO: Replace these strings with proper information OK
+    PCSTR StrHWInfoChipType = BDD_OPLAT_NAME;
+    PCSTR StrHWInfoDacType =  BDD_OPLAT_NAME;
+    PCSTR StrHWInfoAdapterString = BDD_ADAPTE_NAME; 
+    PCSTR StrHWInfoBiosString =  BDD_BIOS_NAME;
 
     HANDLE DevInstRegKeyHandle;
     Status = IoOpenDeviceRegistryKey(m_pPhysicalDevice, PLUGPLAY_REGKEY_DRIVER, KEY_SET_VALUE, &DevInstRegKeyHandle);
