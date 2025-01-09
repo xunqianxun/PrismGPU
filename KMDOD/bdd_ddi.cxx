@@ -17,16 +17,16 @@
 //
 // Driver Entry point
 //
-VOID KmdUnload(DRIVER_OBJECT* pdevice) {
-
-    //BddDdiUnload();
-
-    if (pdevice->DeviceObject) {
-        IoDeleteDevice(pdevice->DeviceObject);
-    }
-
-    DbgPrint("卸载KMD成功\n");
-}
+//VOID KmdUnload(DRIVER_OBJECT* pdevice) {
+//
+//    //BddDdiUnload();
+//
+//    if (pdevice->DeviceObject) {
+//        IoDeleteDevice(pdevice->DeviceObject);
+//    }
+//
+//    DbgPrint("卸载KMD成功\n");
+//}
 
 extern "C"
 NTSTATUS
@@ -36,9 +36,9 @@ DriverEntry(
 {
     PAGED_CODE();
 
-    DbgPrint("安装KMD成功\n");
+    /*DbgPrint("安装KMD成功\n");
 
-    pDriverObject->DriverUnload = KmdUnload;
+    pDriverObject->DriverUnload = KmdUnload;*/
 
     // Initialize DDI function pointers and dxgkrnl
     KMDDOD_INITIALIZATION_DATA InitialData = {0};
@@ -54,6 +54,8 @@ DriverEntry(
     InitialData.DxgkDdiDispatchIoRequest            = BddDdiDispatchIoRequest;
     InitialData.DxgkDdiInterruptRoutine             = BddDdiInterruptRoutine;
     InitialData.DxgkDdiDpcRoutine                   = BddDdiDpcRoutine;
+    InitialData.DxgkDdiControlInterrupt             = BddDdiControlInyerrupt;
+    InitialData.DxgkDdiGetScanLine                  = BddDdiGetscanline;
 
     InitialData.DxgkDdiQueryChildRelations          = BddDdiQueryChildRelations;
     InitialData.DxgkDdiQueryChildStatus             = BddDdiQueryChildStatus;
@@ -83,6 +85,7 @@ DriverEntry(
         return Status;
     }
 
+    //TODO:明天添加注册表相关的函数
 
     return Status;
 }
@@ -95,6 +98,32 @@ DriverEntry(
 //
 // PnP DDIs
 //
+
+
+
+
+
+NTSTATUS
+APIENTRY
+BddDdiControlInyerrupt(
+    _In_ CONST HANDLE                      hAdapter,
+    _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType, 
+    _In_       BOOLEAN                     EnableInterrupt) 
+{
+
+    return STATUS_SUCCESS;
+
+}
+
+NTSTATUS
+APIENTRY
+BddDdiGetscanline(
+    _In_    CONST HANDLE               hAdapter,
+    _Inout_       DXGKARG_GETSCANLINE* pGetScanLine )
+{
+
+    return STATUS_SUCCESS;
+}
 
 
 VOID
