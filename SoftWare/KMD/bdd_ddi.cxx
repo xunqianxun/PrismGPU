@@ -55,9 +55,8 @@ DriverEntry(
     InitialData.DxgkDdiDispatchIoRequest            = BddDdiDispatchIoRequest;
     InitialData.DxgkDdiInterruptRoutine             = BddDdiInterruptRoutine;
     InitialData.DxgkDdiDpcRoutine                   = BddDdiDpcRoutine;
-    InitialData.DxgkDdiControlInterrupt             = BddDdiControlInterrupt;
-    InitialData.DxgkDdiGetScanLine                  = BddDdiGetscanline;
-    //
+    //InitialData.DxgkDdiControlInterrupt             = BddDdiControlInterrupt;
+    //InitialData.DxgkDdiGetScanLine                  = BddDdiGetscanline;
 
     InitialData.DxgkDdiQueryChildRelations          = BddDdiQueryChildRelations;
     InitialData.DxgkDdiQueryChildStatus             = BddDdiQueryChildStatus;
@@ -103,31 +102,31 @@ DriverEntry(
 
 
 
-NTSTATUS
-APIENTRY
-BddDdiControlInterrupt(
-    _In_ CONST HANDLE                      hAdapter,
-    _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType, 
-    _In_       BOOLEAN                     EnableInterrupt) 
-{
-
-    PAGED_CODE();
-    BDD_ASSERT_CHK(hAdapter != NULL);
-
-    BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(hAdapter);
-    return pBDD->ControlInterrupt(InterruptType, EnableInterrupt);
-
-}
-
-NTSTATUS
-APIENTRY
-BddDdiGetscanline(
-    _In_    CONST HANDLE               hAdapter,
-    _Inout_       DXGKARG_GETSCANLINE* pGetScanLine )
-{
-
-    return STATUS_SUCCESS;
-}
+//NTSTATUS
+//APIENTRY
+//BddDdiControlInterrupt(
+//    _In_ CONST HANDLE                      hAdapter,
+//    _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType, 
+//    _In_       BOOLEAN                     EnableInterrupt) 
+//{
+//
+//    PAGED_CODE();
+//    BDD_ASSERT_CHK(hAdapter != NULL);
+//
+//    BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(hAdapter);
+//    return pBDD->ControlInterrupt(InterruptType, EnableInterrupt);
+//
+//}
+//
+//NTSTATUS
+//APIENTRY
+//BddDdiGetscanline(
+//    _In_    CONST HANDLE               hAdapter,
+//    _Inout_       DXGKARG_GETSCANLINE* pGetScanLine )
+//{
+//
+//    return STATUS_SUCCESS;
+//}
 
 
 VOID

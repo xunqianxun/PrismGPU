@@ -142,7 +142,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
         BDD_LOG_ERROR0("copy edid information falt.");
     }
 
-    RtlCopyMemory(&h_DEVICEINFO.h_EDIDINFO, &h_EDIDINFO, sizeof(h_EDIDINFO));
+    RtlCopyMemory(&h_DEVICEINFO.DEVICEHWEDIDINFO, &h_EDIDINFO, sizeof(h_EDIDINFO));
 
 
 
@@ -161,9 +161,25 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
     //    // after a pre-WDDM 1.2 driver. Since we can't draw anything, we should fail to start.
     //    return STATUS_UNSUCCESSFUL;
     //}
+
+    m_CurrentModes[0].DispInfo.TargetId = 0;
+    m_CurrentModes[0].DispInfo.Width = h_DEVICEINFO.DEVICEHWEDIDINFO.HACTIVEPIXEL;
+    m_CurrentModes[0].DispInfo.Height = h_DEVICEINFO.DEVICEHWEDIDINFO.VACTIVEPIXEL;
+    m_CurrentModes[0].DispInfo.Pitch = m_CurrentModes->DispInfo.Width * 4;
+    m_CurrentModes[0].DispInfo.ColorFormat = D3DDDIFMT_A8R8G8B8;
+    m_CurrentModes[0].DispInfo.PhysicAddress.QuadPart = h_DEVICEINFO.MEMPBASE;
+    m_CurrentModes[0].DispInfo.AcpiId = 0;
+
+
+
+
+
     m_Flags.DriverStarted = TRUE;
     *pNumberOfViews = MAX_VIEWS; // 设置视图数量
     *pNumberOfChildren = MAX_CHILDREN; //设置子设备数量
+
+
+    InitHardware(pDxgkInterface, h_DEVICEINFO.REGPBASE, &h_DEVICEINFO.DEVICEHWEDIDINFO);
 
 
    return STATUS_SUCCESS;
@@ -631,6 +647,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::GetEdid(D3DDDI_VIDEO_PRESENT_TARGET_ID TargetId) 
     NTSTATUS Status = STATUS_SUCCESS;
     RtlZeroMemory(m_EDIDs[TargetId], sizeof(m_EDIDs[TargetId]));
 
+    Status = GetMoniterEdid(h_DEVICEINFO.REGPBASE, (UINT32*)&m_EDIDs[TargetId], 128);
 
     m_Flags.EDID_Attempted = TRUE;
 

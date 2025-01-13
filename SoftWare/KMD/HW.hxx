@@ -8,6 +8,8 @@
 #define _HW_HXX_
 #include <basetsd.h>
 #include <sal.h>
+#include <ntdef.h>
+#include <ntintsafe.h>
 
 
 #ifdef __cplusplus
@@ -21,7 +23,16 @@ extern "C" {
 #define BDD_DRIVCE_NAME            L"\\Device\\PrismDriver"
 #define BDD_DEVICE_KMDSYNLINK      L"\\DosDevices\\PrismDriver"
 
+//其中\为链接这个宏定义，因为宏定义一般都是一行，使用\来链接多行。
+//...表示不定类型的参数，什么类型对的参数都可以
+//do while(0)代表只执行一次
 
+//#define DPF(lvl, fmt, ...)      \
+//do { \
+//    if ( g_eDebugLevel & lvl ) { \
+//        DebugPrint(fmt, __VA_ARGS__); \
+//    } \
+//} while (0);
 
 
 #define BDD_OPLAT_NAME          "Prism GPU" 
@@ -45,6 +56,44 @@ extern "C" {
 #define DISP_VERTICAL_LINE		(720)
 #define DISP_PIXEL_SIZE			(4)
 
+
+typedef struct
+{
+	UINT32 PIEXLWIDTH;
+	UINT32 PIEXLHEIGHT;
+	UINT32 HORIZONTOTAL; //水平扫描总数
+	UINT32 HORIZONBOARDLEFT; //左边框像素量
+	UINT32 HORIZONACTIVE; //可显示的水平像素量
+	UINT32 HORIZONBOARDRIGHT; //右边框像素量
+	UINT32 HORIZONFRONT;
+	UINT32 HORIZONSYNCWIDTH; //水平脉冲宽度
+
+	UINT32 VERTICALTOTAL;
+	UINT32 VERTICALBOARDTOP;
+	UINT32 VERTICALACTIVE;
+	UINT32 VERTICALBOARDBOTTOM;
+	UINT32 VERTICALFRONT;
+	UINT32 VERTICALSYNCWIDTH;
+	UINT32 PIEXLCLOCKKHZ;
+	struct
+	{
+		UINT32 INTERLANCE : 1; //标识支持交错扫描
+		UINT32 DOUBLESCAN : 1; //启用双扫描模式
+		UINT32 PIEXLREPRTITION : 4; //显示时像素的重复次数
+		UINT32 HSYNCPOSTIVE : 1; //水平脉冲正
+		UINT32 VSYNCPOSTIVE : 1; //垂直脉冲正
+		UINT32 EXCLUSIVE3D : 1; //只支持3d模式
+		UINT32 SUBSIMPLE3D : 1;
+		UINT32 USEIN3DONLY : 1; //仅在3D使用
+		UINT32 STEREO3DPREFENCE : 1;
+		UINT32 YONLY : 1;
+		UINT32 YCBCR420SUPPORT : 1;
+		UINT32 DTDCOUNTER : 5;
+
+	}FLAGS;
+
+}CRTCTIMING;
+
 typedef struct {
 	UINT16 FACID;
 	UINT16 PRODUCTID;
@@ -54,20 +103,20 @@ typedef struct {
 	UINT8  VERSION;
 	UINT8  REVERSION;
 	UINT64 CLOCKKHZ;
-	UINT64 HACTIVEPIXEL;
-	UINT64 HNOACTIVEPIXEL;
-	UINT64 VACTIVEPIXEL;
-	UINT64 VNOACTIVEPIXEL;
-	UINT64 HFORNTPROCH;
-	UINT64 HSYNCPULSE;
-	UINT64 VFORNTPROCH;
-	UINT64 VSYNCPULSE;
-	UINT16 HIMAGESIZE;
-	UINT16 VIMAGESIZE;
-	UINT16 HBOARDER;
-	UINT16 VBOARDER;
-	UINT8  HSYNCSITUATION;
-	UINT8  VSYNCSITUATION;
+	UINT64 HACTIVEPIXEL;// 水平有效像素数（显示区域的宽度，单位：像素）
+	UINT64 HNOACTIVEPIXEL;// 水平空白区像素数（从显示区域到下一帧开始的空白区域，单位：像素）
+	UINT64 VACTIVEPIXEL;// 垂直有效像素数（显示区域的高度，单位：像素）
+	UINT64 VNOACTIVEPIXEL;// 垂直空白区像素数（从显示区域到下一帧开始的空白区域，单位：像素）
+	UINT64 HFORNTPROCH;// 水平前沿（水平同步信号的前导时间，单位：像素）
+	UINT64 HSYNCPULSE; // 水平同步脉冲宽度（水平同步信号的持续时间，单位：像素）
+	UINT64 VFORNTPROCH;// 垂直前沿（垂直同步信号的前导时间，单位：像素）
+	UINT64 VSYNCPULSE;// 垂直同步脉冲宽度（垂直同步信号的持续时间，单位：像素）
+	UINT16 HIMAGESIZE; // 显示器的水平图像尺寸（单位：毫米）
+	UINT16 VIMAGESIZE;// 显示器的垂直图像尺寸（单位：毫米）
+	UINT16 HBOARDER; // 水平边框宽度（单位：像素）
+	UINT16 VBOARDER; // 垂直边框宽度（单位：像素）
+	UINT8  HSYNCSITUATION; // 水平同步信号的极性（1表示正极性，0表示负极性）
+	UINT8  VSYNCSITUATION;// 垂直同步信号的极性（1表示正极性，0表示负极性）
 	struct {
 		UINT8 INTERSECTSCAN;
 		UINT8 STEREOMODE;
@@ -78,12 +127,13 @@ typedef struct {
 typedef struct {
 	UINT64 REGPBASE;
 	UINT64 MEMPBASE;
-	HWEDIDINFO h_EDIDINFO;
-
+	HWEDIDINFO DEVICEHWEDIDINFO;
+	CRTCTIMING CrTcTimg;
 
 }HWDEVICEINFO;
 
 extern HWDEVICEINFO h_DEVICEINFO;
+
 
 //
 // hw funcation define 
@@ -95,6 +145,35 @@ ANALYZEEDID(
 	_In_  BYTE* m_EDID,
 	_Inout_ HWEDIDINFO* h_EDID);
 
+
+VOID InitHardware(
+	_In_ DXGKRNL_INTERFACE* pDxgkInterface,
+	_In_ UINT64             REGPBASE,
+	_In_ HWEDIDINFO*         RDIDINFO);
+
+static NTSTATUS InitPHYForHDMI(
+	_In_ UINT64 PBaseAddr,
+	_In_ CRTCTIMING* PCrTrTiming);
+
+static NTSTATUS WriteSpace(
+	_In_ UINT64  PBaseAddr,
+	_In_ UINT32  BaseOffset,
+	_In_ UINT32  Bit32InDate);
+
+static UINT32 ReadSpace(
+	_In_ UINT64  PBaseAddr,
+	_In_ UINT32  BaseOffset);
+
+static NTSTATUS GetHDMIEdidInform(
+	_In_ UINT64 PRegMem,
+	_In_ UINT32 PRegOffset,
+	_In_ UINT32 EdidSize,
+	_Inout_ UINT32* EdOut);
+
+static NTSTATUS GetMoniterEdid(
+	_In_ UINT64 PRegBaseAddr,
+	_Inout_ UINT32* MonitorEDID,
+	_In_ UINT32 EdiLength);
 
 
 #endif // _HW_HXX_
