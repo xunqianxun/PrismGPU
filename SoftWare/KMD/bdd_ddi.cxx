@@ -51,11 +51,13 @@ DriverEntry(
     InitialData.DxgkDdiStopDevice                   = BddDdiStopDevice;
     InitialData.DxgkDdiResetDevice                  = BddDdiResetDevice;
     InitialData.DxgkDdiRemoveDevice                 = BddDdiRemoveDevice;
+    //不好理解
     InitialData.DxgkDdiDispatchIoRequest            = BddDdiDispatchIoRequest;
     InitialData.DxgkDdiInterruptRoutine             = BddDdiInterruptRoutine;
     InitialData.DxgkDdiDpcRoutine                   = BddDdiDpcRoutine;
-    InitialData.DxgkDdiControlInterrupt             = BddDdiControlInyerrupt;
+    InitialData.DxgkDdiControlInterrupt             = BddDdiControlInterrupt;
     InitialData.DxgkDdiGetScanLine                  = BddDdiGetscanline;
+    //
 
     InitialData.DxgkDdiQueryChildRelations          = BddDdiQueryChildRelations;
     InitialData.DxgkDdiQueryChildStatus             = BddDdiQueryChildStatus;
@@ -85,8 +87,6 @@ DriverEntry(
         return Status;
     }
 
-    //TODO:明天添加注册表相关的函数
-
     return Status;
 }
 // END: Init Code
@@ -105,13 +105,17 @@ DriverEntry(
 
 NTSTATUS
 APIENTRY
-BddDdiControlInyerrupt(
+BddDdiControlInterrupt(
     _In_ CONST HANDLE                      hAdapter,
     _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType, 
     _In_       BOOLEAN                     EnableInterrupt) 
 {
 
-    return STATUS_SUCCESS;
+    PAGED_CODE();
+    BDD_ASSERT_CHK(hAdapter != NULL);
+
+    BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(hAdapter);
+    return pBDD->ControlInterrupt(InterruptType, EnableInterrupt);
 
 }
 
@@ -159,7 +163,7 @@ BddDdiAddDevice(
 
     *ppDeviceContext = pBDD;
 
-    return STATUS_SUCCESS;   //此函数实质上就是在为PDO设备分配一个上下文空间
+    return STATUS_SUCCESS;   //函数创建这个上下文并返回给框架驱动后，后续框架驱动将使用这个上下文通过其余的回调函数与该Mini小端口驱动相通讯。
 }
 
 NTSTATUS
@@ -589,7 +593,7 @@ BddDdiResetDevice(
 
     BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(pDeviceContext);
     pBDD->ResetDevice();
-}//函数将显示适配器设置为 VGA 字符模式
+}
 
 NTSTATUS
 APIENTRY

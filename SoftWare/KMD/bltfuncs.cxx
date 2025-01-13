@@ -73,7 +73,7 @@ BYTE PixelMask[BITS_PER_BYTE]  = {0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01
  *
 \**************************************************************************/
 
-VOID CopyBits32_32(
+VOID CopyBits32_32( //将渲染出来的帧缓存从源缓冲区copy到目标缓冲区
     BLT_INFO* pDst,
     CONST BLT_INFO* pSrc,
     UINT  NumRects,
@@ -212,7 +212,7 @@ BYTE* GetRowStart(_In_ CONST BLT_INFO* pBltInfo, CONST RECT* pRect)
  *
 \**************************************************************************/
 
-VOID CopyBitsGeneric(
+VOID CopyBitsGeneric( //对于旋转之后的图像从缓冲copy
     BLT_INFO* pDst,
     CONST BLT_INFO* pSrc,
     UINT  NumRects,

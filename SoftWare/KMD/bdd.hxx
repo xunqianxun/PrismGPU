@@ -179,6 +179,9 @@ private:
     // Information passed in by StartDevice DDI
     DXGK_START_INFO m_StartInfo;
 
+    //Add intrrupt mode 
+
+
 
     // Array of EDIDs, currently only supporting base block, hence EDID_V1_BLOCK_SIZE for size of each EDID
     BYTE m_EDIDs[MAX_CHILDREN][EDID_V1_BLOCK_SIZE];
@@ -214,6 +217,10 @@ public:
         return m_Flags.DriverStarted;
     }
 #pragma code_seg(pop)
+
+    NTSTATUS ControlInterrupt(
+        _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType,
+        _In_       BOOLEAN                     EnableInterrupt);
 
     NTSTATUS StartDevice(_In_  DXGK_START_INFO*   pDxgkStartInfo,
                          _In_  DXGKRNL_INTERFACE* pDxgkInterface,
@@ -421,7 +428,7 @@ BddDdiGetscanline(
 
 NTSTATUS
 APIENTRY
-BddDdiControlInyerrupt(
+BddDdiControlInterrupt(
     _In_ CONST  HANDLE                      hAdapter,
     _In_ CONST  DXGK_INTERRUPT_TYPE         InterruptType,
     _In_        BOOLEAN                     EnableInterrupt);

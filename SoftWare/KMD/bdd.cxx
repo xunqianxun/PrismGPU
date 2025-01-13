@@ -41,6 +41,16 @@ BASIC_DISPLAY_DRIVER::~BASIC_DISPLAY_DRIVER()
     CleanUp();
 }
 
+NTSTATUS BASIC_DISPLAY_DRIVER::ControlInterrupt(
+    _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType,
+    _In_       BOOLEAN                     EnableInterrupt) 
+{
+    PAGED_CODE();
+
+
+
+}
+
 //驱动设备启动函数 NTSTATUS检查函数预期
 NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartInfo,
                                            _In_  DXGKRNL_INTERFACE* pDxgkInterface,
@@ -80,15 +90,77 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
         return Status;
     }
 
+    PCI_COMMON_CONFIG  h_PICECONFIG;
+    ULONG              RREAD; 
+
+    RtlZeroMemory(&h_PICECONFIG, sizeof(h_PICECONFIG));
+
+    pDxgkInterface->DxgkCbReadDeviceSpace(pDxgkInterface->DeviceHandle, PCI_WHICHSPACE_CONFIG, &h_PICECONFIG, 0, sizeof(PCI_COMMON_CONFIG), &RREAD);
+
+    if (sizeof(PCI_COMMON_CONFIG) == RREAD)
+    {
+        ULONG64 REGPBASEADDR = (ULONG64)h_PICECONFIG.u.type0.BaseAddresses[0];
+        ULONG64 MEMPBASEADDR = (ULONG64)h_PICECONFIG.u.type0.BaseAddresses[2];
+
+        PHYSICAL_ADDRESS REGPADDR = { 0 };
+        REGPADDR.QuadPart = REGPBASEADDR;
+        
+        ULONG64 REGOSADDR = (ULONG64)MmMapIoSpace(REGPADDR, (SIZE_T)BDD_DRIVER_REG_LENGTH, MmNonCached);
+
+        h_DEVICEINFO.REGPBASE = REGOSADDR;
+
+        PHYSICAL_ADDRESS MEMPADDR = { 0 };
+        MEMPADDR.QuadPart = MEMPBASEADDR;
+
+        ULONG64 REGOSADDR = (ULONG64)MmMapIoSpace(MEMPADDR, (SIZE_T)BDD_DRIVER_MEM_LENGTH, MmNonCached);
+
+        h_DEVICEINFO.MEMPBASE = REGOSADDR;
+
+    }
+    else
+    {
+        BDD_LOG_ERROR0("malloc PICE info memory not enougth.");
+
+    }
+
+    //这里的实现先使用预定义的方式，这边的设计主要依赖与硬件的支持，比如在设备启动时GPU设备能够通过HDMI接口读取EDID信息以及链接在显卡上的显示器设备。现在还没有实现这些硬件支持，所以暂时使用预定义的方式
+    for (D3DDDI_VIDEO_PRESENT_TARGET_ID TargetID = 0; TargetID < BDD_DRIVER_MAXCHILD; TargetID++)
+    {
+        GetEdid(TargetID);
+    }
+
+    HWEDIDINFO h_EDIDINFO;
+
+    RtlZeroMemory(&h_EDIDINFO, sizeof(h_EDIDINFO));
+
+    int AnalyzeState = { 0 };
+
+    AnalyzeState = ANALYZEEDID(m_EDIDs[0], &h_EDIDINFO);
+
+    if (AnalyzeState != TRUE)
+    {
+        BDD_LOG_ERROR0("copy edid information falt.");
+    }
+
+    RtlCopyMemory(&h_DEVICEINFO.h_EDIDINFO, &h_EDIDINFO, sizeof(h_EDIDINFO));
+
+
+
+    m_Flags.EDID_Retrieved = TRUE;
+    m_Flags.EDID_ValidHeader = TRUE;
+    m_Flags.EDID_ValidChecksum = TRUE;
+
+
+    //此处暂时注释，因为暂时不需要DxgkCbAcquirePostDisplayOwnership来获取输出信息
     // This sample driver only uses the frame buffer of the POST device. DxgkCbAcquirePostDisplayOwnership
     // gives you the frame buffer address and ensures that no one else is drawing to it. Be sure to give it back!
-    Status = m_DxgkInterface.DxgkCbAcquirePostDisplayOwnership(m_DxgkInterface.DeviceHandle, &(m_CurrentModes[0].DispInfo));  //此处通过设备句柄创建的m_CurrentModes信息包含了设备的输出信息存放在bdd.hxx中
-    if (!NT_SUCCESS(Status) || m_CurrentModes[0].DispInfo.Width == 0)
-    {
-        // The most likely cause of failure is that the driver is simply not running on a POST device, or we are running
-        // after a pre-WDDM 1.2 driver. Since we can't draw anything, we should fail to start.
-        return STATUS_UNSUCCESSFUL;
-    }
+    //Status = m_DxgkInterface.DxgkCbAcquirePostDisplayOwnership(m_DxgkInterface.DeviceHandle, &(m_CurrentModes[0].DispInfo));  //此处通过设备句柄创建的m_CurrentModes信息包含了设备的输出信息存放在bdd.hxx中
+    //if (!NT_SUCCESS(Status) || m_CurrentModes[0].DispInfo.Width == 0)
+    //{
+    //    // The most likely cause of failure is that the driver is simply not running on a POST device, or we are running
+    //    // after a pre-WDDM 1.2 driver. Since we can't draw anything, we should fail to start.
+    //    return STATUS_UNSUCCESSFUL;
+    //}
     m_Flags.DriverStarted = TRUE;
     *pNumberOfViews = MAX_VIEWS; // 设置视图数量
     *pNumberOfChildren = MAX_CHILDREN; //设置子设备数量
@@ -192,8 +264,13 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryChildRelations(_Out_writes_bytes_(ChildRelat
         pChildRelations[ChildIndex].ChildCapabilities.Type.VideoOutput.InterfaceTechnology = m_CurrentModes[0].Flags.IsInternal ? D3DKMDT_VOT_INTERNAL : D3DKMDT_VOT_OTHER; //如果 
         pChildRelations[ChildIndex].ChildCapabilities.Type.VideoOutput.MonitorOrientationAwareness = D3DKMDT_MOA_NONE; //表示不支持方向感知                                 //m_CurrentModes[0].Flags.IsInternal 为 TRUE，表示该设备为内部显示器
         pChildRelations[ChildIndex].ChildCapabilities.Type.VideoOutput.SupportsSdtvModes = FALSE; //设置该子设备不支持标准清晰度电视模式
+#if ( BDD_DRIVER_PRESENT_MODE == BDD_DRIVER_APIC ) 
         // TODO: Replace 0 with the actual ACPI ID of the child device, if available
         pChildRelations[ChildIndex].AcpiUid = 0;
+#else // PCI-based device
+        pChildRelations[ChildIndex].AcpiUid = 0;
+#endif
+
         pChildRelations[ChildIndex].ChildUid = ChildIndex;
     }
 
@@ -234,7 +311,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryChildStatus(_Inout_ DXGK_CHILD_STATUS* pChil
     }
 }
 
-// EDID retrieval  Descriptor：描述符
+// EDID retrieval  Descriptor：描述符。EDID扩展显示标识，也就是显示器的身份证
 NTSTATUS BASIC_DISPLAY_DRIVER::QueryDeviceDescriptor(_In_    ULONG                   ChildUid,
                                                      _Inout_ DXGK_DEVICE_DESCRIPTOR* pDeviceDescriptor)
 {
@@ -254,7 +331,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryDeviceDescriptor(_In_    ULONG              
         // Report no EDID if a valid one wasn't retrieved
         return STATUS_GRAPHICS_CHILD_DESCRIPTOR_NOT_SUPPORTED;//表示不支持该设备的描述符查询。
     }
-    else if (pDeviceDescriptor->DescriptorOffset == 0)//偏移量为0则表示只支持返回 EDID 的基本块
+    else if (pDeviceDescriptor->DescriptorOffset == 0)//偏移量为0则表示只支持 EDID 的基本块
     {
         // Only the base block is supported
         RtlCopyMemory(pDeviceDescriptor->DescriptorBuffer,
