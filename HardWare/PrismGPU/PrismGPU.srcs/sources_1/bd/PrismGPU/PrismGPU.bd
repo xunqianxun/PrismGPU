@@ -1,0 +1,35 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "device": "xc7k70tfbg676-1",
+      "name": "PrismGPU",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.2"
+    },
+    "design_tree": {
+      "xdma_0": "",
+      "mig_7series_0": ""
+    },
+    "components": {
+      "xdma_0": {
+        "vlnv": "xilinx.com:ip:xdma:4.1",
+        "xci_name": "PrismGPU_xdma_0_0"
+      },
+      "mig_7series_0": {
+        "vlnv": "xilinx.com:ip:mig_7series:4.2",
+        "xci_name": "PrismGPU_mig_7series_0_1"
+      }
+    },
+    "addressing": {
+      "/xdma_0": {
+        "address_spaces": {
+          "M_AXI": {
+            "range": "16E",
+            "width": "32"
+          }
+        }
+      }
+    }
+  }
+}
