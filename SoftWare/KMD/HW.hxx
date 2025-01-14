@@ -6,15 +6,45 @@
 
 #ifndef _HW_HXX_
 #define _HW_HXX_
-#include <basetsd.h>
-#include <sal.h>
-#include <ntdef.h>
-#include <ntintsafe.h>
-
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+	// Standard C-runtime headers
+#include <stddef.h>
+#include <string.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+
+#include <initguid.h>
+
+// NTOS headers
+#include <ntddk.h>
+
+#ifndef FAR
+#define FAR
+#endif
+
+// Windows headers
+#include <windef.h>
+#include <winerror.h>
+
+// Windows GDI headers
+#include <wingdi.h>
+
+// Windows DDI headers
+#include <winddi.h>
+#include <ntddvdeo.h>
+
+#include <d3dkmddi.h>
+#include <d3dkmthk.h>
+
+#include <ntstrsafe.h>
+#include <ntintsafe.h>
+
+#include <dispmprt.h>
 #ifdef __cplusplus
 }
 #endif
@@ -35,7 +65,8 @@ extern "C" {
 //} while (0);
 
 
-#define BDD_OPLAT_NAME          "Prism GPU" 
+#define BDD_DEVICE_NAME        L"PrismGPU"
+#define BDD_OPLAT_NAME          "PrismGPU" 
 #define BDD_ODAC_NAME           "UNKNOWN"
 #define BDD_ADAPTE_NAME         "UNKNOWN"
 #define BDD_BIOS_NAME           "UNKNOWN"
@@ -55,6 +86,8 @@ extern "C" {
 #define DISP_HORIZON_PIXEL		(1280)
 #define DISP_VERTICAL_LINE		(720)
 #define DISP_PIXEL_SIZE			(4)
+
+#define REGISTER_PATH     L"\\Registry\\Machine\\Software\\KMDOD\\UserParams"
 
 
 typedef struct
@@ -94,7 +127,8 @@ typedef struct
 
 }CRTCTIMING;
 
-typedef struct {
+typedef struct
+{
 	UINT16 FACID;
 	UINT16 PRODUCTID;
 	UINT32 SNCODE;
@@ -117,7 +151,8 @@ typedef struct {
 	UINT16 VBOARDER; // 垂直边框宽度（单位：像素）
 	UINT8  HSYNCSITUATION; // 水平同步信号的极性（1表示正极性，0表示负极性）
 	UINT8  VSYNCSITUATION;// 垂直同步信号的极性（1表示正极性，0表示负极性）
-	struct {
+	struct 
+	{
 		UINT8 INTERSECTSCAN;
 		UINT8 STEREOMODE;
 		UINT8 SYNCTYPE;
@@ -139,41 +174,48 @@ extern HWDEVICEINFO h_DEVICEINFO;
 // hw funcation define 
 //
 
-
-static int
-ANALYZEEDID(
+NTSTATUS AnalysizeEdid(
 	_In_  BYTE* m_EDID,
 	_Inout_ HWEDIDINFO* h_EDID);
 
-
-VOID InitHardware(
+NTSTATUS InitHardware(
 	_In_ DXGKRNL_INTERFACE* pDxgkInterface,
-	_In_ UINT64             REGPBASE,
-	_In_ HWEDIDINFO*         RDIDINFO);
+	_In_ UINT64 REGPBASE,
+	_In_ HWEDIDINFO* RDIDINFO);
 
-static NTSTATUS InitPHYForHDMI(
+NTSTATUS InitPHYForHDMI(
 	_In_ UINT64 PBaseAddr,
 	_In_ CRTCTIMING* PCrTrTiming);
 
-static NTSTATUS WriteSpace(
-	_In_ UINT64  PBaseAddr,
-	_In_ UINT32  BaseOffset,
-	_In_ UINT32  Bit32InDate);
+ NTSTATUS WriteSpace(
+	_In_ UINT64 PBaseAddr,
+	_In_ UINT32 BaseOffset,
+	_In_ UINT32 Bit32InDate);
 
-static UINT32 ReadSpace(
-	_In_ UINT64  PBaseAddr,
-	_In_ UINT32  BaseOffset);
+ UINT32 ReadSpace(
+	_In_ UINT64 PBaseAddr,
+	_In_ UINT32 BaseOffset);
 
-static NTSTATUS GetHDMIEdidInform(
+ NTSTATUS GetHDMIEdidInform(
 	_In_ UINT64 PRegMem,
 	_In_ UINT32 PRegOffset,
 	_In_ UINT32 EdidSize,
 	_Inout_ UINT32* EdOut);
 
-static NTSTATUS GetMoniterEdid(
+NTSTATUS GetMoniterEdid(
 	_In_ UINT64 PRegBaseAddr,
 	_Inout_ UINT32* MonitorEDID,
 	_In_ UINT32 EdiLength);
+
+NTSTATUS GetRegisterKeyValue(
+	_In_ LPCWSTR KeyPath,
+	_In_ LPCWSTR pKeyName,
+	_Out_ UINT32* KeyValue);
+
+NTSTATUS SetRegisterValue(
+	_In_ LPCWSTR KeyPath,
+	_In_ LPCWSTR pKeyName,
+	_In_ UINT32 KeyValue);
 
 
 #endif // _HW_HXX_

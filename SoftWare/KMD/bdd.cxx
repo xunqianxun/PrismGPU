@@ -41,15 +41,15 @@ BASIC_DISPLAY_DRIVER::~BASIC_DISPLAY_DRIVER()
     CleanUp();
 }
 
-NTSTATUS BASIC_DISPLAY_DRIVER::ControlInterrupt(
-    _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType,
-    _In_       BOOLEAN                     EnableInterrupt) 
-{
-    PAGED_CODE();
-
-
-
-}
+//NTSTATUS BASIC_DISPLAY_DRIVER::ControlInterrupt(
+//    _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType,
+//    _In_       BOOLEAN                     EnableInterrupt) 
+//{
+//    PAGED_CODE();
+//
+//
+//
+//}
 
 //驱动设备启动函数 NTSTATUS检查函数预期
 NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartInfo,
@@ -112,9 +112,9 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
         PHYSICAL_ADDRESS MEMPADDR = { 0 };
         MEMPADDR.QuadPart = MEMPBASEADDR;
 
-        ULONG64 REGOSADDR = (ULONG64)MmMapIoSpace(MEMPADDR, (SIZE_T)BDD_DRIVER_MEM_LENGTH, MmNonCached);
+        ULONG64 MEMOSADDR = (ULONG64)MmMapIoSpace(MEMPADDR, (SIZE_T)BDD_DRIVER_MEM_LENGTH, MmNonCached);
 
-        h_DEVICEINFO.MEMPBASE = REGOSADDR;
+        h_DEVICEINFO.MEMPBASE = MEMOSADDR;
 
     }
     else
@@ -135,7 +135,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
 
     int AnalyzeState = { 0 };
 
-    AnalyzeState = ANALYZEEDID(m_EDIDs[0], &h_EDIDINFO);
+    AnalyzeState = AnalysizeEdid(m_EDIDs[0], &h_EDIDINFO);
 
     if (AnalyzeState != TRUE)
     {
@@ -180,6 +180,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
 
 
     InitHardware(pDxgkInterface, h_DEVICEINFO.REGPBASE, &h_DEVICEINFO.DEVICEHWEDIDINFO);
+
 
 
    return STATUS_SUCCESS;
@@ -753,11 +754,12 @@ NTSTATUS BASIC_DISPLAY_DRIVER::RegisterHWInfo()
 
     NTSTATUS Status;
 
-    // TODO: Replace these strings with proper information OK
+    //TODO: Replace these strings with proper information OK
     PCSTR StrHWInfoChipType = BDD_OPLAT_NAME;
     PCSTR StrHWInfoDacType = BDD_ODAC_NAME;
     PCSTR StrHWInfoAdapterString = BDD_ADAPTE_NAME; 
     PCSTR StrHWInfoBiosString =  BDD_BIOS_NAME;
+
 
     HANDLE DevInstRegKeyHandle;
     Status = IoOpenDeviceRegistryKey(m_pPhysicalDevice, PLUGPLAY_REGKEY_DRIVER, KEY_SET_VALUE, &DevInstRegKeyHandle);

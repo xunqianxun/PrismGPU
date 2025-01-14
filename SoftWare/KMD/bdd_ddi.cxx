@@ -8,6 +8,7 @@
 \**************************************************************************/
 
 #include "BDD.hxx"
+#include "HW.hxx"
 
 
 #pragma code_seg(push)
@@ -85,6 +86,29 @@ DriverEntry(
         BDD_LOG_ERROR1("DxgkInitializeDisplayOnlyDriver failed with Status: 0x%I64x", Status);
         return Status;
     }
+
+
+    //在disply only的KMD中貌似并不需要创建符号链接以及创建与用户态交互的设备，在有渲染功能的时候，UMD需要额外使用KMD的功能分配资源等的时候需要
+    //KMD创建设备与符号链接来惩戒KUMD的需求。
+
+    //UINT32 KeyValue = { 0 };
+
+    //Status = GetRegisterKeyValue(REGISTER_PATH, BDD_DEVICE_NAME, &KeyValue);
+
+    //if (Status != STATUS_SUCCESS)
+    //{
+    //    KeyValue = 0;
+    //    SetRegisterValue(REGISTER_PATH, BDD_DEVICE_NAME, KeyValue);
+    //}
+    //else
+    //{
+    //    KeyValue++;
+    //    SetRegisterValue(REGISTER_PATH, BDD_DEVICE_NAME, KeyValue);
+    //}
+
+    //CreateDevice
+
+
 
     return Status;
 }

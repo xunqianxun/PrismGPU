@@ -8,6 +8,7 @@
 \**************************************************************************/
 
 #include "BDD.hxx"
+//#include "HW.hxx"
 
 // For the following macros, c must be a UCHAR.
 #define UPPER_6_BITS(c)   (((c) & rMaskTable[6 - 1]) >> 2)
