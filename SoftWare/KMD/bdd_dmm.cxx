@@ -29,7 +29,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::IsSupportedVidPn(_Inout_ DXGKARG_ISSUPPORTEDVIDPN
     if (pIsSupportedVidPn->hDesiredVidPn == 0)
     {
         // A null desired VidPn is supported
-        pIsSupportedVidPn->IsVidPnSupported = TRUE;
+        pIsSupportedVidPn->IsVidPnSupported = TRUE; // 默认支持VIDPN
         return STATUS_SUCCESS;
     }
 
@@ -37,7 +37,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::IsSupportedVidPn(_Inout_ DXGKARG_ISSUPPORTEDVIDPN
     pIsSupportedVidPn->IsVidPnSupported = FALSE;
 
     CONST DXGK_VIDPN_INTERFACE* pVidPnInterface;
-    NTSTATUS Status = m_DxgkInterface.DxgkCbQueryVidPnInterface(pIsSupportedVidPn->hDesiredVidPn, DXGK_VIDPN_INTERFACE_VERSION_V1, &pVidPnInterface);
+    NTSTATUS Status = m_DxgkInterface.DxgkCbQueryVidPnInterface(pIsSupportedVidPn->hDesiredVidPn, DXGK_VIDPN_INTERFACE_VERSION_V1, &pVidPnInterface); //获取VIDPN接口
     if (!NT_SUCCESS(Status))
     {
         BDD_LOG_ERROR2("DxgkCbQueryVidPnInterface failed with Status = 0x%I64x, hDesiredVidPn = 0x%I64x", Status, pIsSupportedVidPn->hDesiredVidPn);
@@ -46,7 +46,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::IsSupportedVidPn(_Inout_ DXGKARG_ISSUPPORTEDVIDPN
 
     D3DKMDT_HVIDPNTOPOLOGY hVidPnTopology;
     CONST DXGK_VIDPNTOPOLOGY_INTERFACE* pVidPnTopologyInterface;
-    Status = pVidPnInterface->pfnGetTopology(pIsSupportedVidPn->hDesiredVidPn, &hVidPnTopology, &pVidPnTopologyInterface);
+    Status = pVidPnInterface->pfnGetTopology(pIsSupportedVidPn->hDesiredVidPn, &hVidPnTopology, &pVidPnTopologyInterface);//获取VIDPN的拓扑结构
     if (!NT_SUCCESS(Status))
     {
         BDD_LOG_ERROR2("pfnGetTopology failed with Status = 0x%I64x, hDesiredVidPn = 0x%I64x", Status, pIsSupportedVidPn->hDesiredVidPn);
@@ -57,7 +57,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::IsSupportedVidPn(_Inout_ DXGKARG_ISSUPPORTEDVIDPN
     for (D3DDDI_VIDEO_PRESENT_SOURCE_ID SourceId = 0; SourceId < MAX_VIEWS; ++SourceId)
     {
         SIZE_T NumPathsFromSource = 0;
-        Status = pVidPnTopologyInterface->pfnGetNumPathsFromSource(hVidPnTopology, SourceId, &NumPathsFromSource);
+        Status = pVidPnTopologyInterface->pfnGetNumPathsFromSource(hVidPnTopology, SourceId, &NumPathsFromSource);//查询每个源的拓扑结构，看每个源都有多少链接路径
         if (Status == STATUS_GRAPHICS_SOURCE_NOT_IN_TOPOLOGY)
         {
             continue;
@@ -68,7 +68,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::IsSupportedVidPn(_Inout_ DXGKARG_ISSUPPORTEDVIDPN
                            Status, hVidPnTopology, SourceId);
             return Status;
         }
-        else if (NumPathsFromSource > MAX_CHILDREN)
+        else if (NumPathsFromSource > MAX_CHILDREN)//如果查询的链接路径超出了最大的支持范围则表示不支持
         {
             // This VidPn is not supported, which has already been set as the default
             return STATUS_SUCCESS;
@@ -80,13 +80,13 @@ NTSTATUS BASIC_DISPLAY_DRIVER::IsSupportedVidPn(_Inout_ DXGKARG_ISSUPPORTEDVIDPN
     return STATUS_SUCCESS;
 }
 
-NTSTATUS BASIC_DISPLAY_DRIVER::RecommendFunctionalVidPn(_In_ CONST DXGKARG_RECOMMENDFUNCTIONALVIDPN* CONST pRecommendFunctionalVidPn)
+NTSTATUS BASIC_DISPLAY_DRIVER::RecommendFunctionalVidPn(_In_ CONST DXGKARG_RECOMMENDFUNCTIONALVIDPN* CONST pRecommendFunctionalVidPn)//推荐一个功能性的 VidPn
 {
     PAGED_CODE();
 
     BDD_ASSERT(pRecommendFunctionalVidPn == NULL);
 
-    return STATUS_GRAPHICS_NO_RECOMMENDED_FUNCTIONAL_VIDPN;
+    return STATUS_GRAPHICS_NO_RECOMMENDED_FUNCTIONAL_VIDPN; //驱动未实现推荐 VidPn 的逻辑，或者无法根据输入生成合理的 VidPn
 }
 
 NTSTATUS BASIC_DISPLAY_DRIVER::RecommendVidPnTopology(_In_ CONST DXGKARG_RECOMMENDVIDPNTOPOLOGY* CONST pRecommendVidPnTopology)
@@ -105,7 +105,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::RecommendMonitorModes(_In_ CONST DXGKARG_RECOMMEN
     // This is always called to recommend modes for the monitor. The sample driver doesn't provide EDID for a monitor, so 
     // the OS prefills the list with default monitor modes. Since the required mode might not be in the list, it should 
     // be provided as a recommended mode.
-    return AddSingleMonitorMode(pRecommendMonitorModes);
+    return AddSingleMonitorMode(pRecommendMonitorModes);//单显示器模式
 }
 
 // Tell DMM about all the modes, etc. that are supported
@@ -115,17 +115,17 @@ NTSTATUS BASIC_DISPLAY_DRIVER::EnumVidPnCofuncModality(_In_ CONST DXGKARG_ENUMVI
 
     BDD_ASSERT(pEnumCofuncModality != NULL);
 
-    D3DKMDT_HVIDPNTOPOLOGY                   hVidPnTopology = 0;        
-    D3DKMDT_HVIDPNSOURCEMODESET              hVidPnSourceModeSet = 0;
-    D3DKMDT_HVIDPNTARGETMODESET              hVidPnTargetModeSet = 0;
-    CONST DXGK_VIDPN_INTERFACE*              pVidPnInterface = NULL;
-    CONST DXGK_VIDPNTOPOLOGY_INTERFACE*      pVidPnTopologyInterface = NULL;
-    CONST DXGK_VIDPNSOURCEMODESET_INTERFACE* pVidPnSourceModeSetInterface = NULL;
-    CONST DXGK_VIDPNTARGETMODESET_INTERFACE* pVidPnTargetModeSetInterface = NULL;
-    CONST D3DKMDT_VIDPN_PRESENT_PATH*        pVidPnPresentPath = NULL;
+    D3DKMDT_HVIDPNTOPOLOGY                   hVidPnTopology = 0;        //视频路径网络 (VidPn) 的拓扑句柄。
+    D3DKMDT_HVIDPNSOURCEMODESET              hVidPnSourceModeSet = 0; //源模式集的句柄。
+    D3DKMDT_HVIDPNTARGETMODESET              hVidPnTargetModeSet = 0; //目标模式集的句柄。
+    CONST DXGK_VIDPN_INTERFACE*              pVidPnInterface = NULL; //指向 VidPn 接口结构，用于操作 VidPn 对象。
+    CONST DXGK_VIDPNTOPOLOGY_INTERFACE*      pVidPnTopologyInterface = NULL;//VidPn 拓扑接口，用于处理显示路径的拓扑结构。
+    CONST DXGK_VIDPNSOURCEMODESET_INTERFACE* pVidPnSourceModeSetInterface = NULL;//源模式集的接口。
+    CONST DXGK_VIDPNTARGETMODESET_INTERFACE* pVidPnTargetModeSetInterface = NULL;//目标模式集的接口。
+    CONST D3DKMDT_VIDPN_PRESENT_PATH*        pVidPnPresentPath = NULL;//VidPn 中的一个显示路径结构。
     CONST D3DKMDT_VIDPN_PRESENT_PATH*        pVidPnPresentPathTemp = NULL; // Used for AcquireNextPathInfo
-    CONST D3DKMDT_VIDPN_SOURCE_MODE*         pVidPnPinnedSourceModeInfo = NULL;
-    CONST D3DKMDT_VIDPN_TARGET_MODE*         pVidPnPinnedTargetModeInfo = NULL;
+    CONST D3DKMDT_VIDPN_SOURCE_MODE*         pVidPnPinnedSourceModeInfo = NULL;//固定源模式集信息
+    CONST D3DKMDT_VIDPN_TARGET_MODE*         pVidPnPinnedTargetModeInfo = NULL;//固定目标模式集信息
 
     // Get the VidPn Interface so we can get the 'Source Mode Set', 'Target Mode Set' and 'VidPn Topology' interfaces
     NTSTATUS Status = m_DxgkInterface.DxgkCbQueryVidPnInterface(pEnumCofuncModality->hConstrainingVidPn, DXGK_VIDPN_INTERFACE_VERSION_V1, &pVidPnInterface); //获取视频路径接口
@@ -498,26 +498,28 @@ NTSTATUS BASIC_DISPLAY_DRIVER::SetVidPnSourceVisibility(_In_ CONST DXGKARG_SETVI
 }
 
 // NOTE: The value of pCommitVidPn->MonitorConnectivityChecks is ignored, since BDD is unable to recognize whether a monitor is connected or not
+// pCommitVidPn->MonitorConnectivityChecks的值被忽略，因为BDD无法识别监视器是否连接
 // The value of pCommitVidPn->hPrimaryAllocation is also ignored, since BDD is a display only driver and does not deal with allocations
-NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST pCommitVidPn)
-{
+// pCommitVidPn->hPrimaryAllocation的值也被忽略，因为BDD是一个只显示驱动程序，不处理分配
+NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST pCommitVidPn) //CommitVidPn 函数在显示路径和模式（VidPN）提交时被调用。其主要目的是应用并验证新的视频显示网络配置，包括显示源模式和显示路径。
+{      //pCommitVidPn 描述待提交的 VidPN 的信息，包括受影响的源 ID、功能性 VidPN 句柄等。
     PAGED_CODE();
 
     BDD_ASSERT(pCommitVidPn != NULL);
     BDD_ASSERT(pCommitVidPn->AffectedVidPnSourceId < MAX_VIEWS);
 
     NTSTATUS                                 Status;
-    SIZE_T                                   NumPaths = 0;
-    D3DKMDT_HVIDPNTOPOLOGY                   hVidPnTopology = 0;
-    D3DKMDT_HVIDPNSOURCEMODESET              hVidPnSourceModeSet = 0;
-    CONST DXGK_VIDPN_INTERFACE*              pVidPnInterface = NULL;
-    CONST DXGK_VIDPNTOPOLOGY_INTERFACE*      pVidPnTopologyInterface = NULL;
-    CONST DXGK_VIDPNSOURCEMODESET_INTERFACE* pVidPnSourceModeSetInterface = NULL;
-    CONST D3DKMDT_VIDPN_PRESENT_PATH*        pVidPnPresentPath = NULL;
-    CONST D3DKMDT_VIDPN_SOURCE_MODE*         pPinnedVidPnSourceModeInfo = NULL;
+    SIZE_T                                   NumPaths = 0; //表示路径的数量
+    D3DKMDT_HVIDPNTOPOLOGY                   hVidPnTopology = 0; //VidPN 的拓扑句柄。
+    D3DKMDT_HVIDPNSOURCEMODESET              hVidPnSourceModeSet = 0; //VidPN 源模式集合句柄。
+    CONST DXGK_VIDPN_INTERFACE*              pVidPnInterface = NULL; //VidPn接口
+    CONST DXGK_VIDPNTOPOLOGY_INTERFACE*      pVidPnTopologyInterface = NULL; //VidPn拓扑接口
+    CONST DXGK_VIDPNSOURCEMODESET_INTERFACE* pVidPnSourceModeSetInterface = NULL;//VidPn源模式设置接口
+    CONST D3DKMDT_VIDPN_PRESENT_PATH*        pVidPnPresentPath = NULL; //VidPN 当前路径的详细信息。
+    CONST D3DKMDT_VIDPN_SOURCE_MODE*         pPinnedVidPnSourceModeInfo = NULL; //当前固定的源模式信息
 
     // Check this CommitVidPn is for the mode change notification when monitor is in power off state.
-    if (pCommitVidPn->Flags.PathPoweredOff)
+    if (pCommitVidPn->Flags.PathPoweredOff)//如果路径断电，则无需进一步处理
     {
         // Ignore the commitVidPn call for the mode change notification when monitor is in power off state.
         Status = STATUS_SUCCESS;
@@ -548,7 +550,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
         goto CommitVidPnExit;
     }
 
-    if (NumPaths != 0)
+    if (NumPaths != 0) //如果视频路径数量是0
     {
         // Get the Source Mode Set interface so we can get the pinned mode  获取源模式设置和接口
         Status = pVidPnInterface->pfnAcquireSourceModeSet(pCommitVidPn->hFunctionalVidPn,
@@ -589,7 +591,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
         }
     }
 
-    if (pPinnedVidPnSourceModeInfo == NULL) //无源模式可用返回成功状态？
+    if (pPinnedVidPnSourceModeInfo == NULL) 
     {
         // There is no mode to pin on this source, any old paths here have already been cleared
         Status = STATUS_SUCCESS;
@@ -602,7 +604,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
         goto CommitVidPnExit;
     }
 
-    // Get the number of paths from this source so we can loop through all paths 获取从源到目标的路径数
+    // Get the number of paths from this source so we can loop through all paths 获取从源的路径数
     SIZE_T NumPathsFromSource = 0;
     Status = pVidPnTopologyInterface->pfnGetNumPathsFromSource(hVidPnTopology, pCommitVidPn->AffectedVidPnSourceId, &NumPathsFromSource);
     if (!NT_SUCCESS(Status))
@@ -616,7 +618,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
     {
         // Get the target id for this path
         D3DDDI_VIDEO_PRESENT_TARGET_ID TargetId = D3DDDI_ID_UNINITIALIZED;
-        Status = pVidPnTopologyInterface->pfnEnumPathTargetsFromSource(hVidPnTopology, pCommitVidPn->AffectedVidPnSourceId, PathIndex, &TargetId);
+        Status = pVidPnTopologyInterface->pfnEnumPathTargetsFromSource(hVidPnTopology, pCommitVidPn->AffectedVidPnSourceId, PathIndex, &TargetId);//获取链接在当前源上的目标
         if (!NT_SUCCESS(Status))
         {
             BDD_LOG_ERROR4("pfnEnumPathTargetsFromSource failed with Status = 0x%I64x, hVidPnTopology = 0x%I64x, SourceId = 0x%I64x, PathIndex = 0x%I64x",
@@ -625,7 +627,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
         }
 
         // Get the actual path info
-        Status = pVidPnTopologyInterface->pfnAcquirePathInfo(hVidPnTopology, pCommitVidPn->AffectedVidPnSourceId, TargetId, &pVidPnPresentPath);
+        Status = pVidPnTopologyInterface->pfnAcquirePathInfo(hVidPnTopology, pCommitVidPn->AffectedVidPnSourceId, TargetId, &pVidPnPresentPath);//获取这条从源到目标上的路径信息
         if (!NT_SUCCESS(Status))
         {
             BDD_LOG_ERROR4("pfnAcquirePathInfo failed with Status = 0x%I64x, hVidPnTopology = 0x%I64x, SourceId = 0x%I64x, TargetId = 0x%I64x",
@@ -633,19 +635,19 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CommitVidPn(_In_ CONST DXGKARG_COMMITVIDPN* CONST
             goto CommitVidPnExit;
         }
 
-        Status = IsVidPnPathFieldsValid(pVidPnPresentPath);
+        Status = IsVidPnPathFieldsValid(pVidPnPresentPath);//检查信息的合法性
         if (!NT_SUCCESS(Status))
         {
             goto CommitVidPnExit;
         }
 
-        Status = SetSourceModeAndPath(pPinnedVidPnSourceModeInfo, pVidPnPresentPath);
+        Status = SetSourceModeAndPath(pPinnedVidPnSourceModeInfo, pVidPnPresentPath);//设置源模式和路径信息
         if (!NT_SUCCESS(Status))
         {
             goto CommitVidPnExit;
         }
 
-        Status = pVidPnTopologyInterface->pfnReleasePathInfo(hVidPnTopology, pVidPnPresentPath);
+        Status = pVidPnTopologyInterface->pfnReleasePathInfo(hVidPnTopology, pVidPnPresentPath);//释放路径信息和拓扑信息
         if (!NT_SUCCESS(Status))
         {
             BDD_LOG_ERROR3("pfnReleasePathInfo failed with Status = 0x%I64x, hVidPnTopoogy = 0x%I64x, pVidPnPresentPath = 0x%I64x",
@@ -686,9 +688,9 @@ CommitVidPnExit:
     return Status;
 }
 
-NTSTATUS BASIC_DISPLAY_DRIVER::UpdateActiveVidPnPresentPath(_In_ CONST DXGKARG_UPDATEACTIVEVIDPNPRESENTPATH* CONST pUpdateActiveVidPnPresentPath)
+NTSTATUS BASIC_DISPLAY_DRIVER::UpdateActiveVidPnPresentPath(_In_ CONST DXGKARG_UPDATEACTIVEVIDPNPRESENTPATH* CONST pUpdateActiveVidPnPresentPath)//函数用于更新VidPN的活动显示路径属性
 {
-    PAGED_CODE();
+    PAGED_CODE();                                    //指向包含更新信息的结构体，描述了当前活动 VidPN 路径的相关属性。主要包含一个 VidPnPresentPathInfo 成员，提供更新路径的详细信息。
 
     BDD_ASSERT(pUpdateActiveVidPnPresentPath != NULL);
 
@@ -699,76 +701,76 @@ NTSTATUS BASIC_DISPLAY_DRIVER::UpdateActiveVidPnPresentPath(_In_ CONST DXGKARG_U
     }
 
     // Mark the next present as fullscreen to make sure the full rotation comes through
-    m_CurrentModes[pUpdateActiveVidPnPresentPath->VidPnPresentPathInfo.VidPnSourceId].Flags.FullscreenPresent = TRUE;
+    m_CurrentModes[pUpdateActiveVidPnPresentPath->VidPnPresentPathInfo.VidPnSourceId].Flags.FullscreenPresent = TRUE;//这确保下一次图像呈现操作以全屏模式进行
 
     m_CurrentModes[pUpdateActiveVidPnPresentPath->VidPnPresentPathInfo.VidPnSourceId].Rotation = pUpdateActiveVidPnPresentPath->VidPnPresentPathInfo.ContentTransformation.Rotation;
 
-    return STATUS_SUCCESS;
+    return STATUS_SUCCESS; //更新当前源的旋转信息为路径指定的旋转方式
 }
 
 //
 // Private BDD DMM functions
 //
-
-NTSTATUS BASIC_DISPLAY_DRIVER::SetSourceModeAndPath(CONST D3DKMDT_VIDPN_SOURCE_MODE* pSourceMode,
+                                                                                 //VidPN 源的模式信息，定义了显示源的分辨率、像素格式等。
+NTSTATUS BASIC_DISPLAY_DRIVER::SetSourceModeAndPath(CONST D3DKMDT_VIDPN_SOURCE_MODE* pSourceMode, //前提是已经确定源，然后对源的模式和路径进行设置
                                                     CONST D3DKMDT_VIDPN_PRESENT_PATH* pPath)
-{
+{                                                                               //VidPN 显示路径，包含源与目标之间的显示配置。包括旋转、缩放等转换信息
     PAGED_CODE();
 
-    CURRENT_BDD_MODE* pCurrentBddMode = &m_CurrentModes[pPath->VidPnSourceId];
+    CURRENT_BDD_MODE* pCurrentBddMode = &m_CurrentModes[pPath->VidPnSourceId];  //存当前的源的模式信息
 
     NTSTATUS Status = STATUS_SUCCESS;
-    pCurrentBddMode->Scaling = pPath->ContentTransformation.Scaling;
-    pCurrentBddMode->SrcModeWidth = pSourceMode->Format.Graphics.PrimSurfSize.cx;
+    pCurrentBddMode->Scaling = pPath->ContentTransformation.Scaling; //从路径信息中提取缩放设置
+    pCurrentBddMode->SrcModeWidth = pSourceMode->Format.Graphics.PrimSurfSize.cx; //从模式信息中获取主表面宽度和高度
     pCurrentBddMode->SrcModeHeight = pSourceMode->Format.Graphics.PrimSurfSize.cy;
-    pCurrentBddMode->Rotation = pPath->ContentTransformation.Rotation;
+    pCurrentBddMode->Rotation = pPath->ContentTransformation.Rotation; //从路径的内容转换信息中提取旋转设置
 
 
-    if (!pCurrentBddMode->Flags.DoNotMapOrUnmap)
+    if (!pCurrentBddMode->Flags.DoNotMapOrUnmap) //如果 DoNotMapOrUnmap 标志为0 未禁用映射
     {
         // Map the new frame buffer
         BDD_ASSERT(pCurrentBddMode->FrameBuffer.Ptr == NULL);
-        Status = MapFrameBuffer(pCurrentBddMode->DispInfo.PhysicAddress,
+        Status = MapFrameBuffer(pCurrentBddMode->DispInfo.PhysicAddress, //映射物理地址到线性帧缓冲区,其中这里的PhysicAddress继承与startdevice的函数从PCIE的配置信息中取出的
                                 pCurrentBddMode->DispInfo.Pitch * pCurrentBddMode->DispInfo.Height,
-                                &(pCurrentBddMode->FrameBuffer.Ptr));
+                                &(pCurrentBddMode->FrameBuffer.Ptr));//指向映射后的虚拟地址。
     }
 
     if (NT_SUCCESS(Status))
     {
 
-        pCurrentBddMode->Flags.FrameBufferIsActive = TRUE;
-        BlackOutScreen(pPath->VidPnSourceId);
+        pCurrentBddMode->Flags.FrameBufferIsActive = TRUE;//缓冲区已激活
+        BlackOutScreen(pPath->VidPnSourceId);//清空屏幕
 
         // Mark that the next present should be fullscreen so the screen doesn't go from black to actual pixels one dirty rect at a time.
-        pCurrentBddMode->Flags.FullscreenPresent = TRUE;
+        pCurrentBddMode->Flags.FullscreenPresent = TRUE;//表示下一次呈现操作应为全屏更新
     }
 
     return Status;
 }
 
 
-NTSTATUS BASIC_DISPLAY_DRIVER::IsVidPnPathFieldsValid(CONST D3DKMDT_VIDPN_PRESENT_PATH* pPath) const
+NTSTATUS BASIC_DISPLAY_DRIVER::IsVidPnPathFieldsValid(CONST D3DKMDT_VIDPN_PRESENT_PATH* pPath) const //指向 VidPN 显示路径的指针，包含源 ID、目标 ID、内容转换（缩放、旋转）、颜色基准等信息。
 {
     PAGED_CODE();
 
-    if (pPath->VidPnSourceId >= MAX_VIEWS)
+    if (pPath->VidPnSourceId >= MAX_VIEWS)//源 ID 是否小于驱动程序支持的最大视图数 MAX_VIEWS
     {
         BDD_LOG_ERROR2("VidPnSourceId is 0x%I64x is too high (MAX_VIEWS is 0x%I64x)",
                         pPath->VidPnSourceId, MAX_VIEWS);
-        return STATUS_GRAPHICS_INVALID_VIDEO_PRESENT_SOURCE;
+        return STATUS_GRAPHICS_INVALID_VIDEO_PRESENT_SOURCE; //源ID超过最大限制
     }
-    else if (pPath->VidPnTargetId >= MAX_CHILDREN)
+    else if (pPath->VidPnTargetId >= MAX_CHILDREN)//检查目标 ID 是否小于支持的最大子设备数 MAX_CHILDREN
     {
         BDD_LOG_ERROR2("VidPnTargetId is 0x%I64x is too high (MAX_CHILDREN is 0x%I64x)",
                         pPath->VidPnTargetId, MAX_CHILDREN);
         return STATUS_GRAPHICS_INVALID_VIDEO_PRESENT_TARGET;
     }
-    else if (pPath->GammaRamp.Type != D3DDDI_GAMMARAMP_DEFAULT)
+    else if (pPath->GammaRamp.Type != D3DDDI_GAMMARAMP_DEFAULT)//检查伽马曲线是否为默认值（D3DDDI_GAMMARAMP_DEFAULT
     {
         BDD_LOG_ERROR1("pPath contains a gamma ramp (0x%I64x)", pPath->GammaRamp.Type);
         return STATUS_GRAPHICS_GAMMA_RAMP_NOT_SUPPORTED;
     }
-    else if ((pPath->ContentTransformation.Scaling != D3DKMDT_VPPS_IDENTITY) &&
+    else if ((pPath->ContentTransformation.Scaling != D3DKMDT_VPPS_IDENTITY) &&//验证缩放设置是否为支持的模式
              (pPath->ContentTransformation.Scaling != D3DKMDT_VPPS_CENTERED) &&
              (pPath->ContentTransformation.Scaling != D3DKMDT_VPPS_NOTSPECIFIED) &&
              (pPath->ContentTransformation.Scaling != D3DKMDT_VPPS_UNINITIALIZED))
@@ -776,7 +778,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::IsVidPnPathFieldsValid(CONST D3DKMDT_VIDPN_PRESEN
         BDD_LOG_ERROR1("pPath contains a non-identity scaling (0x%I64x)", pPath->ContentTransformation.Scaling);
         return STATUS_GRAPHICS_VIDPN_MODALITY_NOT_SUPPORTED;
     }
-    else if ((pPath->ContentTransformation.Rotation != D3DKMDT_VPPR_IDENTITY) &&
+    else if ((pPath->ContentTransformation.Rotation != D3DKMDT_VPPR_IDENTITY) && //验证旋转设置是否为支持的模式
              (pPath->ContentTransformation.Rotation != D3DKMDT_VPPR_ROTATE90) &&
              (pPath->ContentTransformation.Rotation != D3DKMDT_VPPR_NOTSPECIFIED) &&
              (pPath->ContentTransformation.Rotation != D3DKMDT_VPPR_UNINITIALIZED))
@@ -784,7 +786,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::IsVidPnPathFieldsValid(CONST D3DKMDT_VIDPN_PRESEN
         BDD_LOG_ERROR1("pPath contains a not-supported rotation (0x%I64x)", pPath->ContentTransformation.Rotation);
         return STATUS_GRAPHICS_VIDPN_MODALITY_NOT_SUPPORTED;
     }
-    else if ((pPath->VidPnTargetColorBasis != D3DKMDT_CB_SCRGB) &&
+    else if ((pPath->VidPnTargetColorBasis != D3DKMDT_CB_SCRGB) &&//查颜色基准是否为支持的值
              (pPath->VidPnTargetColorBasis != D3DKMDT_CB_UNINITIALIZED))
     {
         BDD_LOG_ERROR1("pPath has a non-linear RGB color basis (0x%I64x)", pPath->VidPnTargetColorBasis);
@@ -800,25 +802,25 @@ NTSTATUS BASIC_DISPLAY_DRIVER::IsVidPnSourceModeFieldsValid(CONST D3DKMDT_VIDPN_
 {
     PAGED_CODE();
 
-    if (pSourceMode->Type != D3DKMDT_RMT_GRAPHICS)
+    if (pSourceMode->Type != D3DKMDT_RMT_GRAPHICS) //检查是否为图形模式，驱动程序仅支持图形模式，不支持视频或其他模式
     {
         BDD_LOG_ERROR1("pSourceMode is a non-graphics mode (0x%I64x)", pSourceMode->Type);
         return STATUS_GRAPHICS_INVALID_VIDEO_PRESENT_SOURCE_MODE;
     }
     else if ((pSourceMode->Format.Graphics.ColorBasis != D3DKMDT_CB_SCRGB) &&
-             (pSourceMode->Format.Graphics.ColorBasis != D3DKMDT_CB_UNINITIALIZED))
+             (pSourceMode->Format.Graphics.ColorBasis != D3DKMDT_CB_UNINITIALIZED))//驱动程序不支持非线性 RGB 颜色基准
     {
         BDD_LOG_ERROR1("pSourceMode has a non-linear RGB color basis (0x%I64x)", pSourceMode->Format.Graphics.ColorBasis);
         return STATUS_GRAPHICS_INVALID_VIDEO_PRESENT_SOURCE_MODE;
     }
-    else if (pSourceMode->Format.Graphics.PixelValueAccessMode != D3DKMDT_PVAM_DIRECT)
+    else if (pSourceMode->Format.Graphics.PixelValueAccessMode != D3DKMDT_PVAM_DIRECT)//基本显示驱动程序不支持调色板访问模式
     {
         BDD_LOG_ERROR1("pSourceMode has a palettized access mode (0x%I64x)", pSourceMode->Format.Graphics.PixelValueAccessMode);
         return STATUS_GRAPHICS_INVALID_VIDEO_PRESENT_SOURCE_MODE;
     }
     else
     {
-        for (UINT PelFmtIdx = 0; PelFmtIdx < ARRAYSIZE(gBddPixelFormats); ++PelFmtIdx)
+        for (UINT PelFmtIdx = 0; PelFmtIdx < ARRAYSIZE(gBddPixelFormats); ++PelFmtIdx)////遍历驱动程序支持的像素格式数组 gBddPixelFormats，检查 pSourceMode->Format.Graphics.PixelFormat 是否为支持的格式。
         {
             if (pSourceMode->Format.Graphics.PixelFormat == gBddPixelFormats[PelFmtIdx])
             {
@@ -1021,8 +1023,8 @@ NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleTargetMode(_In_ CONST DXGK_VIDPNTARGETMO
 }
 
 
-NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleMonitorMode(_In_ CONST DXGKARG_RECOMMENDMONITORMODES* CONST pRecommendMonitorModes) //像操作系统推荐适合的视频输出模式与形式
-{
+NTSTATUS BASIC_DISPLAY_DRIVER::AddSingleMonitorMode(_In_ CONST DXGKARG_RECOMMENDMONITORMODES* CONST pRecommendMonitorModes) //向操作系统推荐适合的视频输出模式与形式
+{                             //添加单显示器模式
     PAGED_CODE();
 
     D3DKMDT_MONITOR_SOURCE_MODE* pMonitorSourceMode = NULL;

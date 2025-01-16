@@ -123,10 +123,10 @@ NTSTATUS InitHardware(
 {
 	NTSTATUS State = STATUS_SUCCESS;
 
-	WriteSpace(PBaseAddr, 0x0, 0x3);
-	WriteSpace(PBaseAddr, 0x54, (DISP_HORIZON_PIXEL * DISP_PIXEL_SIZE));
+	WriteSpace(PBaseAddr, 0x0, 0x3); //使能VDMA
+	WriteSpace(PBaseAddr, 0x54, (DISP_HORIZON_PIXEL * DISP_PIXEL_SIZE)); //设置VDMA的输出规格
 	WriteSpace(PBaseAddr, 0x58, (DISP_HORIZON_PIXEL * DISP_PIXEL_SIZE));
-	WriteSpace(PBaseAddr, 0x5C, 0x00000000);
+	WriteSpace(PBaseAddr, 0x5C, 0x00000000); //设置帧起始地址
 	WriteSpace(PBaseAddr, 0x50, DISP_VERTICAL_LINE);
 
 

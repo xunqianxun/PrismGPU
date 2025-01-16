@@ -25,6 +25,8 @@ BASIC_DISPLAY_DRIVER::BASIC_DISPLAY_DRIVER(_In_ DEVICE_OBJECT* pPhysicalDeviceOb
     RtlZeroMemory(&m_StartInfo, sizeof(m_StartInfo));
     RtlZeroMemory(m_CurrentModes, sizeof(m_CurrentModes));
     RtlZeroMemory(&m_DeviceInfo, sizeof(m_DeviceInfo));
+    RtlZeroMemory(m_EDIDs, sizeof(m_EDIDs));
+    RtlZeroMemory(&m_SystemDisplaySourceId, sizeof(m_SystemDisplaySourceId));
 
 
     for (UINT i=0;i<MAX_VIEWS;i++)
@@ -107,14 +109,15 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
         
         ULONG64 REGOSADDR = (ULONG64)MmMapIoSpace(REGPADDR, (SIZE_T)BDD_DRIVER_REG_LENGTH, MmNonCached);
 
-        h_DEVICEINFO.REGPBASE = REGOSADDR;
+        h_DEVICEINFO.REGPBASE = REGPBASEADDR; 
+        h_DEVICEINFO.REGVBASE = REGOSADDR;
 
         PHYSICAL_ADDRESS MEMPADDR = { 0 };
         MEMPADDR.QuadPart = MEMPBASEADDR;
 
-        ULONG64 MEMOSADDR = (ULONG64)MmMapIoSpace(MEMPADDR, (SIZE_T)BDD_DRIVER_MEM_LENGTH, MmNonCached);
+        //ULONG64 MEMOSADDR = (ULONG64)MmMapIoSpace(MEMPADDR, (SIZE_T)BDD_DRIVER_MEM_LENGTH, MmNonCached);//map mem 这件事情不需要在启动的时候做
 
-        h_DEVICEINFO.MEMPBASE = MEMOSADDR;
+        h_DEVICEINFO.MEMPBASE = MEMPBASEADDR;
 
     }
     else
@@ -363,7 +366,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryDeviceDescriptor(_In_    ULONG              
     }
 }
 
-NTSTATUS BASIC_DISPLAY_DRIVER::QueryAdapterInfo(_In_ CONST DXGKARG_QUERYADAPTERINFO* pQueryAdapterInfo)
+NTSTATUS BASIC_DISPLAY_DRIVER::QueryAdapterInfo(_In_ CONST DXGKARG_QUERYADAPTERINFO* pQueryAdapterInfo)//系统框架查询驱动程序支持的情况
 {
     PAGED_CODE();
 
@@ -398,7 +401,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryAdapterInfo(_In_ CONST DXGKARG_QUERYADAPTERI
 
         case DXGKQAITYPE_DISPLAY_DRIVERCAPS_EXTENSION:  //表示查询显示驱动程序的扩展能力
         {
-            DXGK_DISPLAY_DRIVERCAPS_EXTENSION* pDriverDisplayCaps;
+            DXGK_DISPLAY_DRIVERCAPS_EXTENSION* pDriverDisplayCaps; 
 
             if (pQueryAdapterInfo->OutputDataSize < sizeof(*pDriverDisplayCaps))
             {
@@ -409,7 +412,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryAdapterInfo(_In_ CONST DXGKARG_QUERYADAPTERI
                 return STATUS_INVALID_PARAMETER;
             }
 
-            pDriverDisplayCaps = (DXGK_DISPLAY_DRIVERCAPS_EXTENSION*)pQueryAdapterInfo->pOutputData;
+            pDriverDisplayCaps = (DXGK_DISPLAY_DRIVERCAPS_EXTENSION*)pQueryAdapterInfo->pOutputData; // 离谱这种方式就相当于指针传递。因为DXGK_DISPLAY_DRIVERCAPS_EXTENSION* pDriverDisplayCaps;本身就是指针
 
             // Reset all caps values
             RtlZeroMemory(pDriverDisplayCaps, pQueryAdapterInfo->OutputDataSize);
@@ -493,12 +496,12 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()  //没搞清楚 。现在搞清�
 #endif
 
     // TODO: Replace 0x1414 with your Vendor ID    OK
-    if (VendorID == 0x1414)
+    if (VendorID == BDD_DRIVER_VENDORID)
     {
         switch (DeviceID)
         {
             // TODO: Replace the case statements below with the Device IDs supported by this driver
-            case 0x0010: return STATUS_SUCCESS;
+            case BDD_DRIVER_DEVICE_ID: return STATUS_SUCCESS;
 
             default:     return STATUS_UNSUCCESSFUL;
         }
@@ -560,7 +563,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::PresentDisplayOnly(_In_ CONST DXGKARG_PRESENT_DIS
     }
 
     // Present is only valid if the target is actively connected to this source
-    if (m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].Flags.FrameBufferIsActive) //检查当前的显示模式是否与源关联且显示目标处于连接状态。如果不处于活动状态，则不会执行渲染操作。
+    if (m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].Flags.FrameBufferIsActive) //检查当前的显示模式的缓冲区是否存在，如果不处于活动状态，则不会执行渲染操作。
     {
 
         // If actual pixels are coming through, will need to completely zero out physical address next time in BlackOutScreen
@@ -573,14 +576,14 @@ NTSTATUS BASIC_DISPLAY_DRIVER::PresentDisplayOnly(_In_ CONST DXGKARG_PRESENT_DIS
                                                                  D3DKMDT_VPPR_IDENTITY; //标志判断是否需要对源内容进行旋转,使用 D3DKMDT_VPPR_IDENTITY 表示无旋转
             BYTE* pDst = (BYTE*)m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].FrameBuffer.Ptr; //是当前显示源的帧缓冲区的地址
             UINT DstBitPerPixel = BPPFromPixelFormat(m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].DispInfo.ColorFormat);//是目标帧缓冲区的每像素位数
-            if (m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].Scaling == D3DKMDT_VPPS_CENTERED)  //如果显示模式设置为居中缩放（Scaling == D3DKMDT_VPPS_CENTERED），
-            {                                                                                         //则需要计算偏移量 CenterShift，并将目标帧缓冲区指针 pDst 调整到合适的位置。
-                UINT CenterShift = (m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].DispInfo.Height - //这是为了确保图像正确地居中显示在屏幕上。
-                    m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].SrcModeHeight)*m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].DispInfo.Pitch;
-                CenterShift += (m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].DispInfo.Width -
-                    m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].SrcModeWidth)*DstBitPerPixel/8;
-                pDst += (int)CenterShift/2;
-            }
+            //if (m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].Scaling == D3DKMDT_VPPS_CENTERED)  //如果显示模式设置为居中缩放（Scaling == D3DKMDT_VPPS_CENTERED），
+            //{                                                                                         //则需要计算偏移量 CenterShift，并将目标帧缓冲区指针 pDst 调整到合适的位置。
+            //    UINT CenterShift = (m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].DispInfo.Height - //这是为了确保图像正确地居中显示在屏幕上。
+            //        m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].SrcModeHeight)*m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].DispInfo.Pitch;
+            //    CenterShift += (m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].DispInfo.Width -
+            //        m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].SrcModeWidth)*DstBitPerPixel/8;
+            //    pDst += (int)CenterShift/2;
+            //}
             return m_HardwareBlt[pPresentDisplayOnly->VidPnSourceId].ExecutePresentDisplayOnly(pDst, //实际执行图像渲染的函数,将图像呈现到屏幕上。它将源数据拷贝到目标缓冲区 pDst，并执行任何必要的图像处理
                                                                     DstBitPerPixel,//目标帧缓冲区的每像素位数
                                                                     (BYTE*)pPresentDisplayOnly->pSource, //源图像的指针
@@ -604,19 +607,19 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StopDeviceAndReleasePostDisplayOwnership(_In_  D3
     BDD_ASSERT(TargetId < MAX_CHILDREN);
 
 
-    D3DDDI_VIDEO_PRESENT_SOURCE_ID SourceId = FindSourceForTarget(TargetId, TRUE);  //查询设备的源ID 
+    //D3DDDI_VIDEO_PRESENT_SOURCE_ID SourceId = FindSourceForTarget(TargetId, TRUE);  //查询设备的源ID 
 
-    // In case BDD is the next driver to run, the monitor should not be off, since
-    // this could cause the BIOS to hang when the EDID is retrieved on Start.
-    if (m_MonitorPowerState > PowerDeviceD0) //如果监视器已关闭或处于低功耗状态，应该将其恢复到开启状态
-    {
-        SetPowerState(TargetId, PowerDeviceD0, PowerActionNone); //避免当 BDD 驱动程序启动时，显示器处于关闭状态，从而可能导致 BIOS 在获取 EDID（显示设备信息）时挂起。
-    }
+    //// In case BDD is the next driver to run, the monitor should not be off, since
+    //// this could cause the BIOS to hang when the EDID is retrieved on Start.
+    //if (m_MonitorPowerState > PowerDeviceD0) //如果监视器已关闭或处于低功耗状态，应该将其恢复到开启状态
+    //{
+    //    SetPowerState(TargetId, PowerDeviceD0, PowerActionNone); //避免当 BDD 驱动程序启动时，显示器处于关闭状态，从而可能导致 BIOS 在获取 EDID（显示设备信息）时挂起。
+    //}
 
-    // The driver has to black out the display and ensure it is visible when releasing ownership
-    BlackOutScreen(SourceId); //保在释放显示设备的所有权时，显示器的内容不会继续显示，避免出现不完整的显示内容
+    //// The driver has to black out the display and ensure it is visible when releasing ownership
+    //BlackOutScreen(SourceId); //保在释放显示设备的所有权时，显示器的内容不会继续显示，避免出现不完整的显示内容
 
-    *pDisplayInfo = m_CurrentModes[SourceId].DispInfo;
+    //*pDisplayInfo = m_CurrentModes[SourceId].DispInfo;
 
     return StopDevice();
 }
@@ -878,7 +881,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::SystemDisplayEnable(_In_  D3DDDI_VIDEO_PRESENT_TA
     }
     else
     {
-        m_SystemDisplaySourceId = FindSourceForTarget(TargetId, FALSE);
+        m_SystemDisplaySourceId = FindSourceForTarget(TargetId, FALSE);//为目标选择源
     }
 
     if (m_SystemDisplaySourceId == D3DDDI_ID_UNINITIALIZED)//显示源显示未初始化
