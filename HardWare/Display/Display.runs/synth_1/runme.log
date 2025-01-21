@@ -1,0 +1,523 @@
+
+*** Running vivado
+    with args -log Prism_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Prism_wrapper.tcl
+
+
+
+****** Vivado v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source Prism_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/vivado_lib/vivado-library/ip/rgb2vga_v1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/vivado_lib/vivado-library/ip/rgb2dvi'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'F:/vivado2020/Vivado/2020.2/data/ip'.
+add_files: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1141.391 ; gain = 0.000
+Command: synth_design -top Prism_wrapper -part xc7k70tfbg676-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7k70t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k70t'
+INFO: [Device 21-403] Loading part xc7k70tfbg676-2
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 25596
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1194.090 ; gain = 52.699
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'Prism_wrapper' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/hdl/Prism_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'Prism' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:13]
+INFO: [Synth 8-6157] synthesizing module 'Prism_axi_smc_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_axi_smc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_axi_smc_0' (1#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_axi_smc_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'Prism_axi_vdma_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_axi_vdma_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_axi_vdma_0_0' (2#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_axi_vdma_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mm2s_frame_ptr_out' of module 'Prism_axi_vdma_0_0' is unconnected for instance 'axi_vdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:354]
+WARNING: [Synth 8-7071] port 'm_axis_mm2s_tkeep' of module 'Prism_axi_vdma_0_0' is unconnected for instance 'axi_vdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:354]
+WARNING: [Synth 8-7071] port 'mm2s_introut' of module 'Prism_axi_vdma_0_0' is unconnected for instance 'axi_vdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:354]
+WARNING: [Synth 8-7023] instance 'axi_vdma_0' of module 'Prism_axi_vdma_0_0' has 42 connections declared, but only 39 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:354]
+INFO: [Synth 8-6157] synthesizing module 'Prism_clk_wiz_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_clk_wiz_0' (3#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'Prism_mig_7series_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_mig_7series_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_mig_7series_0_0' (4#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_mig_7series_0_0_stub.v:5]
+WARNING: [Synth 8-7071] port 'app_sr_active' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
+WARNING: [Synth 8-7071] port 'app_ref_ack' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
+WARNING: [Synth 8-7071] port 'app_zq_ack' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
+WARNING: [Synth 8-7071] port 's_axi_bid' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
+WARNING: [Synth 8-7071] port 's_axi_rid' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
+WARNING: [Synth 8-7071] port 'init_calib_complete' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
+WARNING: [Synth 8-7023] instance 'mig_7series_0' of module 'Prism_mig_7series_0_0' has 62 connections declared, but only 56 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
+INFO: [Synth 8-6157] synthesizing module 'Prism_rgb2dvi_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_rgb2dvi_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_rgb2dvi_0_0' (5#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_rgb2dvi_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'Prism_rst_mig_7series_0_100M_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_rst_mig_7series_0_100M_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_rst_mig_7series_0_100M_0' (6#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_rst_mig_7series_0_100M_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mb_reset' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:471]
+WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:471]
+WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:471]
+WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:471]
+WARNING: [Synth 8-7023] instance 'rst_mig_7series_0_100M' of module 'Prism_rst_mig_7series_0_100M_0' has 10 connections declared, but only 6 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:471]
+INFO: [Synth 8-6157] synthesizing module 'Prism_util_ds_buf_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_util_ds_buf_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_util_ds_buf_0_0' (7#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_util_ds_buf_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'IBUF_DS_ODIV2' of module 'Prism_util_ds_buf_0_0' is unconnected for instance 'util_ds_buf_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:478]
+WARNING: [Synth 8-7023] instance 'util_ds_buf_0' of module 'Prism_util_ds_buf_0_0' has 4 connections declared, but only 3 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:478]
+INFO: [Synth 8-6157] synthesizing module 'Prism_v_axi4s_vid_out_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_v_axi4s_vid_out_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_v_axi4s_vid_out_0_0' (8#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_v_axi4s_vid_out_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'vid_vsync' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+WARNING: [Synth 8-7071] port 'vid_hblank' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+WARNING: [Synth 8-7071] port 'vid_field_id' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+WARNING: [Synth 8-7071] port 'locked' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+WARNING: [Synth 8-7071] port 'overflow' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+WARNING: [Synth 8-7071] port 'underflow' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+WARNING: [Synth 8-7071] port 'fifo_read_level' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+WARNING: [Synth 8-7071] port 'status' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+WARNING: [Synth 8-7071] port 'sof_state_out' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+WARNING: [Synth 8-7023] instance 'v_axi4s_vid_out_0' of module 'Prism_v_axi4s_vid_out_0_0' has 30 connections declared, but only 21 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+INFO: [Synth 8-6157] synthesizing module 'Prism_v_tc_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_v_tc_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_v_tc_0_0' (9#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_v_tc_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'fsync_out' of module 'Prism_v_tc_0_0' is unconnected for instance 'v_tc_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:504]
+WARNING: [Synth 8-7023] instance 'v_tc_0' of module 'Prism_v_tc_0_0' has 11 connections declared, but only 10 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:504]
+INFO: [Synth 8-6157] synthesizing module 'Prism_xdma_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_xdma_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_xdma_0_0' (10#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_xdma_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'usr_irq_ack' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'msi_enable' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'msi_vector_width' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_awid' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_awaddr' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_awlen' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_awsize' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_awburst' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_awvalid' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_awlock' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_awcache' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_wdata' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_wstrb' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_wlast' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_wvalid' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_bready' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_arid' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_araddr' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_arlen' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_arsize' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_arburst' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_arvalid' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_arlock' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_arcache' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'm_axi_rready' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'cfg_mgmt_read_data' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7071] port 'cfg_mgmt_read_write_done' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+WARNING: [Synth 8-7023] instance 'xdma_0' of module 'Prism_xdma_0_0' has 110 connections declared, but only 81 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
+INFO: [Synth 8-6157] synthesizing module 'Prism_xdma_0_axi_periph_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:641]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_PN4WIK' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:846]
+INFO: [Synth 8-6157] synthesizing module 'Prism_auto_cc_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_auto_cc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_auto_cc_0' (11#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_auto_cc_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'Prism_auto_cc_0' is unconnected for instance 'auto_cc' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1005]
+WARNING: [Synth 8-7071] port 'm_axi_wstrb' of module 'Prism_auto_cc_0' is unconnected for instance 'auto_cc' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1005]
+WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'Prism_auto_cc_0' is unconnected for instance 'auto_cc' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1005]
+WARNING: [Synth 8-7023] instance 'auto_cc' of module 'Prism_auto_cc_0' has 42 connections declared, but only 39 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1005]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_PN4WIK' (12#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:846]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_xdma_0_axi_periph_0' (13#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:641]
+INFO: [Synth 8-6155] done synthesizing module 'Prism' (14#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_wrapper' (15#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/hdl/Prism_wrapper.v:12]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1252.012 ; gain = 110.621
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1252.012 ; gain = 110.621
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1252.012 ; gain = 110.621
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1252.012 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/Prism_xdma_0_0/Prism_xdma_0_0_in_context.xdc] for cell 'Prism_i/xdma_0'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/Prism_xdma_0_0/Prism_xdma_0_0_in_context.xdc] for cell 'Prism_i/xdma_0'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0_in_context.xdc] for cell 'Prism_i/axi_vdma_0'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0_in_context.xdc] for cell 'Prism_i/axi_vdma_0'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_auto_cc_0/Prism_auto_cc_0/Prism_auto_cc_0_in_context.xdc] for cell 'Prism_i/xdma_0_axi_periph/s00_couplers/auto_cc'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_auto_cc_0/Prism_auto_cc_0/Prism_auto_cc_0_in_context.xdc] for cell 'Prism_i/xdma_0_axi_periph/s00_couplers/auto_cc'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_clk_wiz_0/Prism_clk_wiz_0/Prism_clk_wiz_0_in_context.xdc] for cell 'Prism_i/clk_wiz'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_clk_wiz_0/Prism_clk_wiz_0/Prism_clk_wiz_0_in_context.xdc] for cell 'Prism_i/clk_wiz'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc] for cell 'Prism_i/mig_7series_0'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc] for cell 'Prism_i/mig_7series_0'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_v_axi4s_vid_out_0_0/Prism_v_axi4s_vid_out_0_0/Prism_v_axi4s_vid_out_0_0_in_context.xdc] for cell 'Prism_i/v_axi4s_vid_out_0'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_v_axi4s_vid_out_0_0/Prism_v_axi4s_vid_out_0_0/Prism_v_axi4s_vid_out_0_0_in_context.xdc] for cell 'Prism_i/v_axi4s_vid_out_0'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_v_tc_0_0/Prism_v_tc_0_0/Prism_v_tc_0_0_in_context.xdc] for cell 'Prism_i/v_tc_0'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_v_tc_0_0/Prism_v_tc_0_0/Prism_v_tc_0_0_in_context.xdc] for cell 'Prism_i/v_tc_0'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_axi_smc_0/Prism_axi_smc_0/Prism_axi_smc_0_in_context.xdc] for cell 'Prism_i/axi_smc'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_axi_smc_0/Prism_axi_smc_0/Prism_axi_smc_0_in_context.xdc] for cell 'Prism_i/axi_smc'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rst_mig_7series_0_100M_0/Prism_rst_mig_7series_0_100M_0/Prism_rst_mig_7series_0_100M_0_in_context.xdc] for cell 'Prism_i/rst_mig_7series_0_100M'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rst_mig_7series_0_100M_0/Prism_rst_mig_7series_0_100M_0/Prism_rst_mig_7series_0_100M_0_in_context.xdc] for cell 'Prism_i/rst_mig_7series_0_100M'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc] for cell 'Prism_i/rgb2dvi_0'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc] for cell 'Prism_i/rgb2dvi_0'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_in_context.xdc] for cell 'Prism_i/util_ds_buf_0'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_in_context.xdc] for cell 'Prism_i/util_ds_buf_0'
+Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.srcs/constrs_1/new/prism.xdc]
+WARNING: [Vivado 12-507] No nets matched 'Prism_i/clk_wiz/inst/clk_in1_Prism_clk_wiz_0'. [D:/PrismGPU/PrismGPU/HardWare/Display/Display.srcs/constrs_1/new/prism.xdc:1]
+Finished Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.srcs/constrs_1/new/prism.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [D:/PrismGPU/PrismGPU/HardWare/Display/Display.srcs/constrs_1/new/prism.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/Prism_wrapper_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [D:/PrismGPU/PrismGPU/HardWare/Display/Display.srcs/constrs_1/new/prism.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Prism_wrapper_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/Prism_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1285.758 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1285.758 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'Prism_i/mig_7series_0' at clock pin 'sys_clk_i' is different from the actual clock period '9.944', this can lead to different synthesis results.
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1290.770 ; gain = 149.379
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7k70tfbg676-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1290.770 ; gain = 149.379
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for sys_clk. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_clk_wiz_0/Prism_clk_wiz_0/Prism_clk_wiz_0_in_context.xdc, line 6).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for sys_clk. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_clk_wiz_0/Prism_clk_wiz_0/Prism_clk_wiz_0_in_context.xdc, line 7).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 2).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 3).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[10]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 4).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[10]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 5).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[11]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 6).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[11]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 7).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[12]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 8).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[12]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 9).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 10).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 11).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 12).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 13).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[3]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 14).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[3]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 15).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[4]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 16).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[4]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 17).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[5]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 18).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[5]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 19).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[6]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 20).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[6]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 21).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[7]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 22).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[7]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 23).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[8]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 24).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[8]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 25).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_addr[9]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 26).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_addr[9]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 27).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_ba[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 28).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_ba[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 29).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_ba[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 30).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_ba[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 31).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_ba[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 32).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_ba[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 33).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_cas_n. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 34).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_cas_n. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 35).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_ck_n[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 36).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_ck_n[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 37).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_ck_n[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 38).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_ck_n[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 39).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_ck_p[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 40).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_ck_p[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 41).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_ck_p[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 42).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_ck_p[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 43).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_cke[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 44).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_cke[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 45).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_cs_n[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 46).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_cs_n[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 47).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_cs_n[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 48).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_cs_n[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 49).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dm[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 50).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dm[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 51).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dm[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 52).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dm[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 53).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dm[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 54).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dm[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 55).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dm[3]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 56).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dm[3]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 57).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 58).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 59).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[10]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 60).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[10]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 61).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[11]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 62).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[11]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 63).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[12]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 64).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[12]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 65).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[13]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 66).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[13]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 67).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[14]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 68).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[14]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 69).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[15]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 70).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[15]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 71).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[16]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 72).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[16]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 73).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[17]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 74).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[17]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 75).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[18]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 76).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[18]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 77).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[19]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 78).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[19]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 79).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 80).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 81).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[20]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 82).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[20]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 83).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[21]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 84).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[21]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 85).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[22]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 86).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[22]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 87).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[23]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 88).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[23]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 89).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[24]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 90).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[24]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 91).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[25]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 92).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[25]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 93).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[26]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 94).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[26]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 95).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[27]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 96).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[27]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 97).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[28]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 98).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[28]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 99).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[29]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 100).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[29]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 101).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 102).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 103).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[30]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 104).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[30]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 105).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[31]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 106).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[31]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 107).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[3]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 108).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[3]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 109).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[4]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 110).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[4]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 111).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[5]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 112).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[5]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 113).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[6]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 114).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[6]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 115).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[7]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 116).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[7]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 117).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[8]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 118).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[8]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 119).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dq[9]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 120).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dq[9]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 121).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dqs_n[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 122).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dqs_n[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 123).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dqs_n[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 124).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dqs_n[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 125).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dqs_n[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 126).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dqs_n[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 127).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dqs_n[3]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 128).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dqs_n[3]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 129).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dqs_p[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 130).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dqs_p[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 131).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dqs_p[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 132).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dqs_p[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 133).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dqs_p[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 134).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dqs_p[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 135).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_dqs_p[3]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 136).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_dqs_p[3]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 137).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_odt[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 138).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_odt[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 139).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_odt[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 140).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_odt[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 141).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_ras_n. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 142).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_ras_n. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 143).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR2_interface_we_n. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 144).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR2_interface_we_n. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0/Prism_mig_7series_0_0_in_context.xdc, line 145).
+Applied set_property IO_BUFFER_TYPE = NONE for TMDS_Clk_n_0. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 1).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for TMDS_Clk_n_0. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 2).
+Applied set_property IO_BUFFER_TYPE = NONE for TMDS_Clk_p_0. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for TMDS_Clk_p_0. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 4).
+Applied set_property IO_BUFFER_TYPE = NONE for TMDS_Data_n_0[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 5).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for TMDS_Data_n_0[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 6).
+Applied set_property IO_BUFFER_TYPE = NONE for TMDS_Data_n_0[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 7).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for TMDS_Data_n_0[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 8).
+Applied set_property IO_BUFFER_TYPE = NONE for TMDS_Data_n_0[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 9).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for TMDS_Data_n_0[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 10).
+Applied set_property IO_BUFFER_TYPE = NONE for TMDS_Data_p_0[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 11).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for TMDS_Data_p_0[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 12).
+Applied set_property IO_BUFFER_TYPE = NONE for TMDS_Data_p_0[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 13).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for TMDS_Data_p_0[1]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 14).
+Applied set_property IO_BUFFER_TYPE = NONE for TMDS_Data_p_0[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 15).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for TMDS_Data_p_0[2]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc, line 16).
+Applied set_property IO_BUFFER_TYPE = NONE for PICe_Clk_clk_n[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for PICe_Clk_clk_n[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_in_context.xdc, line 4).
+Applied set_property IO_BUFFER_TYPE = NONE for PICe_Clk_clk_p[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_in_context.xdc, line 5).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for PICe_Clk_clk_p[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_in_context.xdc, line 6).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/xdma_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/axi_vdma_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/xdma_0_axi_periph/s00_couplers/auto_cc. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/xdma_0_axi_periph. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/clk_wiz. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/mig_7series_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/v_axi4s_vid_out_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/v_tc_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/axi_smc. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/rst_mig_7series_0_100M. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/rgb2dvi_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/util_ds_buf_0. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1290.770 ; gain = 149.379
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1290.770 ; gain = 149.379
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1290.770 ; gain = 149.379
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1331.949 ; gain = 190.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1332.246 ; gain = 190.855
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1351.371 ; gain = 209.980
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+-------------------------------+----------+
+|      |BlackBox name                  |Instances |
++------+-------------------------------+----------+
+|1     |Prism_auto_cc_0                |         1|
+|2     |Prism_axi_smc_0                |         1|
+|3     |Prism_axi_vdma_0_0             |         1|
+|4     |Prism_clk_wiz_0                |         1|
+|5     |Prism_mig_7series_0_0          |         1|
+|6     |Prism_rgb2dvi_0_0              |         1|
+|7     |Prism_rst_mig_7series_0_100M_0 |         1|
+|8     |Prism_util_ds_buf_0_0          |         1|
+|9     |Prism_v_axi4s_vid_out_0_0      |         1|
+|10    |Prism_v_tc_0_0                 |         1|
+|11    |Prism_xdma_0_0                 |         1|
++------+-------------------------------+----------+
+
+Report Cell Usage: 
++------+-----------------------------+------+
+|      |Cell                         |Count |
++------+-----------------------------+------+
+|1     |Prism_auto_cc                |     1|
+|2     |Prism_axi_smc                |     1|
+|3     |Prism_axi_vdma_0             |     1|
+|4     |Prism_clk_wiz                |     1|
+|5     |Prism_mig_7series_0          |     1|
+|6     |Prism_rgb2dvi_0              |     1|
+|7     |Prism_rst_mig_7series_0_100M |     1|
+|8     |Prism_util_ds_buf_0          |     1|
+|9     |Prism_v_axi4s_vid_out_0      |     1|
+|10    |Prism_v_tc_0                 |     1|
+|11    |Prism_xdma_0                 |     1|
+|12    |IBUF                         |     9|
+|13    |OBUF                         |     9|
++------+-----------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1358.105 ; gain = 177.957
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1370.191 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1375.355 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+47 Infos, 67 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1375.355 ; gain = 233.965
+INFO: [Common 17-1381] The checkpoint 'D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/Prism_wrapper.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Prism_wrapper_utilization_synth.rpt -pb Prism_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Jan 20 20:24:34 2025...

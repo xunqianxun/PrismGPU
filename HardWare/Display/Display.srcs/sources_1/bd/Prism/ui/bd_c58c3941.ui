@@ -1,0 +1,72 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.64939",
+   "Default View_TopLeft":"-588,-1000",
+   "ExpandedHierarchyInLayout":"",
+   "PinnedBlocks":"",
+   "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS-threadsafe
+#  -string -flagsOSRD
+preplace port pice_interface -pg 1 -lvl 7 -x 2110 -y -780 -defaultsOSRD
+preplace port DDR2_interface -pg 1 -lvl 7 -x 2110 -y -660 -defaultsOSRD
+preplace port PICe_Clk -pg 1 -lvl 0 -x -480 -y -750 -defaultsOSRD
+preplace port Pice_rest -pg 1 -lvl 0 -x -480 -y -700 -defaultsOSRD
+preplace port pice_link_up -pg 1 -lvl 7 -x 2110 -y -520 -defaultsOSRD
+preplace port TMDS_Clk_p_0 -pg 1 -lvl 7 -x 2110 -y -340 -defaultsOSRD
+preplace port TMDS_Clk_n_0 -pg 1 -lvl 7 -x 2110 -y -320 -defaultsOSRD
+preplace port sys_clk -pg 1 -lvl 0 -x -480 -y -320 -defaultsOSRD
+preplace portBus TMDS_Data_p_0 -pg 1 -lvl 7 -x 2110 -y -300 -defaultsOSRD
+preplace portBus TMDS_Data_n_0 -pg 1 -lvl 7 -x 2110 -y -280 -defaultsOSRD
+preplace inst xdma_0 -pg 1 -lvl 2 -x 10 -y -710 -defaultsOSRD
+preplace inst axi_vdma_0 -pg 1 -lvl 4 -x 1030 -y -500 -defaultsOSRD
+preplace inst xdma_0_axi_periph -pg 1 -lvl 3 -x 680 -y -640 -defaultsOSRD
+preplace inst clk_wiz -pg 1 -lvl 2 -x 10 -y -330 -defaultsOSRD
+preplace inst mig_7series_0 -pg 1 -lvl 6 -x 1890 -y -620 -defaultsOSRD
+preplace inst v_axi4s_vid_out_0 -pg 1 -lvl 5 -x 1480 -y -360 -defaultsOSRD
+preplace inst v_tc_0 -pg 1 -lvl 4 -x 1030 -y -260 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 5 -x 1480 -y -820 -defaultsOSRD
+preplace inst rst_mig_7series_0_100M -pg 1 -lvl 5 -x 1480 -y -630 -defaultsOSRD
+preplace inst rgb2dvi_0 -pg 1 -lvl 6 -x 1890 -y -320 -defaultsOSRD
+preplace inst util_ds_buf_0 -pg 1 -lvl 1 -x -310 -y -750 -defaultsOSRD
+preplace netloc reset_rtl_0_1 1 0 2 -460 -680 -170
+preplace netloc v_axi4s_vid_out_0_vtg_ce 1 3 3 840J -160 N -160 1650
+preplace netloc mig_7series_0_mmcm_locked 1 4 3 1290 -960 N -960 2070
+preplace netloc mig_7series_0_ui_clk_sync_rst 1 4 3 1300 -950 N -950 2060
+preplace netloc v_axi4s_vid_out_0_vid_active_video 1 5 1 1680 -450n
+preplace netloc v_axi4s_vid_out_0_vid_data 1 5 1 1700 -430n
+preplace netloc v_axi4s_vid_out_0_vid_hsync 1 5 1 1670 -410n
+preplace netloc v_axi4s_vid_out_0_vid_vblank 1 5 1 1660 -390n
+preplace netloc xdma_0_user_lnk_up 1 2 5 190J -790 NJ -790 1230J -940 NJ -940 2080
+preplace netloc xdma_0_axi_aresetn 1 2 3 230 -760 N -760 1270
+preplace netloc xdma_0_axi_aclk 1 2 3 210 -770 N -770 1250
+preplace netloc clk_wiz_clk_55out 1 2 4 240 -370 820 -380 1280 -530 1690
+preplace netloc clk_wiz_locked 1 2 4 250 -360 830 -360 1290 -180 1710
+preplace netloc mig_7series_0_ui_clk 1 4 3 1310J -930 N -930 2050
+preplace netloc clk_wiz_clk_100out 1 2 4 180 -990 NJ -990 NJ -990 1730
+preplace netloc clk_wiz_clk_200out 1 2 4 200 -800 NJ -800 1220J -970 1720
+preplace netloc rst_mig_7series_0_100M_peripheral_aresetn 1 5 1 1730 -590n
+preplace netloc clk_wiz_clk_276out 1 2 4 NJ -350 840J -370 1240J -190 1730
+preplace netloc rgb2dvi_0_TMDS_Clk_p 1 6 1 N -340
+preplace netloc rgb2dvi_0_TMDS_Clk_n 1 6 1 N -320
+preplace netloc rgb2dvi_0_TMDS_Data_p 1 6 1 N -300
+preplace netloc rgb2dvi_0_TMDS_Data_n 1 6 1 N -280
+preplace netloc util_ds_buf_0_IBUF_OUT 1 1 1 -170 -760n
+preplace netloc clk_in1_0_1 1 0 2 NJ -320 NJ
+preplace netloc xdma_0_M_AXI_LITE 1 2 1 220J -760n
+preplace netloc axi_smc_M00_AXI 1 5 1 1710 -820n
+preplace netloc axi_vdma_0_M_AXI_MM2S 1 4 1 1260 -850n
+preplace netloc axi_vdma_0_M_AXIS_MM2S 1 4 1 1230 -510n
+preplace netloc CLK_IN_D_0_1 1 0 1 N -750
+preplace netloc xdma_0_M_AXI_BYPASS 1 2 3 N -780 NJ -780 1240
+preplace netloc v_tc_0_vtiming_out 1 4 1 1310 -400n
+preplace netloc xdma_0_axi_periph_M00_AXI 1 3 1 820 -640n
+preplace netloc mig_7series_0_DDR2 1 6 1 N -660
+preplace netloc xdma_0_pcie_mgt 1 2 5 170J -810 820 -980 NJ -980 N -980 2090
+levelinfo -pg 1 -480 -310 10 680 1030 1480 1890 2110
+pagesize -pg 1 -db -bbox -sgen -600 -1080 2290 910
+"
+}
+{
+   "da_axi4_cnt":"3",
+   "da_board_cnt":"3",
+   "da_clkrst_cnt":"6"
+}

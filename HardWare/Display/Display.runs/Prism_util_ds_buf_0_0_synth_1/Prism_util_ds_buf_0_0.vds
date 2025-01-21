@@ -1,0 +1,242 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Jan 20 18:39:16 2025
+# Process ID: 26576
+# Current directory: D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_util_ds_buf_0_0_synth_1
+# Command line: vivado.exe -log Prism_util_ds_buf_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Prism_util_ds_buf_0_0.tcl
+# Log file: D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_util_ds_buf_0_0_synth_1/Prism_util_ds_buf_0_0.vds
+# Journal file: D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_util_ds_buf_0_0_synth_1\vivado.jou
+#-----------------------------------------------------------
+source Prism_util_ds_buf_0_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/vivado_lib/vivado-library/ip/rgb2vga_v1_0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/vivado_lib/vivado-library/ip/rgb2dvi'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'F:/vivado2020/Vivado/2020.2/data/ip'.
+Command: synth_design -top Prism_util_ds_buf_0_0 -part xc7k70tfbg676-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7k70t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k70t'
+INFO: [Device 21-403] Loading part xc7k70tfbg676-2
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 20392
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1142.301 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'Prism_util_ds_buf_0_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/synth/Prism_util_ds_buf_0_0.vhd:65]
+	Parameter C_BUF_TYPE bound to: ibufdsgte2 - type: string 
+	Parameter C_SIZE bound to: 1 - type: integer 
+	Parameter C_BUFGCE_DIV bound to: 1 - type: integer 
+	Parameter C_BUFG_GT_SYNC bound to: 0 - type: integer 
+	Parameter C_SIM_DEVICE bound to: VERSAL_AI_CORE_ES1 - type: string 
+	Parameter C_OBUFDS_GTE5_ADV bound to: 2'b00 
+	Parameter C_REFCLK_ICNTL_TX bound to: 5'b00000 
+INFO: [Synth 8-3491] module 'util_ds_buf' declared at 'd:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/util_ds_buf.vhd:72' bound to instance 'U0' of component 'util_ds_buf' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/synth/Prism_util_ds_buf_0_0.vhd:187]
+INFO: [Synth 8-638] synthesizing module 'util_ds_buf' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/util_ds_buf.vhd:226]
+	Parameter C_BUF_TYPE bound to: ibufdsgte2 - type: string 
+	Parameter C_SIZE bound to: 1 - type: integer 
+	Parameter C_BUFGCE_DIV bound to: 1 - type: integer 
+	Parameter C_BUFG_GT_SYNC bound to: 0 - type: integer 
+	Parameter C_SIM_DEVICE bound to: VERSAL_AI_CORE_ES1 - type: string 
+	Parameter C_OBUFDS_GTE5_ADV bound to: 2'b00 
+	Parameter C_REFCLK_ICNTL_TX bound to: 5'b00000 
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: 1 - type: bool 
+	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+INFO: [Synth 8-113] binding component instance 'IBUF_P_I' to cell 'IBUF' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/util_ds_buf.vhd:275]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: 1 - type: bool 
+	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+INFO: [Synth 8-113] binding component instance 'IBUF_N_I' to cell 'IBUF' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/util_ds_buf.vhd:277]
+	Parameter CLKCM_CFG bound to: 1 - type: bool 
+	Parameter CLKRCV_TRST bound to: 1 - type: bool 
+	Parameter CLKSWING_CFG bound to: 2'b11 
+INFO: [Synth 8-113] binding component instance 'IBUFDS_GTE2_I' to cell 'IBUFDS_GTE2' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/util_ds_buf.vhd:279]
+INFO: [Synth 8-256] done synthesizing module 'util_ds_buf' (1#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/util_ds_buf.vhd:226]
+INFO: [Synth 8-256] done synthesizing module 'Prism_util_ds_buf_0_0' (2#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/synth/Prism_util_ds_buf_0_0.vhd:65]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1190.148 ; gain = 47.848
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1190.148 ; gain = 47.848
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1190.148 ; gain = 47.848
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1190.148 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_ooc.xdc] for cell 'U0'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_board.xdc] for cell 'U0'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_board.xdc] for cell 'U0'
+Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_util_ds_buf_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_util_ds_buf_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1216.254 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Timing 38-2] Deriving generated clocks
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 1227.566 ; gain = 11.312
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1227.566 ; gain = 85.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7k70tfbg676-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1227.566 ; gain = 85.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_util_ds_buf_0_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1227.566 ; gain = 85.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1227.566 ; gain = 85.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1227.566 ; gain = 85.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1250.641 ; gain = 108.340
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1250.641 ; gain = 108.340
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1269.730 ; gain = 127.430
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1276.527 ; gain = 134.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1276.527 ; gain = 134.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1276.527 ; gain = 134.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1276.527 ; gain = 134.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1276.527 ; gain = 134.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1276.527 ; gain = 134.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+------------+------+
+|      |Cell        |Count |
++------+------------+------+
+|1     |IBUFDS_GTE2 |     1|
+|2     |IBUF        |     2|
++------+------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1276.527 ; gain = 134.227
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:18 . Memory (MB): peak = 1276.527 ; gain = 96.809
+Synthesis Optimization Complete : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1276.527 ; gain = 134.227
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1276.527 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1295.707 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+25 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1295.707 ; gain = 153.406
+INFO: [Common 17-1381] The checkpoint 'D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_util_ds_buf_0_0_synth_1/Prism_util_ds_buf_0_0.dcp' has been generated.
+WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP Prism_util_ds_buf_0_0, cache-ID = c90b556a603f2f8c
+INFO: [Common 17-1381] The checkpoint 'D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_util_ds_buf_0_0_synth_1/Prism_util_ds_buf_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Prism_util_ds_buf_0_0_utilization_synth.rpt -pb Prism_util_ds_buf_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Jan 20 18:39:46 2025...
