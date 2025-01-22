@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Mon Jan 20 20:23:56 2025
-# Process ID: 16428
+# Start of session at: Wed Jan 22 09:32:51 2025
+# Process ID: 26928
 # Current directory: D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1
 # Command line: vivado.exe -log Prism_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Prism_wrapper.tcl
 # Log file: D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/Prism_wrapper.vds
@@ -14,7 +14,7 @@ INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/vivado_lib/vivado-library/ip/rgb2vga_v1_0'.
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/vivado_lib/vivado-library/ip/rgb2dvi'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'F:/vivado2020/Vivado/2020.2/data/ip'.
-add_files: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1141.391 ; gain = 0.000
+add_files: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1138.312 ; gain = 0.000
 Command: synth_design -top Prism_wrapper -part xc7k70tfbg676-2
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7k70t'
@@ -22,123 +22,274 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k70t
 INFO: [Device 21-403] Loading part xc7k70tfbg676-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 25596
+INFO: [Synth 8-7075] Helper process launched with PID 4792
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1194.090 ; gain = 52.699
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1194.129 ; gain = 55.816
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'Prism_wrapper' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/hdl/Prism_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'Prism' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:13]
-INFO: [Synth 8-6157] synthesizing module 'Prism_axi_smc_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_axi_smc_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_axi_smc_0' (1#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_axi_smc_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'Prism_axi_vdma_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_axi_vdma_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_axi_vdma_0_0' (2#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_axi_vdma_0_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'mm2s_frame_ptr_out' of module 'Prism_axi_vdma_0_0' is unconnected for instance 'axi_vdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:354]
-WARNING: [Synth 8-7071] port 'm_axis_mm2s_tkeep' of module 'Prism_axi_vdma_0_0' is unconnected for instance 'axi_vdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:354]
-WARNING: [Synth 8-7071] port 'mm2s_introut' of module 'Prism_axi_vdma_0_0' is unconnected for instance 'axi_vdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:354]
-WARNING: [Synth 8-7023] instance 'axi_vdma_0' of module 'Prism_axi_vdma_0_0' has 42 connections declared, but only 39 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:354]
-INFO: [Synth 8-6157] synthesizing module 'Prism_clk_wiz_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_clk_wiz_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_clk_wiz_0' (3#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_clk_wiz_0_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'Prism_mig_7series_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_mig_7series_0_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_mig_7series_0_0' (4#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_mig_7series_0_0_stub.v:5]
-WARNING: [Synth 8-7071] port 'app_sr_active' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
-WARNING: [Synth 8-7071] port 'app_ref_ack' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
-WARNING: [Synth 8-7071] port 'app_zq_ack' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
-WARNING: [Synth 8-7071] port 's_axi_bid' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
-WARNING: [Synth 8-7071] port 's_axi_rid' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
-WARNING: [Synth 8-7071] port 'init_calib_complete' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
-WARNING: [Synth 8-7023] instance 'mig_7series_0' of module 'Prism_mig_7series_0_0' has 62 connections declared, but only 56 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:402]
-INFO: [Synth 8-6157] synthesizing module 'Prism_rgb2dvi_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_rgb2dvi_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_rgb2dvi_0_0' (5#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_rgb2dvi_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'Prism_rst_mig_7series_0_100M_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_rst_mig_7series_0_100M_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_rst_mig_7series_0_100M_0' (6#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_rst_mig_7series_0_100M_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'mb_reset' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:471]
-WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:471]
-WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:471]
-WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:471]
-WARNING: [Synth 8-7023] instance 'rst_mig_7series_0_100M' of module 'Prism_rst_mig_7series_0_100M_0' has 10 connections declared, but only 6 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:471]
-INFO: [Synth 8-6157] synthesizing module 'Prism_util_ds_buf_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_util_ds_buf_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_util_ds_buf_0_0' (7#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_util_ds_buf_0_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'IBUF_DS_ODIV2' of module 'Prism_util_ds_buf_0_0' is unconnected for instance 'util_ds_buf_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:478]
-WARNING: [Synth 8-7023] instance 'util_ds_buf_0' of module 'Prism_util_ds_buf_0_0' has 4 connections declared, but only 3 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:478]
-INFO: [Synth 8-6157] synthesizing module 'Prism_v_axi4s_vid_out_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_v_axi4s_vid_out_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_v_axi4s_vid_out_0_0' (8#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_v_axi4s_vid_out_0_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'vid_vsync' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
-WARNING: [Synth 8-7071] port 'vid_hblank' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
-WARNING: [Synth 8-7071] port 'vid_field_id' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
-WARNING: [Synth 8-7071] port 'locked' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
-WARNING: [Synth 8-7071] port 'overflow' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
-WARNING: [Synth 8-7071] port 'underflow' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
-WARNING: [Synth 8-7071] port 'fifo_read_level' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
-WARNING: [Synth 8-7071] port 'status' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
-WARNING: [Synth 8-7071] port 'sof_state_out' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
-WARNING: [Synth 8-7023] instance 'v_axi4s_vid_out_0' of module 'Prism_v_axi4s_vid_out_0_0' has 30 connections declared, but only 21 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
-INFO: [Synth 8-6157] synthesizing module 'Prism_v_tc_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_v_tc_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_v_tc_0_0' (9#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_v_tc_0_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'fsync_out' of module 'Prism_v_tc_0_0' is unconnected for instance 'v_tc_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:504]
-WARNING: [Synth 8-7023] instance 'v_tc_0' of module 'Prism_v_tc_0_0' has 11 connections declared, but only 10 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:504]
-INFO: [Synth 8-6157] synthesizing module 'Prism_xdma_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_xdma_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_xdma_0_0' (10#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_xdma_0_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'usr_irq_ack' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'msi_enable' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'msi_vector_width' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_awid' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_awaddr' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_awlen' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_awsize' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_awburst' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_awvalid' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_awlock' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_awcache' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_wdata' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_wstrb' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_wlast' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_wvalid' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_bready' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_arid' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_araddr' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_arlen' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_arsize' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_arburst' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_arvalid' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_arlock' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_arcache' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'm_axi_rready' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'cfg_mgmt_read_data' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7071] port 'cfg_mgmt_read_write_done' of module 'Prism_xdma_0_0' is unconnected for instance 'xdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-WARNING: [Synth 8-7023] instance 'xdma_0' of module 'Prism_xdma_0_0' has 110 connections declared, but only 81 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:515]
-INFO: [Synth 8-6157] synthesizing module 'Prism_xdma_0_axi_periph_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:641]
-INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_PN4WIK' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:846]
-INFO: [Synth 8-6157] synthesizing module 'Prism_auto_cc_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_auto_cc_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_auto_cc_0' (11#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-16428-DESKTOP-IDDJK51/realtime/Prism_auto_cc_0_stub.v:6]
-WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'Prism_auto_cc_0' is unconnected for instance 'auto_cc' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1005]
-WARNING: [Synth 8-7071] port 'm_axi_wstrb' of module 'Prism_auto_cc_0' is unconnected for instance 'auto_cc' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1005]
-WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'Prism_auto_cc_0' is unconnected for instance 'auto_cc' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1005]
-WARNING: [Synth 8-7023] instance 'auto_cc' of module 'Prism_auto_cc_0' has 42 connections declared, but only 39 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1005]
-INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_PN4WIK' (12#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:846]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_xdma_0_axi_periph_0' (13#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:641]
-INFO: [Synth 8-6155] done synthesizing module 'Prism' (14#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:13]
-INFO: [Synth 8-6155] done synthesizing module 'Prism_wrapper' (15#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/hdl/Prism_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'Prism_axi_smc_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_axi_smc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_axi_smc_0' (1#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_axi_smc_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'Prism_axi_vdma_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_axi_vdma_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_axi_vdma_0_0' (2#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_axi_vdma_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mm2s_frame_ptr_out' of module 'Prism_axi_vdma_0_0' is unconnected for instance 'axi_vdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:358]
+WARNING: [Synth 8-7071] port 'm_axis_mm2s_tkeep' of module 'Prism_axi_vdma_0_0' is unconnected for instance 'axi_vdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:358]
+WARNING: [Synth 8-7071] port 'mm2s_introut' of module 'Prism_axi_vdma_0_0' is unconnected for instance 'axi_vdma_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:358]
+WARNING: [Synth 8-7023] instance 'axi_vdma_0' of module 'Prism_axi_vdma_0_0' has 42 connections declared, but only 39 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:358]
+INFO: [Synth 8-6157] synthesizing module 'Prism_clk_wiz_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_clk_wiz_0' (3#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'Prism_mig_7series_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_mig_7series_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_mig_7series_0_0' (4#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_mig_7series_0_0_stub.v:5]
+WARNING: [Synth 8-7071] port 'app_sr_active' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:406]
+WARNING: [Synth 8-7071] port 'app_ref_ack' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:406]
+WARNING: [Synth 8-7071] port 'app_zq_ack' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:406]
+WARNING: [Synth 8-7071] port 's_axi_bid' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:406]
+WARNING: [Synth 8-7071] port 's_axi_rid' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:406]
+WARNING: [Synth 8-7071] port 'init_calib_complete' of module 'Prism_mig_7series_0_0' is unconnected for instance 'mig_7series_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:406]
+WARNING: [Synth 8-7023] instance 'mig_7series_0' of module 'Prism_mig_7series_0_0' has 62 connections declared, but only 56 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:406]
+INFO: [Synth 8-6157] synthesizing module 'Prism_rgb2dvi_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_rgb2dvi_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_rgb2dvi_0_0' (5#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_rgb2dvi_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'Prism_rst_mig_7series_0_100M_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_rst_mig_7series_0_100M_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_rst_mig_7series_0_100M_0' (6#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_rst_mig_7series_0_100M_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mb_reset' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:475]
+WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:475]
+WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:475]
+WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'Prism_rst_mig_7series_0_100M_0' is unconnected for instance 'rst_mig_7series_0_100M' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:475]
+WARNING: [Synth 8-7023] instance 'rst_mig_7series_0_100M' of module 'Prism_rst_mig_7series_0_100M_0' has 10 connections declared, but only 6 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:475]
+INFO: [Synth 8-6157] synthesizing module 'Prism_util_ds_buf_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_util_ds_buf_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_util_ds_buf_0_0' (7#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_util_ds_buf_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'IBUF_DS_ODIV2' of module 'Prism_util_ds_buf_0_0' is unconnected for instance 'util_ds_buf_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+WARNING: [Synth 8-7023] instance 'util_ds_buf_0' of module 'Prism_util_ds_buf_0_0' has 4 connections declared, but only 3 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:482]
+INFO: [Synth 8-6157] synthesizing module 'Prism_v_axi4s_vid_out_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_v_axi4s_vid_out_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_v_axi4s_vid_out_0_0' (8#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_v_axi4s_vid_out_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'vid_vblank' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:486]
+WARNING: [Synth 8-7071] port 'vid_hblank' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:486]
+WARNING: [Synth 8-7071] port 'vid_field_id' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:486]
+WARNING: [Synth 8-7071] port 'locked' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:486]
+WARNING: [Synth 8-7071] port 'overflow' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:486]
+WARNING: [Synth 8-7071] port 'underflow' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:486]
+WARNING: [Synth 8-7071] port 'fifo_read_level' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:486]
+WARNING: [Synth 8-7071] port 'status' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:486]
+WARNING: [Synth 8-7071] port 'sof_state_out' of module 'Prism_v_axi4s_vid_out_0_0' is unconnected for instance 'v_axi4s_vid_out_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:486]
+WARNING: [Synth 8-7023] instance 'v_axi4s_vid_out_0' of module 'Prism_v_axi4s_vid_out_0_0' has 30 connections declared, but only 21 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:486]
+INFO: [Synth 8-6157] synthesizing module 'Prism_v_tc_0_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_v_tc_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_v_tc_0_0' (9#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_v_tc_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'fsync_out' of module 'Prism_v_tc_0_0' is unconnected for instance 'v_tc_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:508]
+WARNING: [Synth 8-7023] instance 'v_tc_0' of module 'Prism_v_tc_0_0' has 11 connections declared, but only 10 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:508]
+INFO: [Synth 8-6157] synthesizing module 'Prism_xdma_0_axi_periph_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:653]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_PN4WIK' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:858]
+INFO: [Synth 8-6157] synthesizing module 'Prism_auto_cc_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_auto_cc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_auto_cc_0' (10#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_auto_cc_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'Prism_auto_cc_0' is unconnected for instance 'auto_cc' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1017]
+WARNING: [Synth 8-7071] port 'm_axi_wstrb' of module 'Prism_auto_cc_0' is unconnected for instance 'auto_cc' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1017]
+WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'Prism_auto_cc_0' is unconnected for instance 'auto_cc' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1017]
+WARNING: [Synth 8-7023] instance 'auto_cc' of module 'Prism_auto_cc_0' has 42 connections declared, but only 39 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:1017]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_PN4WIK' (11#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:858]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_xdma_0_axi_periph_0' (12#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:653]
+INFO: [Synth 8-6157] synthesizing module 'Prism_xdma_1_0' [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_xdma_1_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_xdma_1_0' (13#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/.Xil/Vivado-26928-DESKTOP-IDDJK51/realtime/Prism_xdma_1_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'usr_irq_ack' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'msi_enable' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'msi_vector_width' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_awid' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_awaddr' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_awlen' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_awsize' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_awburst' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_awvalid' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_awlock' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_awcache' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_wdata' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_wstrb' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_wlast' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_wvalid' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_bready' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_arid' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_araddr' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_arlen' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_arsize' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_arburst' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_arvalid' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_arlock' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_arcache' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7071] port 'm_axi_rready' of module 'Prism_xdma_1_0' is unconnected for instance 'xdma_1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+WARNING: [Synth 8-7023] instance 'xdma_1' of module 'Prism_xdma_1_0' has 102 connections declared, but only 75 given [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:561]
+INFO: [Synth 8-6157] synthesizing module 'Prism_xlconcat_0_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xlconcat_0_0/synth/Prism_xlconcat_0_0.v:60]
+INFO: [Synth 8-6157] synthesizing module 'xlconcat_v2_1_4_xlconcat' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ipshared/4b67/hdl/xlconcat_v2_1_vl_rfs.v:14]
+	Parameter IN0_WIDTH bound to: 8 - type: integer 
+	Parameter IN1_WIDTH bound to: 8 - type: integer 
+	Parameter IN2_WIDTH bound to: 8 - type: integer 
+	Parameter IN3_WIDTH bound to: 1 - type: integer 
+	Parameter IN4_WIDTH bound to: 1 - type: integer 
+	Parameter IN5_WIDTH bound to: 1 - type: integer 
+	Parameter IN6_WIDTH bound to: 1 - type: integer 
+	Parameter IN7_WIDTH bound to: 1 - type: integer 
+	Parameter IN8_WIDTH bound to: 1 - type: integer 
+	Parameter IN9_WIDTH bound to: 1 - type: integer 
+	Parameter IN10_WIDTH bound to: 1 - type: integer 
+	Parameter IN11_WIDTH bound to: 1 - type: integer 
+	Parameter IN12_WIDTH bound to: 1 - type: integer 
+	Parameter IN13_WIDTH bound to: 1 - type: integer 
+	Parameter IN14_WIDTH bound to: 1 - type: integer 
+	Parameter IN15_WIDTH bound to: 1 - type: integer 
+	Parameter IN16_WIDTH bound to: 1 - type: integer 
+	Parameter IN17_WIDTH bound to: 1 - type: integer 
+	Parameter IN18_WIDTH bound to: 1 - type: integer 
+	Parameter IN19_WIDTH bound to: 1 - type: integer 
+	Parameter IN20_WIDTH bound to: 1 - type: integer 
+	Parameter IN21_WIDTH bound to: 1 - type: integer 
+	Parameter IN22_WIDTH bound to: 1 - type: integer 
+	Parameter IN23_WIDTH bound to: 1 - type: integer 
+	Parameter IN24_WIDTH bound to: 1 - type: integer 
+	Parameter IN25_WIDTH bound to: 1 - type: integer 
+	Parameter IN26_WIDTH bound to: 1 - type: integer 
+	Parameter IN27_WIDTH bound to: 1 - type: integer 
+	Parameter IN28_WIDTH bound to: 1 - type: integer 
+	Parameter IN29_WIDTH bound to: 1 - type: integer 
+	Parameter IN30_WIDTH bound to: 1 - type: integer 
+	Parameter IN31_WIDTH bound to: 1 - type: integer 
+	Parameter IN32_WIDTH bound to: 1 - type: integer 
+	Parameter IN33_WIDTH bound to: 1 - type: integer 
+	Parameter IN34_WIDTH bound to: 1 - type: integer 
+	Parameter IN35_WIDTH bound to: 1 - type: integer 
+	Parameter IN36_WIDTH bound to: 1 - type: integer 
+	Parameter IN37_WIDTH bound to: 1 - type: integer 
+	Parameter IN38_WIDTH bound to: 1 - type: integer 
+	Parameter IN39_WIDTH bound to: 1 - type: integer 
+	Parameter IN40_WIDTH bound to: 1 - type: integer 
+	Parameter IN41_WIDTH bound to: 1 - type: integer 
+	Parameter IN42_WIDTH bound to: 1 - type: integer 
+	Parameter IN43_WIDTH bound to: 1 - type: integer 
+	Parameter IN44_WIDTH bound to: 1 - type: integer 
+	Parameter IN45_WIDTH bound to: 1 - type: integer 
+	Parameter IN46_WIDTH bound to: 1 - type: integer 
+	Parameter IN47_WIDTH bound to: 1 - type: integer 
+	Parameter IN48_WIDTH bound to: 1 - type: integer 
+	Parameter IN49_WIDTH bound to: 1 - type: integer 
+	Parameter IN50_WIDTH bound to: 1 - type: integer 
+	Parameter IN51_WIDTH bound to: 1 - type: integer 
+	Parameter IN52_WIDTH bound to: 1 - type: integer 
+	Parameter IN53_WIDTH bound to: 1 - type: integer 
+	Parameter IN54_WIDTH bound to: 1 - type: integer 
+	Parameter IN55_WIDTH bound to: 1 - type: integer 
+	Parameter IN56_WIDTH bound to: 1 - type: integer 
+	Parameter IN57_WIDTH bound to: 1 - type: integer 
+	Parameter IN58_WIDTH bound to: 1 - type: integer 
+	Parameter IN59_WIDTH bound to: 1 - type: integer 
+	Parameter IN60_WIDTH bound to: 1 - type: integer 
+	Parameter IN61_WIDTH bound to: 1 - type: integer 
+	Parameter IN62_WIDTH bound to: 1 - type: integer 
+	Parameter IN63_WIDTH bound to: 1 - type: integer 
+	Parameter IN64_WIDTH bound to: 1 - type: integer 
+	Parameter IN65_WIDTH bound to: 1 - type: integer 
+	Parameter IN66_WIDTH bound to: 1 - type: integer 
+	Parameter IN67_WIDTH bound to: 1 - type: integer 
+	Parameter IN68_WIDTH bound to: 1 - type: integer 
+	Parameter IN69_WIDTH bound to: 1 - type: integer 
+	Parameter IN70_WIDTH bound to: 1 - type: integer 
+	Parameter IN71_WIDTH bound to: 1 - type: integer 
+	Parameter IN72_WIDTH bound to: 1 - type: integer 
+	Parameter IN73_WIDTH bound to: 1 - type: integer 
+	Parameter IN74_WIDTH bound to: 1 - type: integer 
+	Parameter IN75_WIDTH bound to: 1 - type: integer 
+	Parameter IN76_WIDTH bound to: 1 - type: integer 
+	Parameter IN77_WIDTH bound to: 1 - type: integer 
+	Parameter IN78_WIDTH bound to: 1 - type: integer 
+	Parameter IN79_WIDTH bound to: 1 - type: integer 
+	Parameter IN80_WIDTH bound to: 1 - type: integer 
+	Parameter IN81_WIDTH bound to: 1 - type: integer 
+	Parameter IN82_WIDTH bound to: 1 - type: integer 
+	Parameter IN83_WIDTH bound to: 1 - type: integer 
+	Parameter IN84_WIDTH bound to: 1 - type: integer 
+	Parameter IN85_WIDTH bound to: 1 - type: integer 
+	Parameter IN86_WIDTH bound to: 1 - type: integer 
+	Parameter IN87_WIDTH bound to: 1 - type: integer 
+	Parameter IN88_WIDTH bound to: 1 - type: integer 
+	Parameter IN89_WIDTH bound to: 1 - type: integer 
+	Parameter IN90_WIDTH bound to: 1 - type: integer 
+	Parameter IN91_WIDTH bound to: 1 - type: integer 
+	Parameter IN92_WIDTH bound to: 1 - type: integer 
+	Parameter IN93_WIDTH bound to: 1 - type: integer 
+	Parameter IN94_WIDTH bound to: 1 - type: integer 
+	Parameter IN95_WIDTH bound to: 1 - type: integer 
+	Parameter IN96_WIDTH bound to: 1 - type: integer 
+	Parameter IN97_WIDTH bound to: 1 - type: integer 
+	Parameter IN98_WIDTH bound to: 1 - type: integer 
+	Parameter IN99_WIDTH bound to: 1 - type: integer 
+	Parameter IN100_WIDTH bound to: 1 - type: integer 
+	Parameter IN101_WIDTH bound to: 1 - type: integer 
+	Parameter IN102_WIDTH bound to: 1 - type: integer 
+	Parameter IN103_WIDTH bound to: 1 - type: integer 
+	Parameter IN104_WIDTH bound to: 1 - type: integer 
+	Parameter IN105_WIDTH bound to: 1 - type: integer 
+	Parameter IN106_WIDTH bound to: 1 - type: integer 
+	Parameter IN107_WIDTH bound to: 1 - type: integer 
+	Parameter IN108_WIDTH bound to: 1 - type: integer 
+	Parameter IN109_WIDTH bound to: 1 - type: integer 
+	Parameter IN110_WIDTH bound to: 1 - type: integer 
+	Parameter IN111_WIDTH bound to: 1 - type: integer 
+	Parameter IN112_WIDTH bound to: 1 - type: integer 
+	Parameter IN113_WIDTH bound to: 1 - type: integer 
+	Parameter IN114_WIDTH bound to: 1 - type: integer 
+	Parameter IN115_WIDTH bound to: 1 - type: integer 
+	Parameter IN116_WIDTH bound to: 1 - type: integer 
+	Parameter IN117_WIDTH bound to: 1 - type: integer 
+	Parameter IN118_WIDTH bound to: 1 - type: integer 
+	Parameter IN119_WIDTH bound to: 1 - type: integer 
+	Parameter IN120_WIDTH bound to: 1 - type: integer 
+	Parameter IN121_WIDTH bound to: 1 - type: integer 
+	Parameter IN122_WIDTH bound to: 1 - type: integer 
+	Parameter IN123_WIDTH bound to: 1 - type: integer 
+	Parameter IN124_WIDTH bound to: 1 - type: integer 
+	Parameter IN125_WIDTH bound to: 1 - type: integer 
+	Parameter IN126_WIDTH bound to: 1 - type: integer 
+	Parameter IN127_WIDTH bound to: 1 - type: integer 
+	Parameter dout_width bound to: 24 - type: integer 
+	Parameter NUM_PORTS bound to: 3 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlconcat_v2_1_4_xlconcat' (14#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ipshared/4b67/hdl/xlconcat_v2_1_vl_rfs.v:14]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_xlconcat_0_0' (15#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xlconcat_0_0/synth/Prism_xlconcat_0_0.v:60]
+INFO: [Synth 8-6157] synthesizing module 'Prism_xlslice_0_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xlslice_0_0/synth/Prism_xlslice_0_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlslice_v1_0_2_xlslice' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ipshared/11d0/hdl/xlslice_v1_0_vl_rfs.v:13]
+	Parameter DIN_WIDTH bound to: 32 - type: integer 
+	Parameter DIN_FROM bound to: 23 - type: integer 
+	Parameter DIN_TO bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlslice_v1_0_2_xlslice' (16#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ipshared/11d0/hdl/xlslice_v1_0_vl_rfs.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_xlslice_0_0' (17#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xlslice_0_0/synth/Prism_xlslice_0_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'Prism_xlslice_1_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xlslice_1_0/synth/Prism_xlslice_1_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlslice_v1_0_2_xlslice__parameterized0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ipshared/11d0/hdl/xlslice_v1_0_vl_rfs.v:13]
+	Parameter DIN_WIDTH bound to: 32 - type: integer 
+	Parameter DIN_FROM bound to: 15 - type: integer 
+	Parameter DIN_TO bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlslice_v1_0_2_xlslice__parameterized0' (17#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ipshared/11d0/hdl/xlslice_v1_0_vl_rfs.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_xlslice_1_0' (18#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xlslice_1_0/synth/Prism_xlslice_1_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'Prism_xlslice_2_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xlslice_2_0/synth/Prism_xlslice_2_0.v:57]
+INFO: [Synth 8-6157] synthesizing module 'xlslice_v1_0_2_xlslice__parameterized1' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ipshared/11d0/hdl/xlslice_v1_0_vl_rfs.v:13]
+	Parameter DIN_WIDTH bound to: 32 - type: integer 
+	Parameter DIN_FROM bound to: 7 - type: integer 
+	Parameter DIN_TO bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xlslice_v1_0_2_xlslice__parameterized1' (18#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ipshared/11d0/hdl/xlslice_v1_0_vl_rfs.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_xlslice_2_0' (19#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xlslice_2_0/synth/Prism_xlslice_2_0.v:57]
+INFO: [Synth 8-6155] done synthesizing module 'Prism' (20#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/synth/Prism.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'Prism_wrapper' (21#1) [D:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/hdl/Prism_wrapper.v:12]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1252.012 ; gain = 110.621
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1253.660 ; gain = 115.348
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1252.012 ; gain = 110.621
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1253.660 ; gain = 115.348
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1252.012 ; gain = 110.621
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1253.660 ; gain = 115.348
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1252.012 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1253.660 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/Prism_xdma_0_0/Prism_xdma_0_0_in_context.xdc] for cell 'Prism_i/xdma_0'
-Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/Prism_xdma_0_0/Prism_xdma_0_0_in_context.xdc] for cell 'Prism_i/xdma_0'
 Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0_in_context.xdc] for cell 'Prism_i/axi_vdma_0'
 Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0_in_context.xdc] for cell 'Prism_i/axi_vdma_0'
 Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_auto_cc_0/Prism_auto_cc_0/Prism_auto_cc_0_in_context.xdc] for cell 'Prism_i/xdma_0_axi_periph/s00_couplers/auto_cc'
@@ -159,6 +310,8 @@ Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd
 Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_in_context.xdc] for cell 'Prism_i/rgb2dvi_0'
 Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_in_context.xdc] for cell 'Prism_i/util_ds_buf_0'
 Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_in_context.xdc] for cell 'Prism_i/util_ds_buf_0'
+Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_1_0/Prism_xdma_1_0/Prism_xdma_1_0_in_context.xdc] for cell 'Prism_i/xdma_1'
+Finished Parsing XDC File [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_1_0/Prism_xdma_1_0/Prism_xdma_1_0_in_context.xdc] for cell 'Prism_i/xdma_1'
 Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.srcs/constrs_1/new/prism.xdc]
 WARNING: [Vivado 12-507] No nets matched 'Prism_i/clk_wiz/inst/clk_in1_Prism_clk_wiz_0'. [D:/PrismGPU/PrismGPU/HardWare/Display/Display.srcs/constrs_1/new/prism.xdc:1]
 Finished Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.srcs/constrs_1/new/prism.xdc]
@@ -169,21 +322,21 @@ Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/don
 Finished Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1285.758 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1290.297 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1285.758 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1290.297 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'Prism_i/mig_7series_0' at clock pin 'sys_clk_i' is different from the actual clock period '9.944', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1290.770 ; gain = 149.379
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1294.285 ; gain = 155.973
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k70tfbg676-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1290.770 ; gain = 149.379
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1294.285 ; gain = 155.973
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -355,7 +508,6 @@ Applied set_property CLOCK_BUFFER_TYPE = NONE for PICe_Clk_clk_n[0]. (constraint
 Applied set_property IO_BUFFER_TYPE = NONE for PICe_Clk_clk_p[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_in_context.xdc, line 5).
 Applied set_property CLOCK_BUFFER_TYPE = NONE for PICe_Clk_clk_p[0]. (constraint file  d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_in_context.xdc, line 6).
 Applied set_property KEEP_HIERARCHY = SOFT for Prism_i. (constraint file  auto generated constraint).
-Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/xdma_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/axi_vdma_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/xdma_0_axi_periph/s00_couplers/auto_cc. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/xdma_0_axi_periph. (constraint file  auto generated constraint).
@@ -367,11 +519,16 @@ Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/axi_smc. (constraint file
 Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/rst_mig_7series_0_100M. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/rgb2dvi_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/util_ds_buf_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/xdma_1. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/xlslice_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/xlslice_1. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/xlslice_2. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Prism_i/xlconcat_0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1290.770 ; gain = 149.379
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1294.285 ; gain = 155.973
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1290.770 ; gain = 149.379
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1294.285 ; gain = 155.973
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -393,25 +550,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1290.770 ; gain = 149.379
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1294.285 ; gain = 155.973
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1331.949 ; gain = 190.559
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1340.281 ; gain = 201.969
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1332.246 ; gain = 190.855
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1340.578 ; gain = 202.266
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1351.371 ; gain = 209.980
+Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1359.695 ; gain = 221.383
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -429,37 +586,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+Finished IO Insertion : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1366.109 ; gain = 227.797
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1366.109 ; gain = 227.797
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1366.109 ; gain = 227.797
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1366.109 ; gain = 227.797
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1366.109 ; gain = 227.797
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1366.109 ; gain = 227.797
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -479,7 +636,7 @@ Report BlackBoxes:
 |8     |Prism_util_ds_buf_0_0          |         1|
 |9     |Prism_v_axi4s_vid_out_0_0      |         1|
 |10    |Prism_v_tc_0_0                 |         1|
-|11    |Prism_xdma_0_0                 |         1|
+|11    |Prism_xdma_1_0                 |         1|
 +------+-------------------------------+----------+
 
 Report Cell Usage: 
@@ -496,28 +653,28 @@ Report Cell Usage:
 |8     |Prism_util_ds_buf_0          |     1|
 |9     |Prism_v_axi4s_vid_out_0      |     1|
 |10    |Prism_v_tc_0                 |     1|
-|11    |Prism_xdma_0                 |     1|
+|11    |Prism_xdma_1                 |     1|
 |12    |IBUF                         |     9|
 |13    |OBUF                         |     9|
 +------+-----------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1366.109 ; gain = 227.797
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:19 . Memory (MB): peak = 1358.105 ; gain = 177.957
-Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1358.105 ; gain = 216.715
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:18 . Memory (MB): peak = 1366.109 ; gain = 187.172
+Synthesis Optimization Complete : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1366.109 ; gain = 227.797
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1370.191 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1378.137 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1375.355 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1387.277 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-47 Infos, 67 Warnings, 0 Critical Warnings and 0 Errors encountered.
+63 Infos, 65 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1375.355 ; gain = 233.965
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1387.277 ; gain = 248.965
 INFO: [Common 17-1381] The checkpoint 'D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1/Prism_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Prism_wrapper_utilization_synth.rpt -pb Prism_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Jan 20 20:24:34 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Jan 22 09:33:30 2025...

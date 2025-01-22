@@ -70,7 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "Prism_util_ds_buf_0_0_synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 2
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 OPTRACE "Creating in-memory project" START { }
@@ -94,7 +93,7 @@ set_property ip_output_repo d:/PrismGPU/PrismGPU/HardWare/Display/Display.cache/
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet d:/PrismGPU/PrismGPU/HardWare/Display/Display.srcs/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0.xci
+read_ip -quiet D:/PrismGPU/PrismGPU/HardWare/Display/Display.srcs/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0.xci
 set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_board.xdc]
 set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_ooc.xdc]
 

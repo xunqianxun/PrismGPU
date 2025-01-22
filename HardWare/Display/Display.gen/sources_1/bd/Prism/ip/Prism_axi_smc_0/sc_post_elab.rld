@@ -63,7 +63,7 @@
 /config/ip/num_si/value=2
 /config/ip/num_mi/value=1
 /config/ip/num_clks/value=3
-/config/aclk/csk/value=Prism_xdma_0_0_axi_aclk:125:0.000
+/config/aclk/csk/value=Prism_xdma_1_0_axi_aclk:125:0.000
 /clocking/S00_Entry/ASSOCIATED_CLK/value=aclk;range=aclk;editable=0
 /config/aclk1/csk/value=Prism_mig_7series_0_0_ui_clk:100:0
 /clocking/M00_Exit/ASSOCIATED_CLK/value=aclk1;range=aclk1;editable=0

@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-//Date        : Mon Jan 20 20:06:10 2025
+//Date        : Tue Jan 21 21:57:34 2025
 //Host        : DESKTOP-IDDJK51 running 64-bit major release  (build 9200)
 //Command     : generate_target Prism.bd
 //Design      : Prism
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "Prism,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=Prism,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=13,numReposBlks=11,numNonXlnxBlks=1,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_board_cnt=3,da_clkrst_cnt=6,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "Prism.hwdef" *) 
+(* CORE_GENERATION_INFO = "Prism,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=Prism,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=17,numReposBlks=15,numNonXlnxBlks=1,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_board_cnt=3,da_clkrst_cnt=6,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "Prism.hwdef" *) 
 module Prism
    (DDR2_interface_addr,
     DDR2_interface_ba,
@@ -64,10 +64,11 @@ module Prism
   (* X_INTERFACE_INFO = "xilinx.com:interface:pcie_7x_mgt:1.0 pice_interface txn" *) output [3:0]pice_interface_txn;
   (* X_INTERFACE_INFO = "xilinx.com:interface:pcie_7x_mgt:1.0 pice_interface txp" *) output [3:0]pice_interface_txp;
   output pice_link_up;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.SYS_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.SYS_CLK, CLK_DOMAIN Prism_clk_in1_0, FREQ_HZ 50000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input sys_clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.SYS_CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.SYS_CLK, CLK_DOMAIN Prism_sys_clk, FREQ_HZ 50000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000" *) input sys_clk;
 
   wire [0:0]CLK_IN_D_0_1_CLK_N;
   wire [0:0]CLK_IN_D_0_1_CLK_P;
+  wire Pice_rest_1;
   wire [27:0]axi_smc_M00_AXI_ARADDR;
   wire [1:0]axi_smc_M00_AXI_ARBURST;
   wire [3:0]axi_smc_M00_AXI_ARCACHE;
@@ -142,7 +143,6 @@ module Prism
   wire mig_7series_0_mmcm_locked;
   wire mig_7series_0_ui_clk;
   wire mig_7series_0_ui_clk_sync_rst;
-  wire reset_rtl_0_1;
   wire rgb2dvi_0_TMDS_Clk_n;
   wire rgb2dvi_0_TMDS_Clk_p;
   wire [2:0]rgb2dvi_0_TMDS_Data_n;
@@ -150,71 +150,15 @@ module Prism
   wire [0:0]rst_mig_7series_0_100M_peripheral_aresetn;
   wire [0:0]util_ds_buf_0_IBUF_OUT;
   wire v_axi4s_vid_out_0_vid_active_video;
-  wire [23:0]v_axi4s_vid_out_0_vid_data;
+  wire [31:0]v_axi4s_vid_out_0_vid_data;
   wire v_axi4s_vid_out_0_vid_hsync;
-  wire v_axi4s_vid_out_0_vid_vblank;
+  wire v_axi4s_vid_out_0_vid_vsync;
   wire v_axi4s_vid_out_0_vtg_ce;
   wire v_tc_0_vtiming_out_ACTIVE_VIDEO;
   wire v_tc_0_vtiming_out_HBLANK;
   wire v_tc_0_vtiming_out_HSYNC;
   wire v_tc_0_vtiming_out_VBLANK;
   wire v_tc_0_vtiming_out_VSYNC;
-  wire [63:0]xdma_0_M_AXI_BYPASS_ARADDR;
-  wire [1:0]xdma_0_M_AXI_BYPASS_ARBURST;
-  wire [3:0]xdma_0_M_AXI_BYPASS_ARCACHE;
-  wire [3:0]xdma_0_M_AXI_BYPASS_ARID;
-  wire [7:0]xdma_0_M_AXI_BYPASS_ARLEN;
-  wire xdma_0_M_AXI_BYPASS_ARLOCK;
-  wire [2:0]xdma_0_M_AXI_BYPASS_ARPROT;
-  wire xdma_0_M_AXI_BYPASS_ARREADY;
-  wire [2:0]xdma_0_M_AXI_BYPASS_ARSIZE;
-  wire xdma_0_M_AXI_BYPASS_ARVALID;
-  wire [63:0]xdma_0_M_AXI_BYPASS_AWADDR;
-  wire [1:0]xdma_0_M_AXI_BYPASS_AWBURST;
-  wire [3:0]xdma_0_M_AXI_BYPASS_AWCACHE;
-  wire [3:0]xdma_0_M_AXI_BYPASS_AWID;
-  wire [7:0]xdma_0_M_AXI_BYPASS_AWLEN;
-  wire xdma_0_M_AXI_BYPASS_AWLOCK;
-  wire [2:0]xdma_0_M_AXI_BYPASS_AWPROT;
-  wire xdma_0_M_AXI_BYPASS_AWREADY;
-  wire [2:0]xdma_0_M_AXI_BYPASS_AWSIZE;
-  wire xdma_0_M_AXI_BYPASS_AWVALID;
-  wire [3:0]xdma_0_M_AXI_BYPASS_BID;
-  wire xdma_0_M_AXI_BYPASS_BREADY;
-  wire [1:0]xdma_0_M_AXI_BYPASS_BRESP;
-  wire xdma_0_M_AXI_BYPASS_BVALID;
-  wire [127:0]xdma_0_M_AXI_BYPASS_RDATA;
-  wire [3:0]xdma_0_M_AXI_BYPASS_RID;
-  wire xdma_0_M_AXI_BYPASS_RLAST;
-  wire xdma_0_M_AXI_BYPASS_RREADY;
-  wire [1:0]xdma_0_M_AXI_BYPASS_RRESP;
-  wire xdma_0_M_AXI_BYPASS_RVALID;
-  wire [127:0]xdma_0_M_AXI_BYPASS_WDATA;
-  wire xdma_0_M_AXI_BYPASS_WLAST;
-  wire xdma_0_M_AXI_BYPASS_WREADY;
-  wire [15:0]xdma_0_M_AXI_BYPASS_WSTRB;
-  wire xdma_0_M_AXI_BYPASS_WVALID;
-  wire [31:0]xdma_0_M_AXI_LITE_ARADDR;
-  wire [2:0]xdma_0_M_AXI_LITE_ARPROT;
-  wire xdma_0_M_AXI_LITE_ARREADY;
-  wire xdma_0_M_AXI_LITE_ARVALID;
-  wire [31:0]xdma_0_M_AXI_LITE_AWADDR;
-  wire [2:0]xdma_0_M_AXI_LITE_AWPROT;
-  wire xdma_0_M_AXI_LITE_AWREADY;
-  wire xdma_0_M_AXI_LITE_AWVALID;
-  wire xdma_0_M_AXI_LITE_BREADY;
-  wire [1:0]xdma_0_M_AXI_LITE_BRESP;
-  wire xdma_0_M_AXI_LITE_BVALID;
-  wire [31:0]xdma_0_M_AXI_LITE_RDATA;
-  wire xdma_0_M_AXI_LITE_RREADY;
-  wire [1:0]xdma_0_M_AXI_LITE_RRESP;
-  wire xdma_0_M_AXI_LITE_RVALID;
-  wire [31:0]xdma_0_M_AXI_LITE_WDATA;
-  wire xdma_0_M_AXI_LITE_WREADY;
-  wire [3:0]xdma_0_M_AXI_LITE_WSTRB;
-  wire xdma_0_M_AXI_LITE_WVALID;
-  wire xdma_0_axi_aclk;
-  wire xdma_0_axi_aresetn;
   wire [31:0]xdma_0_axi_periph_M00_AXI_ARADDR;
   wire xdma_0_axi_periph_M00_AXI_ARREADY;
   wire xdma_0_axi_periph_M00_AXI_ARVALID;
@@ -231,11 +175,71 @@ module Prism
   wire [31:0]xdma_0_axi_periph_M00_AXI_WDATA;
   wire xdma_0_axi_periph_M00_AXI_WREADY;
   wire xdma_0_axi_periph_M00_AXI_WVALID;
-  wire [3:0]xdma_0_pcie_mgt_rxn;
-  wire [3:0]xdma_0_pcie_mgt_rxp;
-  wire [3:0]xdma_0_pcie_mgt_txn;
-  wire [3:0]xdma_0_pcie_mgt_txp;
-  wire xdma_0_user_lnk_up;
+  wire [63:0]xdma_1_M_AXI_BYPASS_ARADDR;
+  wire [1:0]xdma_1_M_AXI_BYPASS_ARBURST;
+  wire [3:0]xdma_1_M_AXI_BYPASS_ARCACHE;
+  wire [3:0]xdma_1_M_AXI_BYPASS_ARID;
+  wire [7:0]xdma_1_M_AXI_BYPASS_ARLEN;
+  wire xdma_1_M_AXI_BYPASS_ARLOCK;
+  wire [2:0]xdma_1_M_AXI_BYPASS_ARPROT;
+  wire xdma_1_M_AXI_BYPASS_ARREADY;
+  wire [2:0]xdma_1_M_AXI_BYPASS_ARSIZE;
+  wire xdma_1_M_AXI_BYPASS_ARVALID;
+  wire [63:0]xdma_1_M_AXI_BYPASS_AWADDR;
+  wire [1:0]xdma_1_M_AXI_BYPASS_AWBURST;
+  wire [3:0]xdma_1_M_AXI_BYPASS_AWCACHE;
+  wire [3:0]xdma_1_M_AXI_BYPASS_AWID;
+  wire [7:0]xdma_1_M_AXI_BYPASS_AWLEN;
+  wire xdma_1_M_AXI_BYPASS_AWLOCK;
+  wire [2:0]xdma_1_M_AXI_BYPASS_AWPROT;
+  wire xdma_1_M_AXI_BYPASS_AWREADY;
+  wire [2:0]xdma_1_M_AXI_BYPASS_AWSIZE;
+  wire xdma_1_M_AXI_BYPASS_AWVALID;
+  wire [3:0]xdma_1_M_AXI_BYPASS_BID;
+  wire xdma_1_M_AXI_BYPASS_BREADY;
+  wire [1:0]xdma_1_M_AXI_BYPASS_BRESP;
+  wire xdma_1_M_AXI_BYPASS_BVALID;
+  wire [127:0]xdma_1_M_AXI_BYPASS_RDATA;
+  wire [3:0]xdma_1_M_AXI_BYPASS_RID;
+  wire xdma_1_M_AXI_BYPASS_RLAST;
+  wire xdma_1_M_AXI_BYPASS_RREADY;
+  wire [1:0]xdma_1_M_AXI_BYPASS_RRESP;
+  wire xdma_1_M_AXI_BYPASS_RVALID;
+  wire [127:0]xdma_1_M_AXI_BYPASS_WDATA;
+  wire xdma_1_M_AXI_BYPASS_WLAST;
+  wire xdma_1_M_AXI_BYPASS_WREADY;
+  wire [15:0]xdma_1_M_AXI_BYPASS_WSTRB;
+  wire xdma_1_M_AXI_BYPASS_WVALID;
+  wire [31:0]xdma_1_M_AXI_LITE_ARADDR;
+  wire [2:0]xdma_1_M_AXI_LITE_ARPROT;
+  wire xdma_1_M_AXI_LITE_ARREADY;
+  wire xdma_1_M_AXI_LITE_ARVALID;
+  wire [31:0]xdma_1_M_AXI_LITE_AWADDR;
+  wire [2:0]xdma_1_M_AXI_LITE_AWPROT;
+  wire xdma_1_M_AXI_LITE_AWREADY;
+  wire xdma_1_M_AXI_LITE_AWVALID;
+  wire xdma_1_M_AXI_LITE_BREADY;
+  wire [1:0]xdma_1_M_AXI_LITE_BRESP;
+  wire xdma_1_M_AXI_LITE_BVALID;
+  wire [31:0]xdma_1_M_AXI_LITE_RDATA;
+  wire xdma_1_M_AXI_LITE_RREADY;
+  wire [1:0]xdma_1_M_AXI_LITE_RRESP;
+  wire xdma_1_M_AXI_LITE_RVALID;
+  wire [31:0]xdma_1_M_AXI_LITE_WDATA;
+  wire xdma_1_M_AXI_LITE_WREADY;
+  wire [3:0]xdma_1_M_AXI_LITE_WSTRB;
+  wire xdma_1_M_AXI_LITE_WVALID;
+  wire xdma_1_axi_aclk;
+  wire xdma_1_axi_aresetn;
+  wire [3:0]xdma_1_pcie_mgt_rxn;
+  wire [3:0]xdma_1_pcie_mgt_rxp;
+  wire [3:0]xdma_1_pcie_mgt_txn;
+  wire [3:0]xdma_1_pcie_mgt_txp;
+  wire xdma_1_user_lnk_up;
+  wire [23:0]xlconcat_0_dout;
+  wire [7:0]xlslice_0_Dout;
+  wire [7:0]xlslice_1_Dout;
+  wire [7:0]xlslice_2_Dout;
 
   assign CLK_IN_D_0_1_CLK_N = PICe_Clk_clk_n[0];
   assign CLK_IN_D_0_1_CLK_P = PICe_Clk_clk_p[0];
@@ -250,17 +254,17 @@ module Prism
   assign DDR2_interface_odt[1:0] = mig_7series_0_DDR2_ODT;
   assign DDR2_interface_ras_n = mig_7series_0_DDR2_RAS_N;
   assign DDR2_interface_we_n = mig_7series_0_DDR2_WE_N;
+  assign Pice_rest_1 = Pice_rest;
   assign TMDS_Clk_n_0 = rgb2dvi_0_TMDS_Clk_n;
   assign TMDS_Clk_p_0 = rgb2dvi_0_TMDS_Clk_p;
   assign TMDS_Data_n_0[2:0] = rgb2dvi_0_TMDS_Data_n;
   assign TMDS_Data_p_0[2:0] = rgb2dvi_0_TMDS_Data_p;
   assign clk_in1_0_1 = sys_clk;
-  assign pice_interface_txn[3:0] = xdma_0_pcie_mgt_txn;
-  assign pice_interface_txp[3:0] = xdma_0_pcie_mgt_txp;
-  assign pice_link_up = xdma_0_user_lnk_up;
-  assign reset_rtl_0_1 = Pice_rest;
-  assign xdma_0_pcie_mgt_rxn = pice_interface_rxn[3:0];
-  assign xdma_0_pcie_mgt_rxp = pice_interface_rxp[3:0];
+  assign pice_interface_txn[3:0] = xdma_1_pcie_mgt_txn;
+  assign pice_interface_txp[3:0] = xdma_1_pcie_mgt_txp;
+  assign pice_link_up = xdma_1_user_lnk_up;
+  assign xdma_1_pcie_mgt_rxn = pice_interface_rxn[3:0];
+  assign xdma_1_pcie_mgt_rxp = pice_interface_rxp[3:0];
   Prism_axi_smc_0 axi_smc
        (.M00_AXI_araddr(axi_smc_M00_AXI_ARADDR),
         .M00_AXI_arburst(axi_smc_M00_AXI_ARBURST),
@@ -295,43 +299,43 @@ module Prism
         .M00_AXI_wready(axi_smc_M00_AXI_WREADY),
         .M00_AXI_wstrb(axi_smc_M00_AXI_WSTRB),
         .M00_AXI_wvalid(axi_smc_M00_AXI_WVALID),
-        .S00_AXI_araddr(xdma_0_M_AXI_BYPASS_ARADDR),
-        .S00_AXI_arburst(xdma_0_M_AXI_BYPASS_ARBURST),
-        .S00_AXI_arcache(xdma_0_M_AXI_BYPASS_ARCACHE),
-        .S00_AXI_arid(xdma_0_M_AXI_BYPASS_ARID),
-        .S00_AXI_arlen(xdma_0_M_AXI_BYPASS_ARLEN),
-        .S00_AXI_arlock(xdma_0_M_AXI_BYPASS_ARLOCK),
-        .S00_AXI_arprot(xdma_0_M_AXI_BYPASS_ARPROT),
+        .S00_AXI_araddr(xdma_1_M_AXI_BYPASS_ARADDR),
+        .S00_AXI_arburst(xdma_1_M_AXI_BYPASS_ARBURST),
+        .S00_AXI_arcache(xdma_1_M_AXI_BYPASS_ARCACHE),
+        .S00_AXI_arid(xdma_1_M_AXI_BYPASS_ARID),
+        .S00_AXI_arlen(xdma_1_M_AXI_BYPASS_ARLEN),
+        .S00_AXI_arlock(xdma_1_M_AXI_BYPASS_ARLOCK),
+        .S00_AXI_arprot(xdma_1_M_AXI_BYPASS_ARPROT),
         .S00_AXI_arqos({1'b0,1'b0,1'b0,1'b0}),
-        .S00_AXI_arready(xdma_0_M_AXI_BYPASS_ARREADY),
-        .S00_AXI_arsize(xdma_0_M_AXI_BYPASS_ARSIZE),
-        .S00_AXI_arvalid(xdma_0_M_AXI_BYPASS_ARVALID),
-        .S00_AXI_awaddr(xdma_0_M_AXI_BYPASS_AWADDR),
-        .S00_AXI_awburst(xdma_0_M_AXI_BYPASS_AWBURST),
-        .S00_AXI_awcache(xdma_0_M_AXI_BYPASS_AWCACHE),
-        .S00_AXI_awid(xdma_0_M_AXI_BYPASS_AWID),
-        .S00_AXI_awlen(xdma_0_M_AXI_BYPASS_AWLEN),
-        .S00_AXI_awlock(xdma_0_M_AXI_BYPASS_AWLOCK),
-        .S00_AXI_awprot(xdma_0_M_AXI_BYPASS_AWPROT),
+        .S00_AXI_arready(xdma_1_M_AXI_BYPASS_ARREADY),
+        .S00_AXI_arsize(xdma_1_M_AXI_BYPASS_ARSIZE),
+        .S00_AXI_arvalid(xdma_1_M_AXI_BYPASS_ARVALID),
+        .S00_AXI_awaddr(xdma_1_M_AXI_BYPASS_AWADDR),
+        .S00_AXI_awburst(xdma_1_M_AXI_BYPASS_AWBURST),
+        .S00_AXI_awcache(xdma_1_M_AXI_BYPASS_AWCACHE),
+        .S00_AXI_awid(xdma_1_M_AXI_BYPASS_AWID),
+        .S00_AXI_awlen(xdma_1_M_AXI_BYPASS_AWLEN),
+        .S00_AXI_awlock(xdma_1_M_AXI_BYPASS_AWLOCK),
+        .S00_AXI_awprot(xdma_1_M_AXI_BYPASS_AWPROT),
         .S00_AXI_awqos({1'b0,1'b0,1'b0,1'b0}),
-        .S00_AXI_awready(xdma_0_M_AXI_BYPASS_AWREADY),
-        .S00_AXI_awsize(xdma_0_M_AXI_BYPASS_AWSIZE),
-        .S00_AXI_awvalid(xdma_0_M_AXI_BYPASS_AWVALID),
-        .S00_AXI_bid(xdma_0_M_AXI_BYPASS_BID),
-        .S00_AXI_bready(xdma_0_M_AXI_BYPASS_BREADY),
-        .S00_AXI_bresp(xdma_0_M_AXI_BYPASS_BRESP),
-        .S00_AXI_bvalid(xdma_0_M_AXI_BYPASS_BVALID),
-        .S00_AXI_rdata(xdma_0_M_AXI_BYPASS_RDATA),
-        .S00_AXI_rid(xdma_0_M_AXI_BYPASS_RID),
-        .S00_AXI_rlast(xdma_0_M_AXI_BYPASS_RLAST),
-        .S00_AXI_rready(xdma_0_M_AXI_BYPASS_RREADY),
-        .S00_AXI_rresp(xdma_0_M_AXI_BYPASS_RRESP),
-        .S00_AXI_rvalid(xdma_0_M_AXI_BYPASS_RVALID),
-        .S00_AXI_wdata(xdma_0_M_AXI_BYPASS_WDATA),
-        .S00_AXI_wlast(xdma_0_M_AXI_BYPASS_WLAST),
-        .S00_AXI_wready(xdma_0_M_AXI_BYPASS_WREADY),
-        .S00_AXI_wstrb(xdma_0_M_AXI_BYPASS_WSTRB),
-        .S00_AXI_wvalid(xdma_0_M_AXI_BYPASS_WVALID),
+        .S00_AXI_awready(xdma_1_M_AXI_BYPASS_AWREADY),
+        .S00_AXI_awsize(xdma_1_M_AXI_BYPASS_AWSIZE),
+        .S00_AXI_awvalid(xdma_1_M_AXI_BYPASS_AWVALID),
+        .S00_AXI_bid(xdma_1_M_AXI_BYPASS_BID),
+        .S00_AXI_bready(xdma_1_M_AXI_BYPASS_BREADY),
+        .S00_AXI_bresp(xdma_1_M_AXI_BYPASS_BRESP),
+        .S00_AXI_bvalid(xdma_1_M_AXI_BYPASS_BVALID),
+        .S00_AXI_rdata(xdma_1_M_AXI_BYPASS_RDATA),
+        .S00_AXI_rid(xdma_1_M_AXI_BYPASS_RID),
+        .S00_AXI_rlast(xdma_1_M_AXI_BYPASS_RLAST),
+        .S00_AXI_rready(xdma_1_M_AXI_BYPASS_RREADY),
+        .S00_AXI_rresp(xdma_1_M_AXI_BYPASS_RRESP),
+        .S00_AXI_rvalid(xdma_1_M_AXI_BYPASS_RVALID),
+        .S00_AXI_wdata(xdma_1_M_AXI_BYPASS_WDATA),
+        .S00_AXI_wlast(xdma_1_M_AXI_BYPASS_WLAST),
+        .S00_AXI_wready(xdma_1_M_AXI_BYPASS_WREADY),
+        .S00_AXI_wstrb(xdma_1_M_AXI_BYPASS_WSTRB),
+        .S00_AXI_wvalid(xdma_1_M_AXI_BYPASS_WVALID),
         .S01_AXI_araddr(axi_vdma_0_M_AXI_MM2S_ARADDR),
         .S01_AXI_arburst(axi_vdma_0_M_AXI_MM2S_ARBURST),
         .S01_AXI_arcache(axi_vdma_0_M_AXI_MM2S_ARCACHE),
@@ -347,10 +351,10 @@ module Prism
         .S01_AXI_rready(axi_vdma_0_M_AXI_MM2S_RREADY),
         .S01_AXI_rresp(axi_vdma_0_M_AXI_MM2S_RRESP),
         .S01_AXI_rvalid(axi_vdma_0_M_AXI_MM2S_RVALID),
-        .aclk(xdma_0_axi_aclk),
+        .aclk(xdma_1_axi_aclk),
         .aclk1(mig_7series_0_ui_clk),
         .aclk2(clk_wiz_clk_55out),
-        .aresetn(xdma_0_axi_aresetn));
+        .aresetn(xdma_1_axi_aresetn));
   Prism_axi_vdma_0_0 axi_vdma_0
        (.axi_resetn(clk_wiz_locked),
         .m_axi_mm2s_aclk(clk_wiz_clk_55out),
@@ -398,7 +402,7 @@ module Prism
         .clk_55out(clk_wiz_clk_55out),
         .clk_in1(clk_in1_0_1),
         .locked(clk_wiz_locked),
-        .resetn(reset_rtl_0_1));
+        .resetn(Pice_rest_1));
   Prism_mig_7series_0_0 mig_7series_0
        (.aresetn(rst_mig_7series_0_100M_peripheral_aresetn),
         .clk_ref_i(clk_wiz_clk_200out),
@@ -464,10 +468,10 @@ module Prism
         .TMDS_Data_n(rgb2dvi_0_TMDS_Data_n),
         .TMDS_Data_p(rgb2dvi_0_TMDS_Data_p),
         .aRst_n(clk_wiz_locked),
-        .vid_pData(v_axi4s_vid_out_0_vid_data),
+        .vid_pData(xlconcat_0_dout),
         .vid_pHSync(v_axi4s_vid_out_0_vid_hsync),
         .vid_pVDE(v_axi4s_vid_out_0_vid_active_video),
-        .vid_pVSync(v_axi4s_vid_out_0_vid_vblank));
+        .vid_pVSync(v_axi4s_vid_out_0_vid_vsync));
   Prism_rst_mig_7series_0_100M_0 rst_mig_7series_0_100M
        (.aux_reset_in(1'b1),
         .dcm_locked(mig_7series_0_mmcm_locked),
@@ -484,7 +488,7 @@ module Prism
         .aclken(clk_wiz_locked),
         .aresetn(clk_wiz_locked),
         .fid(1'b0),
-        .s_axis_video_tdata(axi_vdma_0_M_AXIS_MM2S_TDATA),
+        .s_axis_video_tdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,axi_vdma_0_M_AXIS_MM2S_TDATA}),
         .s_axis_video_tlast(axi_vdma_0_M_AXIS_MM2S_TLAST),
         .s_axis_video_tready(axi_vdma_0_M_AXIS_MM2S_TREADY),
         .s_axis_video_tuser(axi_vdma_0_M_AXIS_MM2S_TUSER),
@@ -493,7 +497,7 @@ module Prism
         .vid_data(v_axi4s_vid_out_0_vid_data),
         .vid_hsync(v_axi4s_vid_out_0_vid_hsync),
         .vid_io_out_ce(clk_wiz_locked),
-        .vid_vblank(v_axi4s_vid_out_0_vid_vblank),
+        .vid_vsync(v_axi4s_vid_out_0_vid_vsync),
         .vtg_active_video(v_tc_0_vtiming_out_ACTIVE_VIDEO),
         .vtg_ce(v_axi4s_vid_out_0_vtg_ce),
         .vtg_field_id(1'b0),
@@ -512,88 +516,6 @@ module Prism
         .sof_state(1'b0),
         .vblank_out(v_tc_0_vtiming_out_VBLANK),
         .vsync_out(v_tc_0_vtiming_out_VSYNC));
-  Prism_xdma_0_0 xdma_0
-       (.axi_aclk(xdma_0_axi_aclk),
-        .axi_aresetn(xdma_0_axi_aresetn),
-        .cfg_mgmt_addr({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .cfg_mgmt_byte_enable({1'b0,1'b0,1'b0,1'b0}),
-        .cfg_mgmt_read(1'b0),
-        .cfg_mgmt_type1_cfg_reg_access(1'b0),
-        .cfg_mgmt_write(1'b0),
-        .cfg_mgmt_write_data({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .m_axi_arready(1'b0),
-        .m_axi_awready(1'b0),
-        .m_axi_bid({1'b0,1'b0,1'b0,1'b0}),
-        .m_axi_bresp({1'b0,1'b0}),
-        .m_axi_bvalid(1'b0),
-        .m_axi_rdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .m_axi_rid({1'b0,1'b0,1'b0,1'b0}),
-        .m_axi_rlast(1'b0),
-        .m_axi_rresp({1'b0,1'b0}),
-        .m_axi_rvalid(1'b0),
-        .m_axi_wready(1'b0),
-        .m_axib_araddr(xdma_0_M_AXI_BYPASS_ARADDR),
-        .m_axib_arburst(xdma_0_M_AXI_BYPASS_ARBURST),
-        .m_axib_arcache(xdma_0_M_AXI_BYPASS_ARCACHE),
-        .m_axib_arid(xdma_0_M_AXI_BYPASS_ARID),
-        .m_axib_arlen(xdma_0_M_AXI_BYPASS_ARLEN),
-        .m_axib_arlock(xdma_0_M_AXI_BYPASS_ARLOCK),
-        .m_axib_arprot(xdma_0_M_AXI_BYPASS_ARPROT),
-        .m_axib_arready(xdma_0_M_AXI_BYPASS_ARREADY),
-        .m_axib_arsize(xdma_0_M_AXI_BYPASS_ARSIZE),
-        .m_axib_arvalid(xdma_0_M_AXI_BYPASS_ARVALID),
-        .m_axib_awaddr(xdma_0_M_AXI_BYPASS_AWADDR),
-        .m_axib_awburst(xdma_0_M_AXI_BYPASS_AWBURST),
-        .m_axib_awcache(xdma_0_M_AXI_BYPASS_AWCACHE),
-        .m_axib_awid(xdma_0_M_AXI_BYPASS_AWID),
-        .m_axib_awlen(xdma_0_M_AXI_BYPASS_AWLEN),
-        .m_axib_awlock(xdma_0_M_AXI_BYPASS_AWLOCK),
-        .m_axib_awprot(xdma_0_M_AXI_BYPASS_AWPROT),
-        .m_axib_awready(xdma_0_M_AXI_BYPASS_AWREADY),
-        .m_axib_awsize(xdma_0_M_AXI_BYPASS_AWSIZE),
-        .m_axib_awvalid(xdma_0_M_AXI_BYPASS_AWVALID),
-        .m_axib_bid(xdma_0_M_AXI_BYPASS_BID),
-        .m_axib_bready(xdma_0_M_AXI_BYPASS_BREADY),
-        .m_axib_bresp(xdma_0_M_AXI_BYPASS_BRESP),
-        .m_axib_bvalid(xdma_0_M_AXI_BYPASS_BVALID),
-        .m_axib_rdata(xdma_0_M_AXI_BYPASS_RDATA),
-        .m_axib_rid(xdma_0_M_AXI_BYPASS_RID),
-        .m_axib_rlast(xdma_0_M_AXI_BYPASS_RLAST),
-        .m_axib_rready(xdma_0_M_AXI_BYPASS_RREADY),
-        .m_axib_rresp(xdma_0_M_AXI_BYPASS_RRESP),
-        .m_axib_rvalid(xdma_0_M_AXI_BYPASS_RVALID),
-        .m_axib_wdata(xdma_0_M_AXI_BYPASS_WDATA),
-        .m_axib_wlast(xdma_0_M_AXI_BYPASS_WLAST),
-        .m_axib_wready(xdma_0_M_AXI_BYPASS_WREADY),
-        .m_axib_wstrb(xdma_0_M_AXI_BYPASS_WSTRB),
-        .m_axib_wvalid(xdma_0_M_AXI_BYPASS_WVALID),
-        .m_axil_araddr(xdma_0_M_AXI_LITE_ARADDR),
-        .m_axil_arprot(xdma_0_M_AXI_LITE_ARPROT),
-        .m_axil_arready(xdma_0_M_AXI_LITE_ARREADY),
-        .m_axil_arvalid(xdma_0_M_AXI_LITE_ARVALID),
-        .m_axil_awaddr(xdma_0_M_AXI_LITE_AWADDR),
-        .m_axil_awprot(xdma_0_M_AXI_LITE_AWPROT),
-        .m_axil_awready(xdma_0_M_AXI_LITE_AWREADY),
-        .m_axil_awvalid(xdma_0_M_AXI_LITE_AWVALID),
-        .m_axil_bready(xdma_0_M_AXI_LITE_BREADY),
-        .m_axil_bresp(xdma_0_M_AXI_LITE_BRESP),
-        .m_axil_bvalid(xdma_0_M_AXI_LITE_BVALID),
-        .m_axil_rdata(xdma_0_M_AXI_LITE_RDATA),
-        .m_axil_rready(xdma_0_M_AXI_LITE_RREADY),
-        .m_axil_rresp(xdma_0_M_AXI_LITE_RRESP),
-        .m_axil_rvalid(xdma_0_M_AXI_LITE_RVALID),
-        .m_axil_wdata(xdma_0_M_AXI_LITE_WDATA),
-        .m_axil_wready(xdma_0_M_AXI_LITE_WREADY),
-        .m_axil_wstrb(xdma_0_M_AXI_LITE_WSTRB),
-        .m_axil_wvalid(xdma_0_M_AXI_LITE_WVALID),
-        .pci_exp_rxn(xdma_0_pcie_mgt_rxn),
-        .pci_exp_rxp(xdma_0_pcie_mgt_rxp),
-        .pci_exp_txn(xdma_0_pcie_mgt_txn),
-        .pci_exp_txp(xdma_0_pcie_mgt_txp),
-        .sys_clk(util_ds_buf_0_IBUF_OUT),
-        .sys_rst_n(reset_rtl_0_1),
-        .user_lnk_up(xdma_0_user_lnk_up),
-        .usr_irq_req(1'b0));
   Prism_xdma_0_axi_periph_0 xdma_0_axi_periph
        (.ACLK(clk_wiz_clk_55out),
         .ARESETN(clk_wiz_locked),
@@ -615,27 +537,117 @@ module Prism
         .M00_AXI_wdata(xdma_0_axi_periph_M00_AXI_WDATA),
         .M00_AXI_wready(xdma_0_axi_periph_M00_AXI_WREADY),
         .M00_AXI_wvalid(xdma_0_axi_periph_M00_AXI_WVALID),
-        .S00_ACLK(xdma_0_axi_aclk),
-        .S00_ARESETN(xdma_0_axi_aresetn),
-        .S00_AXI_araddr(xdma_0_M_AXI_LITE_ARADDR),
-        .S00_AXI_arprot(xdma_0_M_AXI_LITE_ARPROT),
-        .S00_AXI_arready(xdma_0_M_AXI_LITE_ARREADY),
-        .S00_AXI_arvalid(xdma_0_M_AXI_LITE_ARVALID),
-        .S00_AXI_awaddr(xdma_0_M_AXI_LITE_AWADDR),
-        .S00_AXI_awprot(xdma_0_M_AXI_LITE_AWPROT),
-        .S00_AXI_awready(xdma_0_M_AXI_LITE_AWREADY),
-        .S00_AXI_awvalid(xdma_0_M_AXI_LITE_AWVALID),
-        .S00_AXI_bready(xdma_0_M_AXI_LITE_BREADY),
-        .S00_AXI_bresp(xdma_0_M_AXI_LITE_BRESP),
-        .S00_AXI_bvalid(xdma_0_M_AXI_LITE_BVALID),
-        .S00_AXI_rdata(xdma_0_M_AXI_LITE_RDATA),
-        .S00_AXI_rready(xdma_0_M_AXI_LITE_RREADY),
-        .S00_AXI_rresp(xdma_0_M_AXI_LITE_RRESP),
-        .S00_AXI_rvalid(xdma_0_M_AXI_LITE_RVALID),
-        .S00_AXI_wdata(xdma_0_M_AXI_LITE_WDATA),
-        .S00_AXI_wready(xdma_0_M_AXI_LITE_WREADY),
-        .S00_AXI_wstrb(xdma_0_M_AXI_LITE_WSTRB),
-        .S00_AXI_wvalid(xdma_0_M_AXI_LITE_WVALID));
+        .S00_ACLK(xdma_1_axi_aclk),
+        .S00_ARESETN(xdma_1_axi_aresetn),
+        .S00_AXI_araddr(xdma_1_M_AXI_LITE_ARADDR),
+        .S00_AXI_arprot(xdma_1_M_AXI_LITE_ARPROT),
+        .S00_AXI_arready(xdma_1_M_AXI_LITE_ARREADY),
+        .S00_AXI_arvalid(xdma_1_M_AXI_LITE_ARVALID),
+        .S00_AXI_awaddr(xdma_1_M_AXI_LITE_AWADDR),
+        .S00_AXI_awprot(xdma_1_M_AXI_LITE_AWPROT),
+        .S00_AXI_awready(xdma_1_M_AXI_LITE_AWREADY),
+        .S00_AXI_awvalid(xdma_1_M_AXI_LITE_AWVALID),
+        .S00_AXI_bready(xdma_1_M_AXI_LITE_BREADY),
+        .S00_AXI_bresp(xdma_1_M_AXI_LITE_BRESP),
+        .S00_AXI_bvalid(xdma_1_M_AXI_LITE_BVALID),
+        .S00_AXI_rdata(xdma_1_M_AXI_LITE_RDATA),
+        .S00_AXI_rready(xdma_1_M_AXI_LITE_RREADY),
+        .S00_AXI_rresp(xdma_1_M_AXI_LITE_RRESP),
+        .S00_AXI_rvalid(xdma_1_M_AXI_LITE_RVALID),
+        .S00_AXI_wdata(xdma_1_M_AXI_LITE_WDATA),
+        .S00_AXI_wready(xdma_1_M_AXI_LITE_WREADY),
+        .S00_AXI_wstrb(xdma_1_M_AXI_LITE_WSTRB),
+        .S00_AXI_wvalid(xdma_1_M_AXI_LITE_WVALID));
+  Prism_xdma_1_0 xdma_1
+       (.axi_aclk(xdma_1_axi_aclk),
+        .axi_aresetn(xdma_1_axi_aresetn),
+        .m_axi_arready(1'b0),
+        .m_axi_awready(1'b0),
+        .m_axi_bid({1'b0,1'b0,1'b0,1'b0}),
+        .m_axi_bresp({1'b0,1'b0}),
+        .m_axi_bvalid(1'b0),
+        .m_axi_rdata({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .m_axi_rid({1'b0,1'b0,1'b0,1'b0}),
+        .m_axi_rlast(1'b0),
+        .m_axi_rresp({1'b0,1'b0}),
+        .m_axi_rvalid(1'b0),
+        .m_axi_wready(1'b0),
+        .m_axib_araddr(xdma_1_M_AXI_BYPASS_ARADDR),
+        .m_axib_arburst(xdma_1_M_AXI_BYPASS_ARBURST),
+        .m_axib_arcache(xdma_1_M_AXI_BYPASS_ARCACHE),
+        .m_axib_arid(xdma_1_M_AXI_BYPASS_ARID),
+        .m_axib_arlen(xdma_1_M_AXI_BYPASS_ARLEN),
+        .m_axib_arlock(xdma_1_M_AXI_BYPASS_ARLOCK),
+        .m_axib_arprot(xdma_1_M_AXI_BYPASS_ARPROT),
+        .m_axib_arready(xdma_1_M_AXI_BYPASS_ARREADY),
+        .m_axib_arsize(xdma_1_M_AXI_BYPASS_ARSIZE),
+        .m_axib_arvalid(xdma_1_M_AXI_BYPASS_ARVALID),
+        .m_axib_awaddr(xdma_1_M_AXI_BYPASS_AWADDR),
+        .m_axib_awburst(xdma_1_M_AXI_BYPASS_AWBURST),
+        .m_axib_awcache(xdma_1_M_AXI_BYPASS_AWCACHE),
+        .m_axib_awid(xdma_1_M_AXI_BYPASS_AWID),
+        .m_axib_awlen(xdma_1_M_AXI_BYPASS_AWLEN),
+        .m_axib_awlock(xdma_1_M_AXI_BYPASS_AWLOCK),
+        .m_axib_awprot(xdma_1_M_AXI_BYPASS_AWPROT),
+        .m_axib_awready(xdma_1_M_AXI_BYPASS_AWREADY),
+        .m_axib_awsize(xdma_1_M_AXI_BYPASS_AWSIZE),
+        .m_axib_awvalid(xdma_1_M_AXI_BYPASS_AWVALID),
+        .m_axib_bid(xdma_1_M_AXI_BYPASS_BID),
+        .m_axib_bready(xdma_1_M_AXI_BYPASS_BREADY),
+        .m_axib_bresp(xdma_1_M_AXI_BYPASS_BRESP),
+        .m_axib_bvalid(xdma_1_M_AXI_BYPASS_BVALID),
+        .m_axib_rdata(xdma_1_M_AXI_BYPASS_RDATA),
+        .m_axib_rid(xdma_1_M_AXI_BYPASS_RID),
+        .m_axib_rlast(xdma_1_M_AXI_BYPASS_RLAST),
+        .m_axib_rready(xdma_1_M_AXI_BYPASS_RREADY),
+        .m_axib_rresp(xdma_1_M_AXI_BYPASS_RRESP),
+        .m_axib_rvalid(xdma_1_M_AXI_BYPASS_RVALID),
+        .m_axib_wdata(xdma_1_M_AXI_BYPASS_WDATA),
+        .m_axib_wlast(xdma_1_M_AXI_BYPASS_WLAST),
+        .m_axib_wready(xdma_1_M_AXI_BYPASS_WREADY),
+        .m_axib_wstrb(xdma_1_M_AXI_BYPASS_WSTRB),
+        .m_axib_wvalid(xdma_1_M_AXI_BYPASS_WVALID),
+        .m_axil_araddr(xdma_1_M_AXI_LITE_ARADDR),
+        .m_axil_arprot(xdma_1_M_AXI_LITE_ARPROT),
+        .m_axil_arready(xdma_1_M_AXI_LITE_ARREADY),
+        .m_axil_arvalid(xdma_1_M_AXI_LITE_ARVALID),
+        .m_axil_awaddr(xdma_1_M_AXI_LITE_AWADDR),
+        .m_axil_awprot(xdma_1_M_AXI_LITE_AWPROT),
+        .m_axil_awready(xdma_1_M_AXI_LITE_AWREADY),
+        .m_axil_awvalid(xdma_1_M_AXI_LITE_AWVALID),
+        .m_axil_bready(xdma_1_M_AXI_LITE_BREADY),
+        .m_axil_bresp(xdma_1_M_AXI_LITE_BRESP),
+        .m_axil_bvalid(xdma_1_M_AXI_LITE_BVALID),
+        .m_axil_rdata(xdma_1_M_AXI_LITE_RDATA),
+        .m_axil_rready(xdma_1_M_AXI_LITE_RREADY),
+        .m_axil_rresp(xdma_1_M_AXI_LITE_RRESP),
+        .m_axil_rvalid(xdma_1_M_AXI_LITE_RVALID),
+        .m_axil_wdata(xdma_1_M_AXI_LITE_WDATA),
+        .m_axil_wready(xdma_1_M_AXI_LITE_WREADY),
+        .m_axil_wstrb(xdma_1_M_AXI_LITE_WSTRB),
+        .m_axil_wvalid(xdma_1_M_AXI_LITE_WVALID),
+        .pci_exp_rxn(xdma_1_pcie_mgt_rxn),
+        .pci_exp_rxp(xdma_1_pcie_mgt_rxp),
+        .pci_exp_txn(xdma_1_pcie_mgt_txn),
+        .pci_exp_txp(xdma_1_pcie_mgt_txp),
+        .sys_clk(util_ds_buf_0_IBUF_OUT),
+        .sys_rst_n(Pice_rest_1),
+        .user_lnk_up(xdma_1_user_lnk_up),
+        .usr_irq_req(1'b0));
+  Prism_xlconcat_0_0 xlconcat_0
+       (.In0(xlslice_0_Dout),
+        .In1(xlslice_1_Dout),
+        .In2(xlslice_2_Dout),
+        .dout(xlconcat_0_dout));
+  Prism_xlslice_0_0 xlslice_0
+       (.Din(v_axi4s_vid_out_0_vid_data),
+        .Dout(xlslice_0_Dout));
+  Prism_xlslice_1_0 xlslice_1
+       (.Din(v_axi4s_vid_out_0_vid_data),
+        .Dout(xlslice_1_Dout));
+  Prism_xlslice_2_0 xlslice_2
+       (.Din(v_axi4s_vid_out_0_vid_data),
+        .Dout(xlslice_2_Dout));
 endmodule
 
 module Prism_xdma_0_axi_periph_0

@@ -4,13 +4,18 @@
 
 
 
+*** Running vivado
+    with args -log Prism_rst_mig_7series_0_100M_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Prism_rst_mig_7series_0_100M_0.tcl
+
+
+
 ****** Vivado v2020.2 (64-bit)
   **** SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
   **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
     ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 
 source Prism_rst_mig_7series_0_100M_0.tcl -notrace
-create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1120.816 ; gain = 0.000
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1121.492 ; gain = 0.000
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/vivado_lib/vivado-library/ip/rgb2vga_v1_0'.
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/vivado_lib/vivado-library/ip/rgb2dvi'.
@@ -22,9 +27,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k70t
 INFO: [Device 21-403] Loading part xc7k70tfbg676-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 18068
+INFO: [Synth 8-7075] Helper process launched with PID 8428
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 1131.367 ; gain = 10.551
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:21 . Memory (MB): peak = 1131.820 ; gain = 10.328
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'Prism_rst_mig_7series_0_100M_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rst_mig_7series_0_100M_0/synth/Prism_rst_mig_7series_0_100M_0.vhd:74]
 	Parameter C_FAMILY bound to: kintex7 - type: string 
@@ -110,18 +115,18 @@ INFO: [Synth 8-256] done synthesizing module 'sequence_psr' (5#1) [d:/PrismGPU/P
 INFO: [Synth 8-256] done synthesizing module 'proc_sys_reset' (6#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ipshared/8842/hdl/proc_sys_reset_v5_0_vh_rfs.vhd:1323]
 INFO: [Synth 8-256] done synthesizing module 'Prism_rst_mig_7series_0_100M_0' (7#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rst_mig_7series_0_100M_0/synth/Prism_rst_mig_7series_0_100M_0.vhd:74]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 1190.668 ; gain = 69.852
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:27 . Memory (MB): peak = 1189.777 ; gain = 68.285
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 1190.668 ; gain = 69.852
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:28 . Memory (MB): peak = 1189.777 ; gain = 68.285
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 1190.668 ; gain = 69.852
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:28 . Memory (MB): peak = 1189.777 ; gain = 68.285
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1190.668 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1189.777 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 13 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -138,32 +143,32 @@ Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_rst_m
 Finished Parsing XDC File [D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_rst_mig_7series_0_100M_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1292.324 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1289.645 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 13 instances were transformed.
   FDR => FDRE: 12 instances
   SRL16 => SRL16E: 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.075 . Memory (MB): peak = 1303.113 ; gain = 10.789
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 1300.996 ; gain = 11.352
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:26 . Memory (MB): peak = 1303.113 ; gain = 182.297
+Finished Constraint Validation : Time (s): cpu = 00:00:22 ; elapsed = 00:00:44 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k70tfbg676-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:26 . Memory (MB): peak = 1303.113 ; gain = 182.297
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:22 ; elapsed = 00:00:44 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_rst_mig_7series_0_100M_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:26 . Memory (MB): peak = 1303.113 ; gain = 182.297
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:44 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:26 . Memory (MB): peak = 1303.113 ; gain = 182.297
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:45 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -194,25 +199,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:28 . Memory (MB): peak = 1303.113 ; gain = 182.297
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:48 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 1303.113 ; gain = 182.297
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:01:02 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 1303.113 ; gain = 182.297
+Finished Timing Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:01:02 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 1304.539 ; gain = 183.723
+Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:01:03 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -230,37 +235,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:37 ; elapsed = 00:00:43 . Memory (MB): peak = 1304.539 ; gain = 183.723
+Finished IO Insertion : Time (s): cpu = 00:00:43 ; elapsed = 00:01:10 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:37 ; elapsed = 00:00:43 . Memory (MB): peak = 1304.539 ; gain = 183.723
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:43 ; elapsed = 00:01:10 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:37 ; elapsed = 00:00:43 . Memory (MB): peak = 1304.539 ; gain = 183.723
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:43 ; elapsed = 00:01:10 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:37 ; elapsed = 00:00:43 . Memory (MB): peak = 1304.539 ; gain = 183.723
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:43 ; elapsed = 00:01:10 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:00:43 . Memory (MB): peak = 1304.539 ; gain = 183.723
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:43 ; elapsed = 00:01:10 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:37 ; elapsed = 00:00:43 . Memory (MB): peak = 1304.539 ; gain = 183.723
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:43 ; elapsed = 00:01:10 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -288,18 +293,18 @@ Report Cell Usage:
 |10    |FDSE  |     4|
 +------+------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:37 ; elapsed = 00:00:43 . Memory (MB): peak = 1304.539 ; gain = 183.723
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:43 ; elapsed = 00:01:10 . Memory (MB): peak = 1300.996 ; gain = 179.504
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:24 ; elapsed = 00:00:38 . Memory (MB): peak = 1304.539 ; gain = 71.277
-Synthesis Optimization Complete : Time (s): cpu = 00:00:38 ; elapsed = 00:00:43 . Memory (MB): peak = 1304.539 ; gain = 183.723
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:29 ; elapsed = 00:01:05 . Memory (MB): peak = 1300.996 ; gain = 68.285
+Synthesis Optimization Complete : Time (s): cpu = 00:00:43 ; elapsed = 00:01:11 . Memory (MB): peak = 1300.996 ; gain = 179.504
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1304.539 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1300.996 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 9 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1318.711 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1316.605 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 9 instances were transformed.
   FDR => FDRE: 8 instances
@@ -308,11 +313,11 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 47 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:49 ; elapsed = 00:00:58 . Memory (MB): peak = 1318.711 ; gain = 197.895
+synth_design: Time (s): cpu = 00:00:53 ; elapsed = 00:02:09 . Memory (MB): peak = 1316.605 ; gain = 195.113
 INFO: [Common 17-1381] The checkpoint 'D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_rst_mig_7series_0_100M_0_synth_1/Prism_rst_mig_7series_0_100M_0.dcp' has been generated.
 WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
 INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP Prism_rst_mig_7series_0_100M_0, cache-ID = 0fa67450486a84ec
 INFO: [Coretcl 2-1174] Renamed 6 cell refs.
 INFO: [Common 17-1381] The checkpoint 'D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_rst_mig_7series_0_100M_0_synth_1/Prism_rst_mig_7series_0_100M_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Prism_rst_mig_7series_0_100M_0_utilization_synth.rpt -pb Prism_rst_mig_7series_0_100M_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Jan 18 11:07:47 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Jan 22 09:23:50 2025...

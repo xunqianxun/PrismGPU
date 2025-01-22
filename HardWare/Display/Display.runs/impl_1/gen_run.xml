@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7k70tfbg676-2" LaunchTime="1737375834">
+<GenRun Id="impl_1" LaunchPart="xc7k70tfbg676-2" LaunchTime="1737509187">
   <File Type="BITSTR-BMM" Name="Prism_wrapper_bd.bmm"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="Prism_wrapper_methodology_drc_opted.rpt"/>
   <File Type="INIT-TIMING" Name="Prism_wrapper_timing_summary_init.rpt"/>
@@ -140,7 +140,6 @@
     <Step Id="write_bitstream"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="Prism_axi_vdma_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="Prism_xdma_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="Prism_v_tc_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="Prism_clk_wiz_0"/>
   <BlockFileSet Type="BlockSrcs" Name="Prism_mig_7series_0_0"/>
@@ -148,4 +147,7 @@
   <BlockFileSet Type="BlockSrcs" Name="Prism_v_axi4s_vid_out_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="Prism_rst_mig_7series_0_100M_0"/>
   <BlockFileSet Type="BlockSrcs" Name="Prism_util_ds_buf_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="Prism_xdma_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="Prism_axi_smc_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="Prism_auto_cc_0"/>
 </GenRun>

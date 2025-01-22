@@ -6,9 +6,6 @@
 # Block Designs: bd/Prism/Prism.bd
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Prism || ORIG_REF_NAME==Prism} -quiet] -quiet
 
-# IP: bd/Prism/ip/Prism_xdma_0_0/Prism_xdma_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Prism_xdma_0_0 || ORIG_REF_NAME==Prism_xdma_0_0} -quiet] -quiet
-
 # IP: bd/Prism/ip/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Prism_axi_vdma_0_0 || ORIG_REF_NAME==Prism_axi_vdma_0_0} -quiet] -quiet
 
@@ -41,5 +38,20 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Prism_rgb2d
 
 # IP: bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Prism_util_ds_buf_0_0 || ORIG_REF_NAME==Prism_util_ds_buf_0_0} -quiet] -quiet
+
+# IP: bd/Prism/ip/Prism_xdma_1_0/Prism_xdma_1_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Prism_xdma_1_0 || ORIG_REF_NAME==Prism_xdma_1_0} -quiet] -quiet
+
+# IP: bd/Prism/ip/Prism_xlslice_0_0/Prism_xlslice_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Prism_xlslice_0_0 || ORIG_REF_NAME==Prism_xlslice_0_0} -quiet] -quiet
+
+# IP: bd/Prism/ip/Prism_xlslice_1_0/Prism_xlslice_1_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Prism_xlslice_1_0 || ORIG_REF_NAME==Prism_xlslice_1_0} -quiet] -quiet
+
+# IP: bd/Prism/ip/Prism_xlslice_2_0/Prism_xlslice_2_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Prism_xlslice_2_0 || ORIG_REF_NAME==Prism_xlslice_2_0} -quiet] -quiet
+
+# IP: bd/Prism/ip/Prism_xlconcat_0_0/Prism_xlconcat_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==Prism_xlconcat_0_0 || ORIG_REF_NAME==Prism_xlconcat_0_0} -quiet] -quiet
 
 # XDC: d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/Prism_ooc.xdc

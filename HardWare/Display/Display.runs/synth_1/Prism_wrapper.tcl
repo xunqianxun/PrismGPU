@@ -70,7 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 2
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7k70tfbg676-2
 
@@ -94,15 +93,6 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib D:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/hdl/Prism_wrapper.v
 add_files D:/PrismGPU/PrismGPU/HardWare/Display/Display.srcs/sources_1/bd/Prism/Prism.bd
-set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/ip_4/pcie2_fifo_generator_tgt_brdg.xdc]
-set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/ip_3/pcie2_fifo_generator_dma_cpl.xdc]
-set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/ip_2/xdma_v4_1_8_blk_mem_64_noreg_be_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/ip_1/xdma_v4_1_8_blk_mem_64_reg_be_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/ip_0/source/Prism_xdma_0_0_pcie2_ip-PCIE_X0Y0.xdc]
-set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/ip_0/synth/Prism_xdma_0_0_pcie2_ip_ooc.xdc]
-set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/Prism_xdma_0_0_board.xdc]
-set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/source/Prism_xdma_0_0_pcie3_7vx_ip.xdc]
-set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_0_0/synth/Prism_xdma_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0.xdc]
 set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0_clocks.xdc]
 set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0_ooc.xdc]
@@ -155,6 +145,15 @@ set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/H
 set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/src/rgb2dvi_clocks.xdc]
 set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_board.xdc]
 set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_1_0/ip_4/pcie2_fifo_generator_tgt_brdg.xdc]
+set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_1_0/ip_3/pcie2_fifo_generator_dma_cpl.xdc]
+set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_1_0/ip_2/xdma_v4_1_8_blk_mem_64_noreg_be_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_1_0/ip_1/xdma_v4_1_8_blk_mem_64_reg_be_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_1_0/ip_0/source/Prism_xdma_1_0_pcie2_ip-PCIE_X0Y0.xdc]
+set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_1_0/ip_0/synth/Prism_xdma_1_0_pcie2_ip_ooc.xdc]
+set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_1_0/Prism_xdma_1_0_board.xdc]
+set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_1_0/source/Prism_xdma_1_0_pcie3_7vx_ip.xdc]
+set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_xdma_1_0/synth/Prism_xdma_1_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/Prism_ooc.xdc]
 
 OPTRACE "Adding files" END { }

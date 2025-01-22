@@ -11,7 +11,6 @@
       "validated": "true"
     },
     "design_tree": {
-      "xdma_0": "",
       "axi_vdma_0": "",
       "xdma_0_axi_periph": {
         "s00_couplers": {
@@ -25,7 +24,12 @@
       "axi_smc": "",
       "rst_mig_7series_0_100M": "",
       "rgb2dvi_0": "",
-      "util_ds_buf_0": ""
+      "util_ds_buf_0": "",
+      "xdma_1": "",
+      "xlslice_0": "",
+      "xlslice_1": "",
+      "xlslice_2": "",
+      "xlconcat_0": ""
     },
     "interface_ports": {
       "pice_interface": {
@@ -177,7 +181,7 @@
         "direction": "I",
         "parameters": {
           "CLK_DOMAIN": {
-            "value": "Prism_clk_in1_0",
+            "value": "Prism_sys_clk",
             "value_src": "default"
           },
           "FREQ_HZ": {
@@ -199,133 +203,6 @@
       }
     },
     "components": {
-      "xdma_0": {
-        "vlnv": "xilinx.com:ip:xdma:4.1",
-        "xci_name": "Prism_xdma_0_0",
-        "xci_path": "ip\\Prism_xdma_0_0\\Prism_xdma_0_0.xci",
-        "inst_hier_path": "xdma_0",
-        "parameters": {
-          "PF0_DEVICE_ID_mqdma": {
-            "value": "9024"
-          },
-          "PF2_DEVICE_ID_mqdma": {
-            "value": "9024"
-          },
-          "PF3_DEVICE_ID_mqdma": {
-            "value": "9024"
-          },
-          "axi_data_width": {
-            "value": "128_bit"
-          },
-          "axilite_master_en": {
-            "value": "true"
-          },
-          "axilite_master_scale": {
-            "value": "Kilobytes"
-          },
-          "axilite_master_size": {
-            "value": "4"
-          },
-          "axist_bypass_en": {
-            "value": "true"
-          },
-          "axist_bypass_size": {
-            "value": "256"
-          },
-          "axisten_freq": {
-            "value": "125"
-          },
-          "mode_selection": {
-            "value": "Advanced"
-          },
-          "pciebar2axibar_axil_master": {
-            "value": "0x80000000"
-          },
-          "pf0_base_class_menu": {
-            "value": "Display_controller"
-          },
-          "pf0_class_code_base": {
-            "value": "03"
-          },
-          "pf0_class_code_interface": {
-            "value": "00"
-          },
-          "pf0_class_code_sub": {
-            "value": "02"
-          },
-          "pf0_device_id": {
-            "value": "7024"
-          },
-          "pf0_sub_class_interface_menu": {
-            "value": "3D_controller"
-          },
-          "pl_link_cap_max_link_speed": {
-            "value": "5.0_GT/s"
-          },
-          "pl_link_cap_max_link_width": {
-            "value": "X4"
-          },
-          "plltype": {
-            "value": "QPLL1"
-          },
-          "xdma_rnum_chnl": {
-            "value": "2"
-          },
-          "xdma_wnum_chnl": {
-            "value": "2"
-          }
-        },
-        "addressing": {
-          "address_spaces": {
-            "M_AXI": {
-              "range": "16E",
-              "width": "64"
-            },
-            "M_AXI_LITE": {
-              "range": "4G",
-              "width": "32"
-            },
-            "M_AXI_BYPASS": {
-              "range": "16E",
-              "width": "64"
-            }
-          }
-        },
-        "interface_ports": {
-          "M_AXI": {
-            "mode": "Master",
-            "address_space_ref": "M_AXI",
-            "base_address": {
-              "minimum": "0x00000000",
-              "maximum": "0xFFFFFFFFFFFFFFFF",
-              "width": "64"
-            }
-          },
-          "M_AXI_BYPASS": {
-            "mode": "Master",
-            "address_space_ref": "M_AXI_BYPASS",
-            "base_address": {
-              "minimum": "0x00000000",
-              "maximum": "0xFFFFFFFFFFFFFFFF",
-              "width": "64"
-            },
-            "parameters": {
-              "master_id": {
-                "value": "1"
-              }
-            }
-          },
-          "M_AXI_LITE": {
-            "mode": "Master",
-            "address_space_ref": "M_AXI_LITE",
-            "base_address": {
-              "minimum": "0x00000000",
-              "maximum": "0xFFFFFFFF",
-              "width": "32"
-            }
-          }
-        }
-      },
       "axi_vdma_0": {
         "vlnv": "xilinx.com:ip:axi_vdma:6.3",
         "xci_name": "Prism_axi_vdma_0_0",
@@ -376,7 +253,7 @@
             },
             "parameters": {
               "master_id": {
-                "value": "2"
+                "value": "3"
               }
             }
           }
@@ -515,16 +392,16 @@
               }
             },
             "interface_nets": {
-              "auto_cc_to_s00_couplers": {
-                "interface_ports": [
-                  "M_AXI",
-                  "auto_cc/M_AXI"
-                ]
-              },
               "s00_couplers_to_auto_cc": {
                 "interface_ports": [
                   "S_AXI",
                   "auto_cc/S_AXI"
+                ]
+              },
+              "auto_cc_to_s00_couplers": {
+                "interface_ports": [
+                  "M_AXI",
+                  "auto_cc/M_AXI"
                 ]
               }
             },
@@ -557,16 +434,16 @@
           }
         },
         "interface_nets": {
-          "xdma_0_axi_periph_to_s00_couplers": {
-            "interface_ports": [
-              "S00_AXI",
-              "s00_couplers/S_AXI"
-            ]
-          },
           "s00_couplers_to_xdma_0_axi_periph": {
             "interface_ports": [
               "M00_AXI",
               "s00_couplers/M_AXI"
+            ]
+          },
+          "xdma_0_axi_periph_to_s00_couplers": {
+            "interface_ports": [
+              "S00_AXI",
+              "s00_couplers/S_AXI"
             ]
           }
         },
@@ -730,11 +607,14 @@
         "xci_path": "ip\\Prism_v_axi4s_vid_out_0_0\\Prism_v_axi4s_vid_out_0_0.xci",
         "inst_hier_path": "v_axi4s_vid_out_0",
         "parameters": {
+          "C_ADDR_WIDTH": {
+            "value": "13"
+          },
           "C_S_AXIS_VIDEO_DATA_WIDTH": {
             "value": "8"
           },
           "C_S_AXIS_VIDEO_FORMAT": {
-            "value": "2"
+            "value": "6"
           }
         }
       },
@@ -878,19 +758,226 @@
             "value": "IBUFDSGTE"
           }
         }
+      },
+      "xdma_1": {
+        "vlnv": "xilinx.com:ip:xdma:4.1",
+        "xci_name": "Prism_xdma_1_0",
+        "xci_path": "ip\\Prism_xdma_1_0\\Prism_xdma_1_0.xci",
+        "inst_hier_path": "xdma_1",
+        "parameters": {
+          "PF0_DEVICE_ID_mqdma": {
+            "value": "9024"
+          },
+          "PF2_DEVICE_ID_mqdma": {
+            "value": "9024"
+          },
+          "PF3_DEVICE_ID_mqdma": {
+            "value": "9024"
+          },
+          "axi_data_width": {
+            "value": "128_bit"
+          },
+          "axilite_master_en": {
+            "value": "true"
+          },
+          "axilite_master_scale": {
+            "value": "Kilobytes"
+          },
+          "axilite_master_size": {
+            "value": "64"
+          },
+          "axist_bypass_en": {
+            "value": "true"
+          },
+          "axist_bypass_size": {
+            "value": "256"
+          },
+          "axisten_freq": {
+            "value": "125"
+          },
+          "cfg_mgmt_if": {
+            "value": "false"
+          },
+          "mode_selection": {
+            "value": "Advanced"
+          },
+          "pciebar2axibar_axil_master": {
+            "value": "0x80000000"
+          },
+          "pf0_device_id": {
+            "value": "D325"
+          },
+          "pf0_revision_id": {
+            "value": "01"
+          },
+          "pf0_subsystem_id": {
+            "value": "D325"
+          },
+          "pf0_subsystem_vendor_id": {
+            "value": "1754"
+          },
+          "pl_link_cap_max_link_speed": {
+            "value": "5.0_GT/s"
+          },
+          "pl_link_cap_max_link_width": {
+            "value": "X4"
+          },
+          "plltype": {
+            "value": "QPLL1"
+          },
+          "vendor_id": {
+            "value": "1754"
+          },
+          "xdma_rnum_chnl": {
+            "value": "2"
+          },
+          "xdma_wnum_chnl": {
+            "value": "2"
+          }
+        },
+        "addressing": {
+          "address_spaces": {
+            "M_AXI": {
+              "range": "16E",
+              "width": "64"
+            },
+            "M_AXI_LITE": {
+              "range": "4G",
+              "width": "32"
+            },
+            "M_AXI_BYPASS": {
+              "range": "16E",
+              "width": "64"
+            }
+          }
+        },
+        "interface_ports": {
+          "M_AXI": {
+            "mode": "Master",
+            "address_space_ref": "M_AXI",
+            "base_address": {
+              "minimum": "0x00000000",
+              "maximum": "0xFFFFFFFFFFFFFFFF",
+              "width": "64"
+            }
+          },
+          "M_AXI_BYPASS": {
+            "mode": "Master",
+            "address_space_ref": "M_AXI_BYPASS",
+            "base_address": {
+              "minimum": "0x00000000",
+              "maximum": "0xFFFFFFFFFFFFFFFF",
+              "width": "64"
+            },
+            "parameters": {
+              "master_id": {
+                "value": "2"
+              }
+            }
+          },
+          "M_AXI_LITE": {
+            "mode": "Master",
+            "address_space_ref": "M_AXI_LITE",
+            "base_address": {
+              "minimum": "0x00000000",
+              "maximum": "0xFFFFFFFF",
+              "width": "32"
+            }
+          }
+        }
+      },
+      "xlslice_0": {
+        "vlnv": "xilinx.com:ip:xlslice:1.0",
+        "xci_name": "Prism_xlslice_0_0",
+        "xci_path": "ip\\Prism_xlslice_0_0\\Prism_xlslice_0_0.xci",
+        "inst_hier_path": "xlslice_0",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "23"
+          },
+          "DIN_TO": {
+            "value": "16"
+          },
+          "DOUT_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "xlslice_1": {
+        "vlnv": "xilinx.com:ip:xlslice:1.0",
+        "xci_name": "Prism_xlslice_1_0",
+        "xci_path": "ip\\Prism_xlslice_1_0\\Prism_xlslice_1_0.xci",
+        "inst_hier_path": "xlslice_1",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "15"
+          },
+          "DIN_TO": {
+            "value": "8"
+          },
+          "DOUT_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "xlslice_2": {
+        "vlnv": "xilinx.com:ip:xlslice:1.0",
+        "xci_name": "Prism_xlslice_2_0",
+        "xci_path": "ip\\Prism_xlslice_2_0\\Prism_xlslice_2_0.xci",
+        "inst_hier_path": "xlslice_2",
+        "parameters": {
+          "DIN_FROM": {
+            "value": "7"
+          },
+          "DOUT_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "xlconcat_0": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "xci_name": "Prism_xlconcat_0_0",
+        "xci_path": "ip\\Prism_xlconcat_0_0\\Prism_xlconcat_0_0.xci",
+        "inst_hier_path": "xlconcat_0",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "8"
+          },
+          "IN1_WIDTH": {
+            "value": "8"
+          },
+          "IN2_WIDTH": {
+            "value": "8"
+          },
+          "NUM_PORTS": {
+            "value": "3"
+          }
+        }
       }
     },
     "interface_nets": {
-      "xdma_0_M_AXI_LITE": {
+      "xdma_1_M_AXI_BYPASS": {
         "interface_ports": [
-          "xdma_0/M_AXI_LITE",
-          "xdma_0_axi_periph/S00_AXI"
+          "xdma_1/M_AXI_BYPASS",
+          "axi_smc/S00_AXI"
+        ]
+      },
+      "xdma_0_axi_periph_M00_AXI": {
+        "interface_ports": [
+          "xdma_0_axi_periph/M00_AXI",
+          "axi_vdma_0/S_AXI_LITE"
         ]
       },
       "axi_smc_M00_AXI": {
         "interface_ports": [
           "axi_smc/M00_AXI",
           "mig_7series_0/S_AXI"
+        ]
+      },
+      "v_tc_0_vtiming_out": {
+        "interface_ports": [
+          "v_tc_0/vtiming_out",
+          "v_axi4s_vid_out_0/vtiming_in"
         ]
       },
       "axi_vdma_0_M_AXI_MM2S": {
@@ -911,22 +998,16 @@
           "util_ds_buf_0/CLK_IN_D"
         ]
       },
-      "xdma_0_M_AXI_BYPASS": {
+      "xdma_1_pcie_mgt": {
         "interface_ports": [
-          "xdma_0/M_AXI_BYPASS",
-          "axi_smc/S00_AXI"
+          "pice_interface",
+          "xdma_1/pcie_mgt"
         ]
       },
-      "v_tc_0_vtiming_out": {
+      "xdma_1_M_AXI_LITE": {
         "interface_ports": [
-          "v_tc_0/vtiming_out",
-          "v_axi4s_vid_out_0/vtiming_in"
-        ]
-      },
-      "xdma_0_axi_periph_M00_AXI": {
-        "interface_ports": [
-          "xdma_0_axi_periph/M00_AXI",
-          "axi_vdma_0/S_AXI_LITE"
+          "xdma_1/M_AXI_LITE",
+          "xdma_0_axi_periph/S00_AXI"
         ]
       },
       "mig_7series_0_DDR2": {
@@ -934,22 +1015,9 @@
           "DDR2_interface",
           "mig_7series_0/DDR2"
         ]
-      },
-      "xdma_0_pcie_mgt": {
-        "interface_ports": [
-          "pice_interface",
-          "xdma_0/pcie_mgt"
-        ]
       }
     },
     "nets": {
-      "reset_rtl_0_1": {
-        "ports": [
-          "Pice_rest",
-          "xdma_0/sys_rst_n",
-          "clk_wiz/resetn"
-        ]
-      },
       "v_axi4s_vid_out_0_vtg_ce": {
         "ports": [
           "v_axi4s_vid_out_0/vtg_ce",
@@ -974,42 +1042,10 @@
           "rgb2dvi_0/vid_pVDE"
         ]
       },
-      "v_axi4s_vid_out_0_vid_data": {
-        "ports": [
-          "v_axi4s_vid_out_0/vid_data",
-          "rgb2dvi_0/vid_pData"
-        ]
-      },
       "v_axi4s_vid_out_0_vid_hsync": {
         "ports": [
           "v_axi4s_vid_out_0/vid_hsync",
           "rgb2dvi_0/vid_pHSync"
-        ]
-      },
-      "v_axi4s_vid_out_0_vid_vblank": {
-        "ports": [
-          "v_axi4s_vid_out_0/vid_vblank",
-          "rgb2dvi_0/vid_pVSync"
-        ]
-      },
-      "xdma_0_user_lnk_up": {
-        "ports": [
-          "xdma_0/user_lnk_up",
-          "pice_link_up"
-        ]
-      },
-      "xdma_0_axi_aresetn": {
-        "ports": [
-          "xdma_0/axi_aresetn",
-          "xdma_0_axi_periph/S00_ARESETN",
-          "axi_smc/aresetn"
-        ]
-      },
-      "xdma_0_axi_aclk": {
-        "ports": [
-          "xdma_0/axi_aclk",
-          "xdma_0_axi_periph/S00_ACLK",
-          "axi_smc/aclk"
         ]
       },
       "clk_wiz_clk_55out": {
@@ -1096,21 +1132,99 @@
           "TMDS_Data_n_0"
         ]
       },
-      "util_ds_buf_0_IBUF_OUT": {
-        "ports": [
-          "util_ds_buf_0/IBUF_OUT",
-          "xdma_0/sys_clk"
-        ]
-      },
       "clk_in1_0_1": {
         "ports": [
           "sys_clk",
           "clk_wiz/clk_in1"
         ]
+      },
+      "util_ds_buf_0_IBUF_OUT": {
+        "ports": [
+          "util_ds_buf_0/IBUF_OUT",
+          "xdma_1/sys_clk"
+        ]
+      },
+      "Pice_rest_1": {
+        "ports": [
+          "Pice_rest",
+          "xdma_1/sys_rst_n",
+          "clk_wiz/resetn"
+        ]
+      },
+      "xdma_1_user_lnk_up": {
+        "ports": [
+          "xdma_1/user_lnk_up",
+          "pice_link_up"
+        ]
+      },
+      "xdma_1_axi_aclk": {
+        "ports": [
+          "xdma_1/axi_aclk",
+          "axi_smc/aclk",
+          "xdma_0_axi_periph/S00_ACLK"
+        ]
+      },
+      "xdma_1_axi_aresetn": {
+        "ports": [
+          "xdma_1/axi_aresetn",
+          "xdma_0_axi_periph/S00_ARESETN",
+          "axi_smc/aresetn"
+        ]
+      },
+      "v_axi4s_vid_out_0_vid_vsync": {
+        "ports": [
+          "v_axi4s_vid_out_0/vid_vsync",
+          "rgb2dvi_0/vid_pVSync"
+        ]
+      },
+      "v_axi4s_vid_out_0_vid_data": {
+        "ports": [
+          "v_axi4s_vid_out_0/vid_data",
+          "xlslice_0/Din",
+          "xlslice_1/Din",
+          "xlslice_2/Din"
+        ]
+      },
+      "xlslice_0_Dout": {
+        "ports": [
+          "xlslice_0/Dout",
+          "xlconcat_0/In0"
+        ]
+      },
+      "xlslice_1_Dout": {
+        "ports": [
+          "xlslice_1/Dout",
+          "xlconcat_0/In1"
+        ]
+      },
+      "xlslice_2_Dout": {
+        "ports": [
+          "xlslice_2/Dout",
+          "xlconcat_0/In2"
+        ]
+      },
+      "xlconcat_0_dout": {
+        "ports": [
+          "xlconcat_0/dout",
+          "rgb2dvi_0/vid_pData"
+        ]
       }
     },
     "addressing": {
-      "/xdma_0": {
+      "/axi_vdma_0": {
+        "address_spaces": {
+          "Data_MM2S": {
+            "segments": {
+              "SEG_mig_7series_0_memaddr": {
+                "address_block": "/mig_7series_0/memmap/memaddr",
+                "offset": "0x0000000000000000",
+                "range": "256M"
+              }
+            }
+          }
+        }
+      },
+      "/xdma_1": {
         "address_spaces": {
           "M_AXI_LITE": {
             "segments": {
@@ -1122,19 +1236,6 @@
             }
           },
           "M_AXI_BYPASS": {
-            "segments": {
-              "SEG_mig_7series_0_memaddr": {
-                "address_block": "/mig_7series_0/memmap/memaddr",
-                "offset": "0x0000000000000000",
-                "range": "256M"
-              }
-            }
-          }
-        }
-      },
-      "/axi_vdma_0": {
-        "address_spaces": {
-          "Data_MM2S": {
             "segments": {
               "SEG_mig_7series_0_memaddr": {
                 "address_block": "/mig_7series_0/memmap/memaddr",

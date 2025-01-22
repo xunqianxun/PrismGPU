@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-// Date        : Sat Jan 18 11:06:25 2025
+// Date        : Wed Jan 22 09:23:28 2025
 // Host        : DESKTOP-IDDJK51 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_v_axi4s_vid_out_0_0/Prism_v_axi4s_vid_out_0_0_stub.v
@@ -19,11 +19,11 @@ module Prism_v_axi4s_vid_out_0_0(aclk, aclken, aresetn, s_axis_video_tdata,
   vid_io_out_ce, vid_active_video, vid_vsync, vid_hsync, vid_vblank, vid_hblank, vid_field_id, 
   vid_data, vtg_vsync, vtg_hsync, vtg_vblank, vtg_hblank, vtg_active_video, vtg_field_id, vtg_ce, 
   locked, overflow, underflow, fifo_read_level, status, sof_state_out)
-/* synthesis syn_black_box black_box_pad_pin="aclk,aclken,aresetn,s_axis_video_tdata[23:0],s_axis_video_tvalid,s_axis_video_tready,s_axis_video_tuser,s_axis_video_tlast,fid,vid_io_out_ce,vid_active_video,vid_vsync,vid_hsync,vid_vblank,vid_hblank,vid_field_id,vid_data[23:0],vtg_vsync,vtg_hsync,vtg_vblank,vtg_hblank,vtg_active_video,vtg_field_id,vtg_ce,locked,overflow,underflow,fifo_read_level[10:0],status[31:0],sof_state_out" */;
+/* synthesis syn_black_box black_box_pad_pin="aclk,aclken,aresetn,s_axis_video_tdata[31:0],s_axis_video_tvalid,s_axis_video_tready,s_axis_video_tuser,s_axis_video_tlast,fid,vid_io_out_ce,vid_active_video,vid_vsync,vid_hsync,vid_vblank,vid_hblank,vid_field_id,vid_data[31:0],vtg_vsync,vtg_hsync,vtg_vblank,vtg_hblank,vtg_active_video,vtg_field_id,vtg_ce,locked,overflow,underflow,fifo_read_level[13:0],status[31:0],sof_state_out" */;
   input aclk;
   input aclken;
   input aresetn;
-  input [23:0]s_axis_video_tdata;
+  input [31:0]s_axis_video_tdata;
   input s_axis_video_tvalid;
   output s_axis_video_tready;
   input s_axis_video_tuser;
@@ -36,7 +36,7 @@ module Prism_v_axi4s_vid_out_0_0(aclk, aclken, aresetn, s_axis_video_tdata,
   output vid_vblank;
   output vid_hblank;
   output vid_field_id;
-  output [23:0]vid_data;
+  output [31:0]vid_data;
   input vtg_vsync;
   input vtg_hsync;
   input vtg_vblank;
@@ -47,7 +47,7 @@ module Prism_v_axi4s_vid_out_0_0(aclk, aclken, aresetn, s_axis_video_tdata,
   output locked;
   output overflow;
   output underflow;
-  output [10:0]fifo_read_level;
+  output [13:0]fifo_read_level;
   output [31:0]status;
   output sof_state_out;
 endmodule

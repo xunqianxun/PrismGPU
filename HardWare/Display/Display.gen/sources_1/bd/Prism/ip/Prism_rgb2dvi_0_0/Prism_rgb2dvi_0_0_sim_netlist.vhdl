@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
--- Date        : Sat Jan 18 11:06:00 2025
+-- Date        : Tue Jan 21 22:00:24 2025
 -- Host        : DESKTOP-IDDJK51 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0_sim_netlist.vhdl

@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
--- Date        : Sat Jan 18 11:06:15 2025
+-- Date        : Tue Jan 21 21:59:24 2025
 -- Host        : DESKTOP-IDDJK51 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub -rename_top Prism_auto_cc_0 -prefix
---               Prism_auto_cc_0_ Prism_auto_cc_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_auto_cc_0/Prism_auto_cc_0_stub.vhdl
 -- Design      : Prism_auto_cc_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7k70tfbg676-2

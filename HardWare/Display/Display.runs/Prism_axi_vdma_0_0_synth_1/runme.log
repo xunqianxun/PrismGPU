@@ -10,7 +10,7 @@
     ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 
 source Prism_axi_vdma_0_0.tcl -notrace
-create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:10 . Memory (MB): peak = 1176.285 ; gain = 36.750
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1156.137 ; gain = 14.676
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/vivado_lib/vivado-library/ip/rgb2vga_v1_0'.
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/vivado_lib/vivado-library/ip/rgb2dvi'.
@@ -22,9 +22,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k70t
 INFO: [Device 21-403] Loading part xc7k70tfbg676-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 12716
+INFO: [Synth 8-7075] Helper process launched with PID 18660
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:22 . Memory (MB): peak = 1176.285 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:32 . Memory (MB): peak = 1156.137 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'Prism_axi_vdma_0_0' [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_axi_vdma_0_0/synth/Prism_axi_vdma_0_0.vhd:106]
 	Parameter C_S_AXI_LITE_ADDR_WIDTH bound to: 9 - type: integer 
@@ -1645,18 +1645,18 @@ INFO: [Synth 8-256] done synthesizing module 'axi_datamover' (59#1) [d:/PrismGPU
 INFO: [Synth 8-256] done synthesizing module 'axi_vdma' (60#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ipshared/7860/hdl/axi_vdma_v6_3_rfs.vhd:69927]
 INFO: [Synth 8-256] done synthesizing module 'Prism_axi_vdma_0_0' (61#1) [d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_axi_vdma_0_0/synth/Prism_axi_vdma_0_0.vhd:106]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:30 ; elapsed = 00:00:50 . Memory (MB): peak = 1374.410 ; gain = 198.125
+Finished RTL Elaboration : Time (s): cpu = 00:00:28 ; elapsed = 00:01:09 . Memory (MB): peak = 1375.168 ; gain = 219.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:52 . Memory (MB): peak = 1374.410 ; gain = 198.125
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:01:11 . Memory (MB): peak = 1375.168 ; gain = 219.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:32 ; elapsed = 00:00:52 . Memory (MB): peak = 1374.410 ; gain = 198.125
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:30 ; elapsed = 00:01:11 . Memory (MB): peak = 1375.168 ; gain = 219.031
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.563 . Memory (MB): peak = 1374.410 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.570 . Memory (MB): peak = 1375.168 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 129 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -1678,21 +1678,21 @@ Resolution: To avoid this warning, move constraints listed in [.Xil/Prism_axi_vd
 INFO: [Project 1-1715] 1 XPM XDC files have been applied to the design.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1374.410 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1375.168 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 129 instances were transformed.
   FDR => FDRE: 129 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.329 . Memory (MB): peak = 1374.410 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.212 . Memory (MB): peak = 1375.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:49 ; elapsed = 00:01:17 . Memory (MB): peak = 1374.410 ; gain = 198.125
+Finished Constraint Validation : Time (s): cpu = 00:00:46 ; elapsed = 00:01:32 . Memory (MB): peak = 1375.168 ; gain = 219.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k70tfbg676-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:49 ; elapsed = 00:01:17 . Memory (MB): peak = 1374.410 ; gain = 198.125
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:46 ; elapsed = 00:01:33 . Memory (MB): peak = 1375.168 ; gain = 219.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -1701,7 +1701,7 @@ Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  D:/PrismGPU
 Applied set_property KEEP_HIERARCHY = SOFT for U0/\GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I /\GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_SYNC_FIFO.I_LINEBUFFER_FIFO /xpm_fifo_sync_inst. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for U0/I_PRMRY_DATAMOVER/\GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER /\GEN_INCLUDE_MM2S_SF.I_RD_SF /I_DATA_FIFO/\BLK_MEM.I_SYNC_FIFOGEN_FIFO /\xpm_fifo_instance.xpm_fifo_sync_inst . (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:49 ; elapsed = 00:01:17 . Memory (MB): peak = 1374.410 ; gain = 198.125
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:46 ; elapsed = 00:01:33 . Memory (MB): peak = 1375.168 ; gain = 219.031
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_vdma_v6_3_10_axis_dwidth_converter_v1_0_axisc_upsizer'
 INFO: [Synth 8-802] inferred FSM for state register 'dmacntrl_cs_reg' in module 'axi_vdma_sm'
@@ -1762,7 +1762,7 @@ INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'gen_fwft.curr_fwft_state_reg' using encoding 'sequential' in module 'xpm_fifo_base__parameterized0'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:55 ; elapsed = 00:01:27 . Memory (MB): peak = 1374.410 ; gain = 198.125
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:51 ; elapsed = 00:01:39 . Memory (MB): peak = 1375.168 ; gain = 219.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -1868,7 +1868,7 @@ INFO: [Synth 8-5784] Optimized 1 bits of RAM "gen_wr_a.gen_word_narrow.mem_reg" 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:12 ; elapsed = 00:01:52 . Memory (MB): peak = 1374.410 ; gain = 198.125
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:06 ; elapsed = 00:01:57 . Memory (MB): peak = 1375.168 ; gain = 219.031
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------
@@ -1891,14 +1891,14 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:25 ; elapsed = 00:02:07 . Memory (MB): peak = 1374.410 ; gain = 198.125
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:15 ; elapsed = 00:02:08 . Memory (MB): peak = 1375.168 ; gain = 219.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:42 ; elapsed = 00:02:28 . Memory (MB): peak = 1463.465 ; gain = 287.180
+Finished Timing Optimization : Time (s): cpu = 00:01:26 ; elapsed = 00:02:18 . Memory (MB): peak = 1463.996 ; gain = 307.859
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1919,7 +1919,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:45 ; elapsed = 00:02:30 . Memory (MB): peak = 1473.559 ; gain = 297.273
+Finished Technology Mapping : Time (s): cpu = 00:01:28 ; elapsed = 00:02:20 . Memory (MB): peak = 1474.070 ; gain = 317.934
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1937,37 +1937,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:50 ; elapsed = 00:02:35 . Memory (MB): peak = 1473.559 ; gain = 297.273
+Finished IO Insertion : Time (s): cpu = 00:01:32 ; elapsed = 00:02:25 . Memory (MB): peak = 1474.070 ; gain = 317.934
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:50 ; elapsed = 00:02:35 . Memory (MB): peak = 1473.559 ; gain = 297.273
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:32 ; elapsed = 00:02:25 . Memory (MB): peak = 1474.070 ; gain = 317.934
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:51 ; elapsed = 00:02:36 . Memory (MB): peak = 1473.559 ; gain = 297.273
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:33 ; elapsed = 00:02:25 . Memory (MB): peak = 1474.070 ; gain = 317.934
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:51 ; elapsed = 00:02:36 . Memory (MB): peak = 1473.559 ; gain = 297.273
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:33 ; elapsed = 00:02:25 . Memory (MB): peak = 1474.070 ; gain = 317.934
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:51 ; elapsed = 00:02:36 . Memory (MB): peak = 1473.559 ; gain = 297.273
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:33 ; elapsed = 00:02:25 . Memory (MB): peak = 1474.070 ; gain = 317.934
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:51 ; elapsed = 00:02:36 . Memory (MB): peak = 1473.559 ; gain = 297.273
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:33 ; elapsed = 00:02:25 . Memory (MB): peak = 1474.070 ; gain = 317.934
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -2025,18 +2025,18 @@ Report Cell Usage:
 |16    |FDSE     |    54|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:51 ; elapsed = 00:02:36 . Memory (MB): peak = 1473.559 ; gain = 297.273
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:33 ; elapsed = 00:02:25 . Memory (MB): peak = 1474.070 ; gain = 317.934
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:11 ; elapsed = 00:02:26 . Memory (MB): peak = 1473.559 ; gain = 297.273
-Synthesis Optimization Complete : Time (s): cpu = 00:01:51 ; elapsed = 00:02:37 . Memory (MB): peak = 1473.559 ; gain = 297.273
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:56 ; elapsed = 00:02:16 . Memory (MB): peak = 1474.070 ; gain = 317.934
+Synthesis Optimization Complete : Time (s): cpu = 00:01:33 ; elapsed = 00:02:25 . Memory (MB): peak = 1474.070 ; gain = 317.934
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.177 . Memory (MB): peak = 1473.559 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.141 . Memory (MB): peak = 1474.070 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 170 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1473.559 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1474.070 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 94 instances were transformed.
   FDR => FDRE: 94 instances
@@ -2044,11 +2044,11 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 285 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:03 ; elapsed = 00:02:55 . Memory (MB): peak = 1473.559 ; gain = 297.273
+synth_design: Time (s): cpu = 00:01:44 ; elapsed = 00:02:58 . Memory (MB): peak = 1474.070 ; gain = 317.934
 INFO: [Common 17-1381] The checkpoint 'D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_axi_vdma_0_0_synth_1/Prism_axi_vdma_0_0.dcp' has been generated.
 WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
 INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP Prism_axi_vdma_0_0, cache-ID = 98f7ba5d90acd2d9
 INFO: [Coretcl 2-1174] Renamed 96 cell refs.
 INFO: [Common 17-1381] The checkpoint 'D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_axi_vdma_0_0_synth_1/Prism_axi_vdma_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Prism_axi_vdma_0_0_utilization_synth.rpt -pb Prism_axi_vdma_0_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Jan 18 11:07:43 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Jan 22 09:24:32 2025...

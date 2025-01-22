@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date             : Mon Jan 20 20:31:57 2025
+| Date             : Wed Jan 22 09:40:44 2025
 | Host             : DESKTOP-IDDJK51 running 64-bit major release  (build 9200)
 | Command          : report_power -file Prism_wrapper_power_routed.rpt -pb Prism_wrapper_power_summary_routed.pb -rpx Prism_wrapper_power_routed.rpx
 | Design           : Prism_wrapper
@@ -30,11 +30,11 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 3.701        |
+| Total On-Chip Power (W)  | 3.707        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 3.595        |
-| Device Static (W)        | 0.106        |
+| Dynamic (W)              | 3.600        |
+| Device Static (W)        | 0.107        |
 | Effective TJA (C/W)      | 1.9          |
 | Max Ambient (C)          | 78.0         |
 | Junction Temperature (C) | 32.0         |
@@ -52,19 +52,19 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.169 |       44 |       --- |             --- |
-| Slice Logic              |     0.080 |    75781 |       --- |             --- |
-|   LUT as Logic           |     0.067 |    24647 |     41000 |           60.11 |
-|   Register               |     0.005 |    34043 |     82000 |           41.52 |
+| Clocks                   |     0.172 |       44 |       --- |             --- |
+| Slice Logic              |     0.080 |    75806 |       --- |             --- |
+|   LUT as Logic           |     0.067 |    24642 |     41000 |           60.10 |
+|   Register               |     0.006 |    34067 |     82000 |           41.55 |
 |   LUT as Distributed RAM |     0.005 |     3454 |     13400 |           25.78 |
-|   CARRY4                 |     0.003 |     1148 |     10250 |           11.20 |
+|   CARRY4                 |     0.003 |     1162 |     10250 |           11.34 |
 |   F7/F8 Muxes            |    <0.001 |      329 |     41000 |            0.80 |
-|   LUT as Shift Register  |    <0.001 |      497 |     13400 |            3.71 |
+|   LUT as Shift Register  |    <0.001 |      499 |     13400 |            3.72 |
 |   BUFG                   |    <0.001 |        1 |        32 |            3.13 |
-|   Others                 |    <0.001 |     1285 |       --- |             --- |
+|   Others                 |    <0.001 |     1281 |       --- |             --- |
 |   BUFR                   |     0.000 |        1 |       120 |            0.83 |
-| Signals                  |     0.114 |    56187 |       --- |             --- |
-| Block RAM                |     0.106 |     35.5 |       135 |           26.30 |
+| Signals                  |     0.113 |    56209 |       --- |             --- |
+| Block RAM                |     0.109 |     41.5 |       135 |           30.74 |
 | MMCM                     |     0.366 |        3 |         6 |           50.00 |
 | PLL                      |     0.092 |        1 |         6 |           16.67 |
 | I/O                      |     1.101 |       83 |       300 |           27.67 |
@@ -73,8 +73,8 @@ Table of Contents
 | XADC                     |     0.004 |        1 |       --- |             --- |
 | Hard IPs                 |     0.058 |        1 |       --- |             --- |
 |   PCIE                   |     0.058 |        1 |         1 |          100.00 |
-| Static Power             |     0.106 |          |           |                 |
-| Total                    |     3.701 |          |           |                 |
+| Static Power             |     0.107 |          |           |                 |
+| Total                    |     3.707 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -84,7 +84,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.775 |       0.745 |      0.030 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.780 |       0.750 |      0.030 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.490 |       0.478 |      0.012 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.041 |       0.040 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -93,7 +93,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.007 |       0.005 |      0.002 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.008 |       0.006 |      0.002 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.643 |       0.637 |      0.006 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.382 |       0.377 |      0.005 |       NA    | Unspecified | NA         |
 | MGTVccaux |       1.800 |     0.010 |       0.010 |      0.000 |       NA    | Unspecified | NA         |
@@ -142,11 +142,11 @@ Table of Contents
 | Clock                                                                                                                                                     | Domain                                                                                                                                                                                                               | Constraint (ns) |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
 | clk_100out_Prism_clk_wiz_0                                                                                                                                | Prism_i/clk_wiz/inst/clk_100out_Prism_clk_wiz_0                                                                                                                                                                      |             9.9 |
-| clk_125mhz_mux_x0y0                                                                                                                                       | Prism_i/xdma_0/inst/Prism_xdma_0_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/pclk_sel_reg_0                                                                  |             4.0 |
-| clk_125mhz_x0y0                                                                                                                                           | Prism_i/xdma_0/inst/Prism_xdma_0_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/clk_125mhz                                                                      |             8.0 |
+| clk_125mhz_mux_x0y0                                                                                                                                       | Prism_i/xdma_1/inst/Prism_xdma_1_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/pclk_sel_reg_0                                                                  |             4.0 |
+| clk_125mhz_x0y0                                                                                                                                           | Prism_i/xdma_1/inst/Prism_xdma_1_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/clk_125mhz                                                                      |             8.0 |
 | clk_200out_Prism_clk_wiz_0                                                                                                                                | Prism_i/clk_wiz/inst/clk_200out_Prism_clk_wiz_0                                                                                                                                                                      |             5.4 |
-| clk_250mhz_mux_x0y0                                                                                                                                       | Prism_i/xdma_0/inst/Prism_xdma_0_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/pclk_sel_reg_0                                                                  |             4.0 |
-| clk_250mhz_x0y0                                                                                                                                           | Prism_i/xdma_0/inst/Prism_xdma_0_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/clk_250mhz                                                                      |             4.0 |
+| clk_250mhz_mux_x0y0                                                                                                                                       | Prism_i/xdma_1/inst/Prism_xdma_1_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/pclk_sel_reg_0                                                                  |             4.0 |
+| clk_250mhz_x0y0                                                                                                                                           | Prism_i/xdma_1/inst/Prism_xdma_1_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/clk_250mhz                                                                      |             4.0 |
 | clk_276out_Prism_clk_wiz_0                                                                                                                                | Prism_i/clk_wiz/inst/clk_276out_Prism_clk_wiz_0                                                                                                                                                                      |             3.6 |
 | clk_55out_Prism_clk_wiz_0                                                                                                                                 | Prism_i/clk_wiz/inst/clk_55out_Prism_clk_wiz_0                                                                                                                                                                       |            18.1 |
 | clk_pll_i                                                                                                                                                 | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_ddr2_infrastructure/clk_pll_i                                                                                                                                    |             9.9 |
@@ -157,7 +157,7 @@ Table of Contents
 | iserdes_clkdiv_2                                                                                                                                          | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/iserdes_clkdiv       |             9.9 |
 | iserdes_clkdiv_3                                                                                                                                          | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/iserdes_clkdiv       |             9.9 |
 | mem_refclk                                                                                                                                                | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_ddr2_infrastructure/mem_refclk                                                                                                                                   |             2.5 |
-| mmcm_fb                                                                                                                                                   | Prism_i/xdma_0/inst/Prism_xdma_0_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/mmcm_fb                                                                         |            10.0 |
+| mmcm_fb                                                                                                                                                   | Prism_i/xdma_1/inst/Prism_xdma_1_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/mmcm_fb                                                                         |            10.0 |
 | oserdes_clk                                                                                                                                               | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/oserdes_clk          |             2.5 |
 | oserdes_clk_1                                                                                                                                             | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/oserdes_clk          |             2.5 |
 | oserdes_clk_2                                                                                                                                             | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/oserdes_clk          |             2.5 |
@@ -176,13 +176,13 @@ Table of Contents
 | pll_clkfbout                                                                                                                                              | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_ddr2_infrastructure/pll_clkfbout                                                                                                                                 |             9.9 |
 | sync_pulse                                                                                                                                                | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_ddr2_infrastructure/sync_pulse                                                                                                                                   |            39.8 |
 | sys_clk                                                                                                                                                   | sys_clk                                                                                                                                                                                                              |            20.0 |
-| txoutclk_x0y0                                                                                                                                             | Prism_i/xdma_0/inst/Prism_xdma_0_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[0].gt_wrapper_i/sys_clk_2                                                                         |            10.0 |
+| txoutclk_x0y0                                                                                                                                             | Prism_i/xdma_1/inst/Prism_xdma_1_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[0].gt_wrapper_i/sys_clk_2                                                                         |            10.0 |
 | u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/iserdes_clk | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_A.ddr_byte_lane_A/A_rst_primitives_reg |             2.5 |
 | u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/iserdes_clk | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_B.ddr_byte_lane_B/A_rst_primitives_reg |             2.5 |
 | u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/iserdes_clk | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_C.ddr_byte_lane_C/A_rst_primitives_reg |             2.5 |
 | u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/iserdes_clk | Prism_i/mig_7series_0/u_Prism_mig_7series_0_0_mig/u_memc_ui_top_axi/mem_intfc0/ddr_phy_top0/u_ddr_mc_phy_wrapper/u_ddr_mc_phy/ddr_phy_4lanes_0.u_ddr_phy_4lanes/ddr_byte_lane_D.ddr_byte_lane_D/A_rst_primitives_reg |             2.5 |
-| userclk1                                                                                                                                                  | Prism_i/xdma_0/inst/Prism_xdma_0_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/userclk1                                                                        |             4.0 |
-| userclk2                                                                                                                                                  | Prism_i/xdma_0/inst/Prism_xdma_0_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/userclk2                                                                        |             8.0 |
+| userclk1                                                                                                                                                  | Prism_i/xdma_1/inst/Prism_xdma_1_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/userclk1                                                                        |             4.0 |
+| userclk2                                                                                                                                                  | Prism_i/xdma_1/inst/Prism_xdma_1_0_pcie2_to_pcie3_wrapper_i/pcie2_ip_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_clock_int.pipe_clock_i/userclk2                                                                        |             8.0 |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
 
 
@@ -195,24 +195,24 @@ Table of Contents
 +-----------------------------------+-----------+
 | Name                              | Power (W) |
 +-----------------------------------+-----------+
-| Prism_wrapper                     |     3.595 |
-|   Prism_i                         |     3.594 |
-|     axi_smc                       |     0.044 |
-|       inst                        |     0.044 |
+| Prism_wrapper                     |     3.600 |
+|   Prism_i                         |     3.599 |
+|     axi_smc                       |     0.045 |
+|       inst                        |     0.045 |
 |     axi_vdma_0                    |     0.005 |
 |       U0                          |     0.005 |
 |     clk_wiz                       |     0.132 |
 |       inst                        |     0.132 |
-|     mig_7series_0                 |     1.504 |
-|       u_Prism_mig_7series_0_0_mig |     1.504 |
+|     mig_7series_0                 |     1.503 |
+|       u_Prism_mig_7series_0_0_mig |     1.503 |
 |     rgb2dvi_0                     |     0.134 |
 |       U0                          |     0.134 |
-|     v_axi4s_vid_out_0             |     0.001 |
-|       inst                        |     0.001 |
-|     xdma_0                        |     1.772 |
-|       inst                        |     1.772 |
+|     v_axi4s_vid_out_0             |     0.004 |
+|       inst                        |     0.004 |
 |     xdma_0_axi_periph             |     0.001 |
 |       s00_couplers                |     0.001 |
+|     xdma_1                        |     1.775 |
+|       inst                        |     1.775 |
 +-----------------------------------+-----------+
 
 

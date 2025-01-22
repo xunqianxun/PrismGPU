@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
--- Date        : Sat Jan 18 11:06:25 2025
+-- Date        : Wed Jan 22 09:23:28 2025
 -- Host        : DESKTOP-IDDJK51 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               d:/PrismGPU/PrismGPU/HardWare/Display/Display.gen/sources_1/bd/Prism/ip/Prism_v_axi4s_vid_out_0_0/Prism_v_axi4s_vid_out_0_0_stub.vhdl
@@ -17,7 +17,7 @@ entity Prism_v_axi4s_vid_out_0_0 is
     aclk : in STD_LOGIC;
     aclken : in STD_LOGIC;
     aresetn : in STD_LOGIC;
-    s_axis_video_tdata : in STD_LOGIC_VECTOR ( 23 downto 0 );
+    s_axis_video_tdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
     s_axis_video_tvalid : in STD_LOGIC;
     s_axis_video_tready : out STD_LOGIC;
     s_axis_video_tuser : in STD_LOGIC;
@@ -30,7 +30,7 @@ entity Prism_v_axi4s_vid_out_0_0 is
     vid_vblank : out STD_LOGIC;
     vid_hblank : out STD_LOGIC;
     vid_field_id : out STD_LOGIC;
-    vid_data : out STD_LOGIC_VECTOR ( 23 downto 0 );
+    vid_data : out STD_LOGIC_VECTOR ( 31 downto 0 );
     vtg_vsync : in STD_LOGIC;
     vtg_hsync : in STD_LOGIC;
     vtg_vblank : in STD_LOGIC;
@@ -41,7 +41,7 @@ entity Prism_v_axi4s_vid_out_0_0 is
     locked : out STD_LOGIC;
     overflow : out STD_LOGIC;
     underflow : out STD_LOGIC;
-    fifo_read_level : out STD_LOGIC_VECTOR ( 10 downto 0 );
+    fifo_read_level : out STD_LOGIC_VECTOR ( 13 downto 0 );
     status : out STD_LOGIC_VECTOR ( 31 downto 0 );
     sof_state_out : out STD_LOGIC
   );
@@ -52,7 +52,7 @@ architecture stub of Prism_v_axi4s_vid_out_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "aclk,aclken,aresetn,s_axis_video_tdata[23:0],s_axis_video_tvalid,s_axis_video_tready,s_axis_video_tuser,s_axis_video_tlast,fid,vid_io_out_ce,vid_active_video,vid_vsync,vid_hsync,vid_vblank,vid_hblank,vid_field_id,vid_data[23:0],vtg_vsync,vtg_hsync,vtg_vblank,vtg_hblank,vtg_active_video,vtg_field_id,vtg_ce,locked,overflow,underflow,fifo_read_level[10:0],status[31:0],sof_state_out";
+attribute black_box_pad_pin of stub : architecture is "aclk,aclken,aresetn,s_axis_video_tdata[31:0],s_axis_video_tvalid,s_axis_video_tready,s_axis_video_tuser,s_axis_video_tlast,fid,vid_io_out_ce,vid_active_video,vid_vsync,vid_hsync,vid_vblank,vid_hblank,vid_field_id,vid_data[31:0],vtg_vsync,vtg_hsync,vtg_vblank,vtg_hblank,vtg_active_video,vtg_field_id,vtg_ce,locked,overflow,underflow,fifo_read_level[13:0],status[31:0],sof_state_out";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "v_axi4s_vid_out_v4_0_11,Vivado 2020.2";
 begin

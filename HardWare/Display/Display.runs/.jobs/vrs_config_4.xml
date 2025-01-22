@@ -1,6 +1,23 @@
 <?xml version="1.0"?>
 <Runs Version="1" Minor="0">
-	<Run Id="synth_1" LaunchDir="D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="Prism_axi_vdma_0_0_synth_1" LaunchDir="D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_axi_vdma_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="Prism_clk_wiz_0_synth_1" LaunchDir="D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_clk_wiz_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="Prism_mig_7series_0_0_synth_1" LaunchDir="D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_mig_7series_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="Prism_v_axi4s_vid_out_0_0_synth_1" LaunchDir="D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_v_axi4s_vid_out_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="Prism_rst_mig_7series_0_100M_0_synth_1" LaunchDir="D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_rst_mig_7series_0_100M_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="Prism_util_ds_buf_0_0_synth_1" LaunchDir="D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_util_ds_buf_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="Prism_xdma_1_0_synth_1" LaunchDir="D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_xdma_1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="Prism_axi_smc_0_synth_1" LaunchDir="D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/Prism_axi_smc_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="D:/PrismGPU/PrismGPU/HardWare/Display/Display.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="Prism_axi_vdma_0_0_synth_1"/>
+		<Parent Id="Prism_clk_wiz_0_synth_1"/>
+		<Parent Id="Prism_mig_7series_0_0_synth_1"/>
+		<Parent Id="Prism_v_axi4s_vid_out_0_0_synth_1"/>
+		<Parent Id="Prism_rst_mig_7series_0_100M_0_synth_1"/>
+		<Parent Id="Prism_util_ds_buf_0_0_synth_1"/>
+		<Parent Id="Prism_xdma_1_0_synth_1"/>
+		<Parent Id="Prism_axi_smc_0_synth_1"/>
+	</Run>
 	<Parameters>
 		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
 		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>

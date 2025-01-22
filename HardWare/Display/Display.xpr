@@ -81,17 +81,17 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_xdma_0_0/Prism_xdma_0_0.xci">
-          <Proxy FileSetName="Prism_xdma_0_0"/>
+        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_v_tc_0_0/Prism_v_tc_0_0.xci">
+          <Proxy FileSetName="Prism_v_tc_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0.xci">
-          <Proxy FileSetName="Prism_axi_vdma_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0.xci">
-          <Proxy FileSetName="Prism_util_ds_buf_0_0"/>
+        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_auto_cc_0/Prism_auto_cc_0.xci">
+          <Proxy FileSetName="Prism_auto_cc_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_clk_wiz_0/Prism_clk_wiz_0.xci">
           <Proxy FileSetName="Prism_clk_wiz_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_axi_vdma_0_0/Prism_axi_vdma_0_0.xci">
+          <Proxy FileSetName="Prism_axi_vdma_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_mig_7series_0_0/Prism_mig_7series_0_0.xci">
           <Proxy FileSetName="Prism_mig_7series_0_0"/>
@@ -99,14 +99,20 @@
         <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_v_axi4s_vid_out_0_0/Prism_v_axi4s_vid_out_0_0.xci">
           <Proxy FileSetName="Prism_v_axi4s_vid_out_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_v_tc_0_0/Prism_v_tc_0_0.xci">
-          <Proxy FileSetName="Prism_v_tc_0_0"/>
+        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_util_ds_buf_0_0/Prism_util_ds_buf_0_0.xci">
+          <Proxy FileSetName="Prism_util_ds_buf_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_rst_mig_7series_0_100M_0/Prism_rst_mig_7series_0_100M_0.xci">
+          <Proxy FileSetName="Prism_rst_mig_7series_0_100M_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_rgb2dvi_0_0/Prism_rgb2dvi_0_0.xci">
           <Proxy FileSetName="Prism_rgb2dvi_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_rst_mig_7series_0_100M_0/Prism_rst_mig_7series_0_100M_0.xci">
-          <Proxy FileSetName="Prism_rst_mig_7series_0_100M_0"/>
+        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_axi_smc_0/Prism_axi_smc_0.xci">
+          <Proxy FileSetName="Prism_axi_smc_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="Prism.bd" FileRelPathName="ip/Prism_xdma_1_0/Prism_xdma_1_0.xci">
+          <Proxy FileSetName="Prism_xdma_1_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PGENDIR/sources_1/bd/Prism/hdl/Prism_wrapper.v">
@@ -211,15 +217,27 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="Prism_xdma_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Prism_xdma_0_0" RelGenDir="$PGENDIR/Prism_xdma_0_0">
-      <Config>
-        <Option Name="TopModule" Val="Prism_xdma_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="Prism_util_ds_buf_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Prism_util_ds_buf_0_0" RelGenDir="$PGENDIR/Prism_util_ds_buf_0_0">
       <Config>
         <Option Name="TopModule" Val="Prism_util_ds_buf_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="Prism_xdma_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Prism_xdma_1_0" RelGenDir="$PGENDIR/Prism_xdma_1_0">
+      <Config>
+        <Option Name="TopModule" Val="Prism_xdma_1_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="Prism_axi_smc_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Prism_axi_smc_0" RelGenDir="$PGENDIR/Prism_axi_smc_0">
+      <Config>
+        <Option Name="TopModule" Val="Prism_axi_smc_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="Prism_auto_cc_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/Prism_auto_cc_0" RelGenDir="$PGENDIR/Prism_auto_cc_0">
+      <Config>
+        <Option Name="TopModule" Val="Prism_auto_cc_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -323,7 +341,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="Prism_xdma_0_0_synth_1" Type="Ft3:Synth" SrcSet="Prism_xdma_0_0" Part="xc7k70tfbg676-2" ConstrsSet="Prism_xdma_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Prism_xdma_0_0_synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_xdma_0_0_synth_1">
+    <Run Id="Prism_util_ds_buf_0_0_synth_1" Type="Ft3:Synth" SrcSet="Prism_util_ds_buf_0_0" Part="xc7k70tfbg676-2" ConstrsSet="Prism_util_ds_buf_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Prism_util_ds_buf_0_0_synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_util_ds_buf_0_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
         <Step Id="synth_design"/>
@@ -333,7 +351,27 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="Prism_util_ds_buf_0_0_synth_1" Type="Ft3:Synth" SrcSet="Prism_util_ds_buf_0_0" Part="xc7k70tfbg676-2" ConstrsSet="Prism_util_ds_buf_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Prism_util_ds_buf_0_0_synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_util_ds_buf_0_0_synth_1">
+    <Run Id="Prism_xdma_1_0_synth_1" Type="Ft3:Synth" SrcSet="Prism_xdma_1_0" Part="xc7k70tfbg676-2" ConstrsSet="Prism_xdma_1_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Prism_xdma_1_0_synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_xdma_1_0_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="Prism_axi_smc_0_synth_1" Type="Ft3:Synth" SrcSet="Prism_axi_smc_0" Part="xc7k70tfbg676-2" ConstrsSet="Prism_axi_smc_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Prism_axi_smc_0_synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_axi_smc_0_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="Prism_auto_cc_0_synth_1" Type="Ft3:Synth" SrcSet="Prism_auto_cc_0" Part="xc7k70tfbg676-2" ConstrsSet="Prism_auto_cc_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/Prism_auto_cc_0_synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_auto_cc_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
         <Step Id="synth_design"/>
@@ -480,7 +518,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="Prism_xdma_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k70tfbg676-2" ConstrsSet="Prism_xdma_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Prism_xdma_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_xdma_0_0_impl_1">
+    <Run Id="Prism_util_ds_buf_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k70tfbg676-2" ConstrsSet="Prism_util_ds_buf_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Prism_util_ds_buf_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_util_ds_buf_0_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
         <Step Id="init_design"/>
@@ -497,7 +535,41 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="Prism_util_ds_buf_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k70tfbg676-2" ConstrsSet="Prism_util_ds_buf_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Prism_util_ds_buf_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_util_ds_buf_0_0_impl_1">
+    <Run Id="Prism_xdma_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k70tfbg676-2" ConstrsSet="Prism_xdma_1_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Prism_xdma_1_0_synth_1" IncludeInArchive="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_xdma_1_0_impl_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="Prism_axi_smc_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k70tfbg676-2" ConstrsSet="Prism_axi_smc_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Prism_axi_smc_0_synth_1" IncludeInArchive="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_axi_smc_0_impl_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="Prism_auto_cc_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k70tfbg676-2" ConstrsSet="Prism_auto_cc_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="Prism_auto_cc_0_synth_1" IncludeInArchive="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/Prism_auto_cc_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
         <Step Id="init_design"/>

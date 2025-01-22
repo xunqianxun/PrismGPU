@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Mon Jan 20 18:39:46 2025
+| Date         : Wed Jan 22 09:23:29 2025
 | Host         : DESKTOP-IDDJK51 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file Prism_util_ds_buf_0_0_utilization_synth.rpt -pb Prism_util_ds_buf_0_0_utilization_synth.pb
 | Design       : Prism_util_ds_buf_0_0

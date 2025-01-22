@@ -96,14 +96,14 @@ input wire aclken;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 aresetn_intf RST" *)
 input wire aresetn;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 video_in TDATA" *)
-input wire [23 : 0] s_axis_video_tdata;
+input wire [31 : 0] s_axis_video_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 video_in TVALID" *)
 input wire s_axis_video_tvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 video_in TREADY" *)
 output wire s_axis_video_tready;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 video_in TUSER" *)
 input wire s_axis_video_tuser;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME video_in, TDATA_NUM_BYTES 3, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 55312500, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME video_in, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 55312500, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 video_in TLAST" *)
 input wire s_axis_video_tlast;
 input wire fid;
@@ -123,7 +123,7 @@ output wire vid_hblank;
 (* X_INTERFACE_INFO = "xilinx.com:interface:vid_io:1.0 vid_io_out FIELD" *)
 output wire vid_field_id;
 (* X_INTERFACE_INFO = "xilinx.com:interface:vid_io:1.0 vid_io_out DATA" *)
-output wire [23 : 0] vid_data;
+output wire [31 : 0] vid_data;
 (* X_INTERFACE_INFO = "xilinx.com:interface:video_timing:2.0 vtiming_in VSYNC" *)
 input wire vtg_vsync;
 (* X_INTERFACE_INFO = "xilinx.com:interface:video_timing:2.0 vtiming_in HSYNC" *)
@@ -140,20 +140,20 @@ output wire vtg_ce;
 output wire locked;
 output wire overflow;
 output wire underflow;
-output wire [10 : 0] fifo_read_level;
+output wire [13 : 0] fifo_read_level;
 output wire [31 : 0] status;
 output wire sof_state_out;
 
   v_axi4s_vid_out_v4_0_11 #(
     .C_FAMILY("kintex7"),
     .C_PIXELS_PER_CLOCK(1),
-    .C_COMPONENTS_PER_PIXEL(3),
+    .C_COMPONENTS_PER_PIXEL(4),
     .C_S_AXIS_COMPONENT_WIDTH(8),
     .C_NATIVE_COMPONENT_WIDTH(8),
-    .C_NATIVE_DATA_WIDTH(24),
-    .C_S_AXIS_TDATA_WIDTH(24),
+    .C_NATIVE_DATA_WIDTH(32),
+    .C_S_AXIS_TDATA_WIDTH(32),
     .C_HAS_ASYNC_CLK(0),
-    .C_ADDR_WIDTH(10),
+    .C_ADDR_WIDTH(13),
     .C_VTG_MASTER_SLAVE(0),
     .C_HYSTERESIS_LEVEL(12),
     .C_SYNC_LOCK_THRESHOLD(4),

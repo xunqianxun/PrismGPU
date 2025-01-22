@@ -442,8 +442,9 @@ proc create_root_design { parentCell } {
   # Create instance: v_axi4s_vid_out_0, and set properties
   set v_axi4s_vid_out_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_axi4s_vid_out:4.0 v_axi4s_vid_out_0 ]
   set_property -dict [ list \
+   CONFIG.C_ADDR_WIDTH {13} \
    CONFIG.C_S_AXIS_VIDEO_DATA_WIDTH {8} \
-   CONFIG.C_S_AXIS_VIDEO_FORMAT {2} \
+   CONFIG.C_S_AXIS_VIDEO_FORMAT {6} \
  ] $v_axi4s_vid_out_0
 
   # Create instance: v_tc_0, and set properties
@@ -458,8 +459,15 @@ proc create_root_design { parentCell } {
    CONFIG.max_lines_per_frame {2048} \
  ] $v_tc_0
 
-  # Create instance: xdma_0, and set properties
-  set xdma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xdma:4.1 xdma_0 ]
+  # Create instance: xdma_0_axi_periph, and set properties
+  set xdma_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 xdma_0_axi_periph ]
+  set_property -dict [ list \
+   CONFIG.NUM_MI {1} \
+   CONFIG.NUM_SI {1} \
+ ] $xdma_0_axi_periph
+
+  # Create instance: xdma_1, and set properties
+  set xdma_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xdma:4.1 xdma_1 ]
   set_property -dict [ list \
    CONFIG.PF0_DEVICE_ID_mqdma {9024} \
    CONFIG.PF2_DEVICE_ID_mqdma {9024} \
@@ -467,34 +475,58 @@ proc create_root_design { parentCell } {
    CONFIG.axi_data_width {128_bit} \
    CONFIG.axilite_master_en {true} \
    CONFIG.axilite_master_scale {Kilobytes} \
-   CONFIG.axilite_master_size {4} \
+   CONFIG.axilite_master_size {64} \
    CONFIG.axist_bypass_en {true} \
    CONFIG.axist_bypass_size {256} \
    CONFIG.axisten_freq {125} \
+   CONFIG.cfg_mgmt_if {false} \
    CONFIG.mode_selection {Advanced} \
    CONFIG.pciebar2axibar_axil_master {0x80000000} \
-   CONFIG.pf0_base_class_menu {Display_controller} \
-   CONFIG.pf0_class_code {030200} \
-   CONFIG.pf0_class_code_base {03} \
-   CONFIG.pf0_class_code_interface {00} \
-   CONFIG.pf0_class_code_sub {02} \
-   CONFIG.pf0_device_id {7024} \
+   CONFIG.pf0_device_id {D325} \
    CONFIG.pf0_msix_cap_pba_bir {BAR_1} \
    CONFIG.pf0_msix_cap_table_bir {BAR_1} \
-   CONFIG.pf0_sub_class_interface_menu {3D_controller} \
+   CONFIG.pf0_revision_id {01} \
+   CONFIG.pf0_subsystem_id {D325} \
+   CONFIG.pf0_subsystem_vendor_id {1754} \
    CONFIG.pl_link_cap_max_link_speed {5.0_GT/s} \
    CONFIG.pl_link_cap_max_link_width {X4} \
    CONFIG.plltype {QPLL1} \
+   CONFIG.vendor_id {1754} \
    CONFIG.xdma_rnum_chnl {2} \
    CONFIG.xdma_wnum_chnl {2} \
- ] $xdma_0
+ ] $xdma_1
 
-  # Create instance: xdma_0_axi_periph, and set properties
-  set xdma_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 xdma_0_axi_periph ]
+  # Create instance: xlconcat_0, and set properties
+  set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
   set_property -dict [ list \
-   CONFIG.NUM_MI {1} \
-   CONFIG.NUM_SI {1} \
- ] $xdma_0_axi_periph
+   CONFIG.IN0_WIDTH {8} \
+   CONFIG.IN1_WIDTH {8} \
+   CONFIG.IN2_WIDTH {8} \
+   CONFIG.NUM_PORTS {3} \
+ ] $xlconcat_0
+
+  # Create instance: xlslice_0, and set properties
+  set xlslice_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 xlslice_0 ]
+  set_property -dict [ list \
+   CONFIG.DIN_FROM {23} \
+   CONFIG.DIN_TO {16} \
+   CONFIG.DOUT_WIDTH {8} \
+ ] $xlslice_0
+
+  # Create instance: xlslice_1, and set properties
+  set xlslice_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 xlslice_1 ]
+  set_property -dict [ list \
+   CONFIG.DIN_FROM {15} \
+   CONFIG.DIN_TO {8} \
+   CONFIG.DOUT_WIDTH {8} \
+ ] $xlslice_1
+
+  # Create instance: xlslice_2, and set properties
+  set xlslice_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice:1.0 xlslice_2 ]
+  set_property -dict [ list \
+   CONFIG.DIN_FROM {7} \
+   CONFIG.DOUT_WIDTH {8} \
+ ] $xlslice_2
 
   # Create interface connections
   connect_bd_intf_net -intf_net CLK_IN_D_0_1 [get_bd_intf_ports PICe_Clk] [get_bd_intf_pins util_ds_buf_0/CLK_IN_D]
@@ -503,12 +535,13 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net axi_vdma_0_M_AXI_MM2S [get_bd_intf_pins axi_smc/S01_AXI] [get_bd_intf_pins axi_vdma_0/M_AXI_MM2S]
   connect_bd_intf_net -intf_net mig_7series_0_DDR2 [get_bd_intf_ports DDR2_interface] [get_bd_intf_pins mig_7series_0/DDR2]
   connect_bd_intf_net -intf_net v_tc_0_vtiming_out [get_bd_intf_pins v_axi4s_vid_out_0/vtiming_in] [get_bd_intf_pins v_tc_0/vtiming_out]
-  connect_bd_intf_net -intf_net xdma_0_M_AXI_BYPASS [get_bd_intf_pins axi_smc/S00_AXI] [get_bd_intf_pins xdma_0/M_AXI_BYPASS]
-  connect_bd_intf_net -intf_net xdma_0_M_AXI_LITE [get_bd_intf_pins xdma_0/M_AXI_LITE] [get_bd_intf_pins xdma_0_axi_periph/S00_AXI]
   connect_bd_intf_net -intf_net xdma_0_axi_periph_M00_AXI [get_bd_intf_pins axi_vdma_0/S_AXI_LITE] [get_bd_intf_pins xdma_0_axi_periph/M00_AXI]
-  connect_bd_intf_net -intf_net xdma_0_pcie_mgt [get_bd_intf_ports pice_interface] [get_bd_intf_pins xdma_0/pcie_mgt]
+  connect_bd_intf_net -intf_net xdma_1_M_AXI_BYPASS [get_bd_intf_pins axi_smc/S00_AXI] [get_bd_intf_pins xdma_1/M_AXI_BYPASS]
+  connect_bd_intf_net -intf_net xdma_1_M_AXI_LITE [get_bd_intf_pins xdma_0_axi_periph/S00_AXI] [get_bd_intf_pins xdma_1/M_AXI_LITE]
+  connect_bd_intf_net -intf_net xdma_1_pcie_mgt [get_bd_intf_ports pice_interface] [get_bd_intf_pins xdma_1/pcie_mgt]
 
   # Create port connections
+  connect_bd_net -net Pice_rest_1 [get_bd_ports Pice_rest] [get_bd_pins clk_wiz/resetn] [get_bd_pins xdma_1/sys_rst_n]
   connect_bd_net -net clk_in1_0_1 [get_bd_ports sys_clk] [get_bd_pins clk_wiz/clk_in1]
   connect_bd_net -net clk_wiz_clk_100out [get_bd_pins clk_wiz/clk_100out] [get_bd_pins mig_7series_0/sys_clk_i]
   connect_bd_net -net clk_wiz_clk_200out [get_bd_pins clk_wiz/clk_200out] [get_bd_pins mig_7series_0/clk_ref_i]
@@ -518,26 +551,29 @@ proc create_root_design { parentCell } {
   connect_bd_net -net mig_7series_0_mmcm_locked [get_bd_pins mig_7series_0/mmcm_locked] [get_bd_pins rst_mig_7series_0_100M/dcm_locked]
   connect_bd_net -net mig_7series_0_ui_clk [get_bd_pins axi_smc/aclk1] [get_bd_pins mig_7series_0/ui_clk] [get_bd_pins rst_mig_7series_0_100M/slowest_sync_clk]
   connect_bd_net -net mig_7series_0_ui_clk_sync_rst [get_bd_pins mig_7series_0/ui_clk_sync_rst] [get_bd_pins rst_mig_7series_0_100M/ext_reset_in]
-  connect_bd_net -net reset_rtl_0_1 [get_bd_ports Pice_rest] [get_bd_pins clk_wiz/resetn] [get_bd_pins xdma_0/sys_rst_n]
   connect_bd_net -net rgb2dvi_0_TMDS_Clk_n [get_bd_ports TMDS_Clk_n_0] [get_bd_pins rgb2dvi_0/TMDS_Clk_n]
   connect_bd_net -net rgb2dvi_0_TMDS_Clk_p [get_bd_ports TMDS_Clk_p_0] [get_bd_pins rgb2dvi_0/TMDS_Clk_p]
   connect_bd_net -net rgb2dvi_0_TMDS_Data_n [get_bd_ports TMDS_Data_n_0] [get_bd_pins rgb2dvi_0/TMDS_Data_n]
   connect_bd_net -net rgb2dvi_0_TMDS_Data_p [get_bd_ports TMDS_Data_p_0] [get_bd_pins rgb2dvi_0/TMDS_Data_p]
   connect_bd_net -net rst_mig_7series_0_100M_peripheral_aresetn [get_bd_pins mig_7series_0/aresetn] [get_bd_pins rst_mig_7series_0_100M/peripheral_aresetn]
-  connect_bd_net -net util_ds_buf_0_IBUF_OUT [get_bd_pins util_ds_buf_0/IBUF_OUT] [get_bd_pins xdma_0/sys_clk]
+  connect_bd_net -net util_ds_buf_0_IBUF_OUT [get_bd_pins util_ds_buf_0/IBUF_OUT] [get_bd_pins xdma_1/sys_clk]
   connect_bd_net -net v_axi4s_vid_out_0_vid_active_video [get_bd_pins rgb2dvi_0/vid_pVDE] [get_bd_pins v_axi4s_vid_out_0/vid_active_video]
-  connect_bd_net -net v_axi4s_vid_out_0_vid_data [get_bd_pins rgb2dvi_0/vid_pData] [get_bd_pins v_axi4s_vid_out_0/vid_data]
+  connect_bd_net -net v_axi4s_vid_out_0_vid_data [get_bd_pins v_axi4s_vid_out_0/vid_data] [get_bd_pins xlslice_0/Din] [get_bd_pins xlslice_1/Din] [get_bd_pins xlslice_2/Din]
   connect_bd_net -net v_axi4s_vid_out_0_vid_hsync [get_bd_pins rgb2dvi_0/vid_pHSync] [get_bd_pins v_axi4s_vid_out_0/vid_hsync]
-  connect_bd_net -net v_axi4s_vid_out_0_vid_vblank [get_bd_pins rgb2dvi_0/vid_pVSync] [get_bd_pins v_axi4s_vid_out_0/vid_vblank]
+  connect_bd_net -net v_axi4s_vid_out_0_vid_vsync [get_bd_pins rgb2dvi_0/vid_pVSync] [get_bd_pins v_axi4s_vid_out_0/vid_vsync]
   connect_bd_net -net v_axi4s_vid_out_0_vtg_ce [get_bd_pins v_axi4s_vid_out_0/vtg_ce] [get_bd_pins v_tc_0/gen_clken]
-  connect_bd_net -net xdma_0_axi_aclk [get_bd_pins axi_smc/aclk] [get_bd_pins xdma_0/axi_aclk] [get_bd_pins xdma_0_axi_periph/S00_ACLK]
-  connect_bd_net -net xdma_0_axi_aresetn [get_bd_pins axi_smc/aresetn] [get_bd_pins xdma_0/axi_aresetn] [get_bd_pins xdma_0_axi_periph/S00_ARESETN]
-  connect_bd_net -net xdma_0_user_lnk_up [get_bd_ports pice_link_up] [get_bd_pins xdma_0/user_lnk_up]
+  connect_bd_net -net xdma_1_axi_aclk [get_bd_pins axi_smc/aclk] [get_bd_pins xdma_0_axi_periph/S00_ACLK] [get_bd_pins xdma_1/axi_aclk]
+  connect_bd_net -net xdma_1_axi_aresetn [get_bd_pins axi_smc/aresetn] [get_bd_pins xdma_0_axi_periph/S00_ARESETN] [get_bd_pins xdma_1/axi_aresetn]
+  connect_bd_net -net xdma_1_user_lnk_up [get_bd_ports pice_link_up] [get_bd_pins xdma_1/user_lnk_up]
+  connect_bd_net -net xlconcat_0_dout [get_bd_pins rgb2dvi_0/vid_pData] [get_bd_pins xlconcat_0/dout]
+  connect_bd_net -net xlslice_0_Dout [get_bd_pins xlconcat_0/In0] [get_bd_pins xlslice_0/Dout]
+  connect_bd_net -net xlslice_1_Dout [get_bd_pins xlconcat_0/In1] [get_bd_pins xlslice_1/Dout]
+  connect_bd_net -net xlslice_2_Dout [get_bd_pins xlconcat_0/In2] [get_bd_pins xlslice_2/Dout]
 
   # Create address segments
   assign_bd_address -offset 0x00000000 -range 0x10000000 -target_address_space [get_bd_addr_spaces axi_vdma_0/Data_MM2S] [get_bd_addr_segs mig_7series_0/memmap/memaddr] -force
-  assign_bd_address -offset 0x80000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces xdma_0/M_AXI_LITE] [get_bd_addr_segs axi_vdma_0/S_AXI_LITE/Reg] -force
-  assign_bd_address -offset 0x00000000 -range 0x10000000 -target_address_space [get_bd_addr_spaces xdma_0/M_AXI_BYPASS] [get_bd_addr_segs mig_7series_0/memmap/memaddr] -force
+  assign_bd_address -offset 0x80000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces xdma_1/M_AXI_LITE] [get_bd_addr_segs axi_vdma_0/S_AXI_LITE/Reg] -force
+  assign_bd_address -offset 0x00000000 -range 0x10000000 -target_address_space [get_bd_addr_spaces xdma_1/M_AXI_BYPASS] [get_bd_addr_segs mig_7series_0/memmap/memaddr] -force
 
 
   # Restore current instance

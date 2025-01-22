@@ -2,7 +2,7 @@
 
 
 
-https://img.shields.io/badge/GPU-Windows-green.svg
+![redis](https://img.shields.io/badge/GPU-Windows-red)
 
 # PrismGPU 
 
@@ -14,4 +14,4 @@ The hardware implements the function of accepting CPU rendering results and outp
 
  has a bug where the driver enters functions that should not be entered by the Bsaic Display Driver.
 
-![](Pic\成果.PNG)
+![now](Pic\成果.PNG)

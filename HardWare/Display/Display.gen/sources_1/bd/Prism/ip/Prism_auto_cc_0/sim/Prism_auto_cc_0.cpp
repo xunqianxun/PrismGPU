@@ -119,7 +119,7 @@ void Prism_auto_cc_0::before_end_of_elaboration()
     S_AXI_transactor_param_props.addFloat("PHASE", "0.000");
     S_AXI_transactor_param_props.addString("PROTOCOL", "AXI4LITE");
     S_AXI_transactor_param_props.addString("READ_WRITE_MODE", "READ_WRITE");
-    S_AXI_transactor_param_props.addString("CLK_DOMAIN", "Prism_xdma_0_0_axi_aclk");
+    S_AXI_transactor_param_props.addString("CLK_DOMAIN", "Prism_xdma_1_0_axi_aclk");
 
     mp_S_AXI_transactor = new xtlm::xaximm_pin2xtlm_t<32,32,1,1,1,1,1,1>("S_AXI_transactor", S_AXI_transactor_param_props);
 
@@ -300,7 +300,7 @@ void Prism_auto_cc_0::before_end_of_elaboration()
     S_AXI_transactor_param_props.addFloat("PHASE", "0.000");
     S_AXI_transactor_param_props.addString("PROTOCOL", "AXI4LITE");
     S_AXI_transactor_param_props.addString("READ_WRITE_MODE", "READ_WRITE");
-    S_AXI_transactor_param_props.addString("CLK_DOMAIN", "Prism_xdma_0_0_axi_aclk");
+    S_AXI_transactor_param_props.addString("CLK_DOMAIN", "Prism_xdma_1_0_axi_aclk");
 
     mp_S_AXI_transactor = new xtlm::xaximm_pin2xtlm_t<32,32,1,1,1,1,1,1>("S_AXI_transactor", S_AXI_transactor_param_props);
 
@@ -481,7 +481,7 @@ void Prism_auto_cc_0::before_end_of_elaboration()
     S_AXI_transactor_param_props.addFloat("PHASE", "0.000");
     S_AXI_transactor_param_props.addString("PROTOCOL", "AXI4LITE");
     S_AXI_transactor_param_props.addString("READ_WRITE_MODE", "READ_WRITE");
-    S_AXI_transactor_param_props.addString("CLK_DOMAIN", "Prism_xdma_0_0_axi_aclk");
+    S_AXI_transactor_param_props.addString("CLK_DOMAIN", "Prism_xdma_1_0_axi_aclk");
 
     mp_S_AXI_transactor = new xtlm::xaximm_pin2xtlm_t<32,32,1,1,1,1,1,1>("S_AXI_transactor", S_AXI_transactor_param_props);
 
@@ -651,7 +651,7 @@ Prism_auto_cc_0::Prism_auto_cc_0(const sc_core::sc_module_name& nm) : Prism_auto
     S_AXI_transactor_param_props.addFloat("PHASE", "0.000");
     S_AXI_transactor_param_props.addString("PROTOCOL", "AXI4LITE");
     S_AXI_transactor_param_props.addString("READ_WRITE_MODE", "READ_WRITE");
-    S_AXI_transactor_param_props.addString("CLK_DOMAIN", "Prism_xdma_0_0_axi_aclk");
+    S_AXI_transactor_param_props.addString("CLK_DOMAIN", "Prism_xdma_1_0_axi_aclk");
 
     mp_S_AXI_transactor = new xtlm::xaximm_pin2xtlm_t<32,32,1,1,1,1,1,1>("S_AXI_transactor", S_AXI_transactor_param_props);
   mp_S_AXI_transactor->AWADDR(s_axi_awaddr);
@@ -832,7 +832,7 @@ Prism_auto_cc_0::Prism_auto_cc_0(const sc_core::sc_module_name& nm) : Prism_auto
     S_AXI_transactor_param_props.addFloat("PHASE", "0.000");
     S_AXI_transactor_param_props.addString("PROTOCOL", "AXI4LITE");
     S_AXI_transactor_param_props.addString("READ_WRITE_MODE", "READ_WRITE");
-    S_AXI_transactor_param_props.addString("CLK_DOMAIN", "Prism_xdma_0_0_axi_aclk");
+    S_AXI_transactor_param_props.addString("CLK_DOMAIN", "Prism_xdma_1_0_axi_aclk");
 
     mp_S_AXI_transactor = new xtlm::xaximm_pin2xtlm_t<32,32,1,1,1,1,1,1>("S_AXI_transactor", S_AXI_transactor_param_props);
   mp_S_AXI_transactor->AWADDR(s_axi_awaddr);
