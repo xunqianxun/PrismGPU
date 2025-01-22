@@ -218,9 +218,9 @@ public:
     }
 #pragma code_seg(pop)
 
-    NTSTATUS ControlInterrupt(
-        _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType,
-        _In_       BOOLEAN                     EnableInterrupt);
+    //NTSTATUS ControlInterrupt(
+    //    _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType,
+    //    _In_       BOOLEAN                     EnableInterrupt);
 
     NTSTATUS StartDevice(_In_  DXGK_START_INFO*   pDxgkStartInfo,
                          _In_  DXGKRNL_INTERFACE* pDxgkInterface,
@@ -420,18 +420,18 @@ DRIVER_INITIALIZE DriverEntry;
 // PnP DDIs
 //
 
-NTSTATUS
-APIENTRY
-BddDdiGetscanline(
-    _In_    CONST HANDLE               hAdapter,
-    _Inout_       DXGKARG_GETSCANLINE* pGetScanLine);
-
-NTSTATUS
-APIENTRY
-BddDdiControlInterrupt(
-    _In_ CONST  HANDLE                      hAdapter,
-    _In_ CONST  DXGK_INTERRUPT_TYPE         InterruptType,
-    _In_        BOOLEAN                     EnableInterrupt);
+//NTSTATUS
+//APIENTRY
+//BddDdiGetscanline(
+//    _In_    CONST HANDLE               hAdapter,
+//    _Inout_       DXGKARG_GETSCANLINE* pGetScanLine);
+//
+//NTSTATUS
+//APIENTRY
+//BddDdiControlInterrupt(
+//    _In_ CONST  HANDLE                      hAdapter,
+//    _In_ CONST  DXGK_INTERRUPT_TYPE         InterruptType,
+//    _In_        BOOLEAN                     EnableInterrupt);
 
 VOID
 BddDdiUnload(VOID);

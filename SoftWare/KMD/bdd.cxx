@@ -84,7 +84,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
     // Ignore return value, since it's not the end of the world if we failed to write these values to the registry
     // 忽略注册硬件信息的返回值，因为写入注册表失败并不致命
     RegisterHWInfo();
-
+    DbgPrint("开始检测硬件\n");
     // TODO: Uncomment the line below after updating the TODOs in the function CheckHardware
     Status = CheckHardware();
     if (!NT_SUCCESS(Status))
@@ -496,15 +496,20 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()  //没搞清楚 。现在搞清�
 #endif
 
     // TODO: Replace 0x1414 with your Vendor ID    OK
+    DbgPrint("VID = %L", VendorID);
     if (VendorID == BDD_DRIVER_VENDORID)
     {
-        switch (DeviceID)
-        {
-            // TODO: Replace the case statements below with the Device IDs supported by this driver
-            case BDD_DRIVER_DEVICE_ID: return STATUS_SUCCESS;
+        //DbgPrint("Check HW one Ok\n");
+        //switch (DeviceID)
+        //{
+        //    // TODO: Replace the case statements below with the Device IDs supported by this driver
+        //    case BDD_DRIVER_DEVICE_ID:
+        //        DbgPrint("Check HW All Ok\n");
+        //        return STATUS_SUCCESS; 
 
-            default:     return STATUS_UNSUCCESSFUL;
-        }
+        //    default:     return STATUS_UNSUCCESSFUL;
+        //}
+        return STATUS_SUCCESS;
     }
 
     return STATUS_GRAPHICS_DRIVER_MISMATCH;

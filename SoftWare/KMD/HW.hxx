@@ -68,15 +68,15 @@ extern "C" {
 #define BDD_DEVICE_NAME        L"PrismGPU"
 #define BDD_OPLAT_NAME          "PrismGPU" 
 #define BDD_ODAC_NAME           "UNKNOWN"
-#define BDD_ADAPTE_NAME         "UNKNOWN"
+#define BDD_ADAPTE_NAME         "Geforce5090"
 #define BDD_BIOS_NAME           "UNKNOWN"
 
 #define BDD_DRIVER_PICE      (0) 
 #define BDD_DRIVER_APIC      (1) 
 #define BDD_DRIVER_PRESENT_MODE           BDD_DRIVER_PICE  
 
-#define BDD_DRIVER_VENDORID    0x10EE
-#define BDD_DRIVER_DEVICE_ID   0x7024
+#define BDD_DRIVER_VENDORID    0x1754
+//#define BDD_DRIVER_DEVICE_ID   0xD325
 
 #define BDD_DRIVER_REG_LENGTH  6*1024 
 #define BDD_DRIVER_MEM_LENGTH  64*1024*1024
