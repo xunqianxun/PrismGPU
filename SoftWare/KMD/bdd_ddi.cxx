@@ -15,19 +15,6 @@
 #pragma code_seg("INIT")
 // BEGIN: Init Code
 
-//
-// Driver Entry point
-//
-//VOID KmdUnload(DRIVER_OBJECT* pdevice) {
-//
-//    //BddDdiUnload();
-//
-//    if (pdevice->DeviceObject) {
-//        IoDeleteDevice(pdevice->DeviceObject);
-//    }
-//
-//    DbgPrint("卸载KMD成功\n");
-//}
 
 extern "C"
 NTSTATUS
@@ -37,14 +24,10 @@ DriverEntry(
 {
     PAGED_CODE();
 
-    /*DbgPrint("安装KMD成功\n");
-
-    pDriverObject->DriverUnload = KmdUnload;*/
-
     // Initialize DDI function pointers and dxgkrnl
     KMDDOD_INITIALIZATION_DATA InitialData = {0};
 
-    InitialData.Version = DXGKDDI_INTERFACE_VERSION;
+    InitialData.Version = DXGKDDI_INTERFACE_VERSION_WDDM2_0;
 
     //系统IRP回调及WDDM框架相关
     InitialData.DxgkDdiAddDevice                    = BddDdiAddDevice;     
@@ -123,36 +106,6 @@ DriverEntry(
 //
 
 
-
-
-
-//NTSTATUS
-//APIENTRY
-//BddDdiControlInterrupt(
-//    _In_ CONST HANDLE                      hAdapter,
-//    _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType, 
-//    _In_       BOOLEAN                     EnableInterrupt) 
-//{
-//
-//    PAGED_CODE();
-//    BDD_ASSERT_CHK(hAdapter != NULL);
-//
-//    BASIC_DISPLAY_DRIVER* pBDD = reinterpret_cast<BASIC_DISPLAY_DRIVER*>(hAdapter);
-//    return pBDD->ControlInterrupt(InterruptType, EnableInterrupt);
-//
-//}
-//
-//NTSTATUS
-//APIENTRY
-//BddDdiGetscanline(
-//    _In_    CONST HANDLE               hAdapter,
-//    _Inout_       DXGKARG_GETSCANLINE* pGetScanLine )
-//{
-//
-//    return STATUS_SUCCESS;
-//}
-
-
 VOID
 BddDdiUnload(VOID)
 {
@@ -173,6 +126,7 @@ BddDdiAddDevice(
     if ((pPhysicalDeviceObject == NULL) ||
         (ppDeviceContext == NULL))
     {
+        DbgPrint("pPhysicalDeviceObject或者ppDeviceContext为NULL\n");
         BDD_LOG_ERROR2("One of pPhysicalDeviceObject (0x%I64x), ppDeviceContext (0x%I64x) is NULL",
                         pPhysicalDeviceObject, ppDeviceContext);
         return STATUS_INVALID_PARAMETER;
@@ -180,9 +134,10 @@ BddDdiAddDevice(
     *ppDeviceContext = NULL;
 
 
-    BASIC_DISPLAY_DRIVER* pBDD = new(NonPagedPoolNx) BASIC_DISPLAY_DRIVER(pPhysicalDeviceObject);
+    BASIC_DISPLAY_DRIVER* pBDD = new (BDD_POOL_FLAGS(POOL_FLAG_NON_PAGED)) BASIC_DISPLAY_DRIVER(pPhysicalDeviceObject);
     if (pBDD == NULL)
     {
+        DbgPrint("pBDD空间未申请到\n");
         BDD_LOG_LOW_RESOURCE0("pBDD failed to be allocated");
         return STATUS_NO_MEMORY;
     }

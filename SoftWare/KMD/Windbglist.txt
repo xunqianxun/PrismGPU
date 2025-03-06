@@ -1,0 +1,35 @@
+.echo ======== Running to add break point for Debug Script ========
+
+bp SimpleDisplay!BddDdiAddDevice;     
+bp SimpleDisplay!BddDdiStartDevice;
+bp SimpleDisplay!BddDdiStopDevice;
+bp SimpleDisplay!BddDdiResetDevice;
+bp SimpleDisplay!BddDdiRemoveDevice;
+bp SimpleDisplay!BddDdiDispatchIoRequest;
+bp SimpleDisplay!BddDdiInterruptRoutine;
+bp SimpleDisplay!BddDdiDpcRoutine;
+bp SimpleDisplay!BddDdiControlInterrupt;
+bp SimpleDisplay!BddDdiGetscanline;
+bp SimpleDisplay!BddDdiQueryChildRelations;
+bp SimpleDisplay!BddDdiQueryChildStatus;
+bp SimpleDisplay!BddDdiQueryDeviceDescriptor;
+bp SimpleDisplay!BddDdiSetPowerState;
+bp SimpleDisplay!BddDdiUnload;
+bp SimpleDisplay!BddDdiQueryAdapterInfo;
+bp SimpleDisplay!BddDdiSetPointerPosition;
+bp SimpleDisplay!BddDdiSetPointerShape;
+bp SimpleDisplay!BddDdiIsSupportedVidPn;
+bp SimpleDisplay!BddDdiRecommendFunctionalVidPn;
+bp SimpleDisplay!BddDdiSetVidPnSourceVisibility;
+bp SimpleDisplay!BddDdiCommitVidPn;
+bp SimpleDisplay!BddDdiUpdateActiveVidPnPresentPath;
+bp SimpleDisplay!BddDdiRecommendMonitorModes;
+bp SimpleDisplay!BddDdiQueryVidPnHWCapability;
+bp SimpleDisplay!BddDdiPresentDisplayOnly;
+bp SimpleDisplay!BddDdiStopDeviceAndReleasePostDisplayOwnership;
+bp SimpleDisplay!BddDdiSystemDisplayEnable;
+bp SimpleDisplay!BddDdiSystemDisplayWrite;
+
+.echo ======== Add break point successfull ========
+.echo ===========List break point =================
+bl

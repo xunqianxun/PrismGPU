@@ -9,10 +9,28 @@
 
 
 
+HINSTANCE g_hDLL;
+
 BOOL WINAPI DllMain(
 	HINSTANCE hinstDLL,  // handle to DLL module
-	DWORD fdwReason,     // reason for calling function
+	DWORD fwReason,     // reason for calling function
 	LPVOID lpvReserved)  // reserved
 {
+    switch (fwReason)
+    {
+    case(DLL_PROCESS_ATTACH):
+    {
+        g_hDLL = hinstDLL;
+    } break;
 
+    case(DLL_PROCESS_DETACH):
+    {
+        g_hDLL = NULL;
+        return TRUE;
+    }
+
+    default: break;
+    }
+
+    return TRUE;
 }

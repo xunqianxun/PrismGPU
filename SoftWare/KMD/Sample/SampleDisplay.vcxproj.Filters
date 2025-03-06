@@ -34,13 +34,13 @@
     <ClCompile Include="..\BltFuncs.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\BltHw.cxx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\memory.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\HW.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blthw.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -43,15 +43,7 @@ BASIC_DISPLAY_DRIVER::~BASIC_DISPLAY_DRIVER()
     CleanUp();
 }
 
-//NTSTATUS BASIC_DISPLAY_DRIVER::ControlInterrupt(
-//    _In_ CONST DXGK_INTERRUPT_TYPE         InterruptType,
-//    _In_       BOOLEAN                     EnableInterrupt) 
-//{
-//    PAGED_CODE();
-//
-//
-//
-//}
+
 
 //驱动设备启动函数 NTSTATUS检查函数预期
 NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartInfo,
@@ -71,7 +63,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
     RtlCopyMemory(&m_DxgkInterface, pDxgkInterface, sizeof(m_DxgkInterface));
     RtlZeroMemory(m_CurrentModes, sizeof(m_CurrentModes));  // 清空并初始化
     m_CurrentModes[0].DispInfo.TargetId = D3DDDI_ID_UNINITIALIZED;
-
+        
     // Get device information from OS. 从操作系统获取设备信息
     NTSTATUS Status = m_DxgkInterface.DxgkCbGetDeviceInformation(m_DxgkInterface.DeviceHandle, &m_DeviceInfo);
     if (!NT_SUCCESS(Status))
@@ -84,7 +76,6 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
     // Ignore return value, since it's not the end of the world if we failed to write these values to the registry
     // 忽略注册硬件信息的返回值，因为写入注册表失败并不致命
     RegisterHWInfo();
-    DbgPrint("开始检测硬件\n");
     // TODO: Uncomment the line below after updating the TODOs in the function CheckHardware
     Status = CheckHardware();
     if (!NT_SUCCESS(Status))
@@ -101,9 +92,9 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
 
     if (sizeof(PCI_COMMON_CONFIG) == RREAD)
     {
-        ULONG64 REGPBASEADDR = (ULONG64)h_PICECONFIG.u.type0.BaseAddresses[0];
-        ULONG64 MEMPBASEADDR = (ULONG64)h_PICECONFIG.u.type0.BaseAddresses[2];
-
+        ULONG64 REGPBASEADDR = (ULONG64)h_PICECONFIG.u.type0.BaseAddresses[2];
+        ULONG64 MEMPBASEADDR = (ULONG64)h_PICECONFIG.u.type0.BaseAddresses[0];
+        ULONG64 REGPADDR_OFFSET = 0x700;
         PHYSICAL_ADDRESS REGPADDR = { 0 };
         REGPADDR.QuadPart = REGPBASEADDR;
         
@@ -126,7 +117,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
 
     }
 
-    //这里的实现先使用预定义的方式，这边的设计主要依赖与硬件的支持，比如在设备启动时GPU设备能够通过HDMI接口读取EDID信息以及链接在显卡上的显示器设备。现在还没有实现这些硬件支持，所以暂时使用预定义的方式
+   
     for (D3DDDI_VIDEO_PRESENT_TARGET_ID TargetID = 0; TargetID < BDD_DRIVER_MAXCHILD; TargetID++)
     {
         GetEdid(TargetID);
@@ -182,7 +173,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::StartDevice(_In_  DXGK_START_INFO*   pDxgkStartIn
     *pNumberOfChildren = MAX_CHILDREN; //设置子设备数量
 
 
-    InitHardware(pDxgkInterface, h_DEVICEINFO.REGPBASE, &h_DEVICEINFO.DEVICEHWEDIDINFO);
+    InitHardware(pDxgkInterface, h_DEVICEINFO.REGVBASE, &h_DEVICEINFO.DEVICEHWEDIDINFO);
 
 
 
@@ -371,17 +362,18 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryAdapterInfo(_In_ CONST DXGKARG_QUERYADAPTERI
     PAGED_CODE();
 
     BDD_ASSERT(pQueryAdapterInfo != NULL);
-
+    DbgPrint("pQueryAdapterInfo->Type: %d \n", pQueryAdapterInfo->Type);
     switch (pQueryAdapterInfo->Type)
     {
         case DXGKQAITYPE_DRIVERCAPS: //表示用户或系统请求驱动程序能力的信息，驱动程序需要返回 DXGK_DRIVERCAPS 结构，告知系统该驱动程序支持哪些功能。
-
         {
-            if (pQueryAdapterInfo->OutputDataSize < sizeof(DXGK_DRIVERCAPS))
+            DbgPrint("进入DXGKQAITYPE_DRIVERCAPS\n");
+            /*if (pQueryAdapterInfo->OutputDataSize < sizeof(DXGK_DRIVERCAPS))
             {
+                DbgPrint("出现错误：STATUS_BUFFER_TOO_SMALL\n");
                 BDD_LOG_ERROR2("pQueryAdapterInfo->OutputDataSize (0x%I64x) is smaller than sizeof(DXGK_DRIVERCAPS) (0x%I64x)", pQueryAdapterInfo->OutputDataSize, sizeof(DXGK_DRIVERCAPS));
                 return STATUS_BUFFER_TOO_SMALL;
-            }
+            }*/
 
             DXGK_DRIVERCAPS* pDriverCaps = (DXGK_DRIVERCAPS*)pQueryAdapterInfo->pOutputData;
 
@@ -401,6 +393,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryAdapterInfo(_In_ CONST DXGKARG_QUERYADAPTERI
 
         case DXGKQAITYPE_DISPLAY_DRIVERCAPS_EXTENSION:  //表示查询显示驱动程序的扩展能力
         {
+            DbgPrint("进入DXGKQAITYPE_DISPLAY_DRIVERCAPS_EXTENSION\n");
             DXGK_DISPLAY_DRIVERCAPS_EXTENSION* pDriverDisplayCaps; 
 
             if (pQueryAdapterInfo->OutputDataSize < sizeof(*pDriverDisplayCaps))
@@ -426,14 +419,14 @@ NTSTATUS BASIC_DISPLAY_DRIVER::QueryAdapterInfo(_In_ CONST DXGKARG_QUERYADAPTERI
         default:
         {
             // BDD does not need to support any other adapter information types
-            BDD_LOG_WARNING1("Unknown QueryAdapterInfo Type (0x%I64x) requested", pQueryAdapterInfo->Type);
+            BDD_LOG_WARNING1("Unknown QueryAdapterInfo Type (0x%I64x) requested\n", pQueryAdapterInfo->Type);
             return STATUS_NOT_SUPPORTED;
         }
     }
 }
 
 
-NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()  //没搞清楚 。现在搞清楚啦，这个就是从PICE总线上精确检测到自己的设备的核心函数
+NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()  
 {
     PAGED_CODE();
 
@@ -496,20 +489,19 @@ NTSTATUS BASIC_DISPLAY_DRIVER::CheckHardware()  //没搞清楚 。现在搞清�
 #endif
 
     // TODO: Replace 0x1414 with your Vendor ID    OK
-    DbgPrint("VID = %L", VendorID);
     if (VendorID == BDD_DRIVER_VENDORID)
     {
-        //DbgPrint("Check HW one Ok\n");
-        //switch (DeviceID)
-        //{
-        //    // TODO: Replace the case statements below with the Device IDs supported by this driver
-        //    case BDD_DRIVER_DEVICE_ID:
-        //        DbgPrint("Check HW All Ok\n");
-        //        return STATUS_SUCCESS; 
+        switch (DeviceID)
+        {
+            // TODO: Replace the case statements below with the Device IDs supported by this driver
+            case BDD_DRIVER_DEVICE_ID:
+                return STATUS_SUCCESS; 
+                break;
 
-        //    default:     return STATUS_UNSUCCESSFUL;
-        //}
-        return STATUS_SUCCESS;
+            default:     
+                return STATUS_UNSUCCESSFUL;
+                break;
+        }
     }
 
     return STATUS_GRAPHICS_DRIVER_MISMATCH;
@@ -589,16 +581,76 @@ NTSTATUS BASIC_DISPLAY_DRIVER::PresentDisplayOnly(_In_ CONST DXGKARG_PRESENT_DIS
             //        m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].SrcModeWidth)*DstBitPerPixel/8;
             //    pDst += (int)CenterShift/2;
             //}
-            return m_HardwareBlt[pPresentDisplayOnly->VidPnSourceId].ExecutePresentDisplayOnly(pDst, //实际执行图像渲染的函数,将图像呈现到屏幕上。它将源数据拷贝到目标缓冲区 pDst，并执行任何必要的图像处理
-                                                                    DstBitPerPixel,//目标帧缓冲区的每像素位数
-                                                                    (BYTE*)pPresentDisplayOnly->pSource, //源图像的指针
-                                                                    pPresentDisplayOnly->BytesPerPixel, //源图像每像素的字节数
-                                                                    pPresentDisplayOnly->Pitch, //源图像的行字节数
-                                                                    pPresentDisplayOnly->NumMoves, //表示图像移动的数量和位置信息
-                                                                    pPresentDisplayOnly->pMoves,
-                                                                    pPresentDisplayOnly->NumDirtyRects, //表示脏矩形的数量和位置，用于更新部分图像区域
-                                                                    pPresentDisplayOnly->pDirtyRect, //如果需要旋转，则传递旋转类型
-                                                                    RotationNeededByFb);
+            //return m_HardwareBlt[pPresentDisplayOnly->VidPnSourceId].ExecutePresentDisplayOnly(pDst, //实际执行图像渲染的函数,将图像呈现到屏幕上。它将源数据拷贝到目标缓冲区 pDst，并执行任何必要的图像处理
+            //                                                        DstBitPerPixel,//目标帧缓冲区的每像素位数
+            //                                                        (BYTE*)pPresentDisplayOnly->pSource, //源图像的指针
+            //                                                        pPresentDisplayOnly->BytesPerPixel, //源图像每像素的字节数
+            //                                                        pPresentDisplayOnly->Pitch, //源图像的行字节数
+            //                                                        pPresentDisplayOnly->NumMoves, //表示图像移动的数量和位置信息
+            //                                                        pPresentDisplayOnly->pMoves,
+            //                                                        pPresentDisplayOnly->NumDirtyRects, //表示脏矩形的数量和位置，用于更新部分图像区域
+            //                                                        pPresentDisplayOnly->pDirtyRect, //如果需要旋转，则传递旋转类型
+            //                                                        RotationNeededByFb);
+
+
+            BLT_INFO DstBltInfo;
+            DstBltInfo.pBits = pDst;
+            DstBltInfo.Pitch = m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].DispInfo.Pitch;
+            DstBltInfo.BitsPerPel = DstBitPerPixel;
+            DstBltInfo.Offset.x = 0;
+            DstBltInfo.Offset.y = 0;
+            DstBltInfo.Rotation = m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].Rotation;
+            DstBltInfo.Width = m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].SrcModeWidth;
+            DstBltInfo.Height = m_CurrentModes[pPresentDisplayOnly->VidPnSourceId].SrcModeHeight;
+
+
+            BLT_INFO SrcBltInfo; 
+            SrcBltInfo.pBits = (BYTE*)pPresentDisplayOnly->pSource;
+            SrcBltInfo.Pitch = pPresentDisplayOnly->Pitch;
+            SrcBltInfo.BitsPerPel = 32;
+            SrcBltInfo.Offset.x = 0;
+            SrcBltInfo.Offset.y = 0;
+            SrcBltInfo.Rotation = D3DKMDT_VPPR_IDENTITY;
+            if (RotationNeededByFb == D3DKMDT_VPPR_ROTATE90 || //如果需要 90° 或 270° 旋转，则交换 Width 和 Height。
+                RotationNeededByFb == D3DKMDT_VPPR_ROTATE270)
+            {
+                SrcBltInfo.Width = DstBltInfo.Height;
+                SrcBltInfo.Height = DstBltInfo.Width;
+            }
+            else
+            {
+                SrcBltInfo.Width = DstBltInfo.Width;
+                SrcBltInfo.Height = DstBltInfo.Height;
+            }
+
+            for (UINT i = 0; i < pPresentDisplayOnly->NumMoves; i++) // Moves 用于 窗口拖动、滚动等操作。
+            {
+                BltBits(&DstBltInfo, //BltBits：将 Moves 指定的区域从 SrcBltInfo 复制到 DstBltInfo
+                    &SrcBltInfo,
+                    1, // NumRects
+                    &pPresentDisplayOnly->pMoves[i].DestRect);
+            }
+
+            // Copy all the dirty rects from source image to video frame buffer.
+            for (UINT i = 0; i < pPresentDisplayOnly->NumDirtyRects; i++) //DirtyRects 用于 增量更新（如窗口重绘）
+            {
+
+                BltBits(&DstBltInfo,
+                    &SrcBltInfo,
+                    1, // NumRectsx
+                    &pPresentDisplayOnly->pDirtyRect[i]);
+            }
+
+
+            DXGKARGCB_NOTIFY_INTERRUPT_DATA NotifyInterrupt;
+
+            NotifyInterrupt.InterruptType = DXGK_INTERRUPT_DISPLAYONLY_VSYNC; //代表 Present 进度通知中断
+            NotifyInterrupt.DisplayOnlyPresentProgress.VidPnSourceId = 0;
+
+            NotifyInterrupt.DisplayOnlyPresentProgress.ProgressId = DXGK_PRESENT_DISPLAYONLY_PROGRESS_ID_COMPLETE;
+            m_DxgkInterface.DxgkCbNotifyInterrupt(m_DxgkInterface.DeviceHandle, &NotifyInterrupt);
+            m_DxgkInterface.DxgkCbQueueDpc(m_DxgkInterface.DeviceHandle);
+
     }
 
     return STATUS_SUCCESS;
@@ -656,7 +708,7 @@ NTSTATUS BASIC_DISPLAY_DRIVER::GetEdid(D3DDDI_VIDEO_PRESENT_TARGET_ID TargetId) 
     NTSTATUS Status = STATUS_SUCCESS;
     RtlZeroMemory(m_EDIDs[TargetId], sizeof(m_EDIDs[TargetId]));
 
-    Status = GetMoniterEdid(h_DEVICEINFO.REGPBASE, (UINT32*)&m_EDIDs[TargetId], 128);
+    Status = GetMoniterEdid(h_DEVICEINFO.REGVBASE, (UINT32*)&m_EDIDs[TargetId], 128);
 
     m_Flags.EDID_Attempted = TRUE;
 
@@ -847,11 +899,11 @@ VOID BASIC_DISPLAY_DRIVER::DpcRoutine(VOID)
                                                                            //本质就是GPU完成了一帧渲染之后通知驱动可以输入下一帧的内容啦。
 }
 
-BOOLEAN BASIC_DISPLAY_DRIVER::InterruptRoutine(_In_  ULONG MessageNumber) //BDD不能处理中断
+BOOLEAN BASIC_DISPLAY_DRIVER::InterruptRoutine(_In_  ULONG MessageNumber) 
 {
-    UNREFERENCED_PARAMETER(MessageNumber);
+    //UNREFERENCED_PARAMETER(MessageNumber);
 
-    // BDD cannot handle interrupts
+    
     return FALSE;
 }
 

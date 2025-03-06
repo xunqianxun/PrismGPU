@@ -60,7 +60,7 @@ NTSTATUS InitHardware(
 
 	
 	h_CrTiTIming.PIEXLWIDTH = EDIDINFO->HACTIVEPIXEL;
-	h_CrTiTIming.PIEXLWIDTH = EDIDINFO->VACTIVEPIXEL;
+	h_CrTiTIming.PIEXLHEIGHT = EDIDINFO->VACTIVEPIXEL;
 	h_CrTiTIming.PIEXLCLOCKKHZ = EDIDINFO->CLOCKKHZ;
 
 	h_CrTiTIming.HORIZONTOTAL = EDIDINFO->HACTIVEPIXEL + EDIDINFO->HNOACTIVEPIXEL;
@@ -122,48 +122,17 @@ NTSTATUS InitHardware(
 	_In_ CRTCTIMING* PCrTrTiming)
 {
 	NTSTATUS State = STATUS_SUCCESS;
+	UINT64 Offset = 0x700;
 
-	WriteSpace(PBaseAddr, 0x0, 0x3); //使能VDMA
-	WriteSpace(PBaseAddr, 0x54, (DISP_HORIZON_PIXEL * DISP_PIXEL_SIZE)); //设置VDMA的输出规格
-	WriteSpace(PBaseAddr, 0x58, (DISP_HORIZON_PIXEL * DISP_PIXEL_SIZE));
-	WriteSpace(PBaseAddr, 0x5C, 0x00000000); //设置帧起始地址
-	WriteSpace(PBaseAddr, 0x50, DISP_VERTICAL_LINE);
+	UINT32 REG1 = 0x00000000 | (0x0000001f);
+	UINT32 REG2 = (PCrTrTiming->PIEXLHEIGHT & 0x00000fff) | ((PCrTrTiming->PIEXLWIDTH & 0x00000fff) << 12);
 
+	WriteSpace(PBaseAddr , Offset + 0 , REG1); 
+	WriteSpace(PBaseAddr , Offset + 4 , REG2); 
+	WriteSpace(PBaseAddr , Offset + 8 , 0);
+	WriteSpace(PBaseAddr , Offset + 12, 0); 
 
 	return State;
-}
-
-//此处get EDID信息只能使用这种方式来做，因为目前硬件的HDMI接口还是单向的不能从moniter上接收EDID information
- NTSTATUS GetHDMIEdidInform(
-	_In_ UINT64 PRegMem,
-	_In_ UINT32 PRegOffset,
-	_In_ UINT32 EdidSize,
-	_Inout_ UINT32* EdOut)
-{ 
-	BYTE PhysicalEDID[256] = {
-
-		0x00,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x00,0x41,0x0C,0x5D,0x09,0x48,0x05,0x00,0x00,
-		0x09,0x21,0x01,0x03,0x80,0x3C,0x22,0x78,0x2A,0xB3,0x75,0xAC,0x52,0x4E,0xA0,0x26,
-		0x0F,0x50,0x54,0xBF,0xEF,0x00,0xD1,0xC0,0xB3,0x00,0x95,0x00,0x81,0x80,0x81,0x40,
-		0x81,0xC0,0x01,0x01,0x01,0x01,0x56,0x5E,0x00,0xA0,0xA0,0xA0,0x29,0x50,0x30,0x20,
-		0x35,0x00,0x55,0x50,0x21,0x00,0x00,0x1E,0x00,0x00,0x00,0xFF,0x00,0x55,0x48,0x42,
-		0x32,0x33,0x30,0x39,0x30,0x30,0x31,0x33,0x35,0x32,0x00,0x00,0x00,0xFC,0x00,0x50,
-		0x48,0x4C,0x20,0x32,0x37,0x36,0x42,0x39,0x0A,0x20,0x20,0x20,0x00,0x00,0x00,0xFD,
-		0x00,0x30,0x4B,0x1E,0x72,0x1E,0x00,0x0A,0x20,0x20,0x20,0x20,0x20,0x20,0x01,0x1B,
-		0x02,0x03,0x1E,0xF1,0x4B,0x10,0x1F,0x05,0x14,0x04,0x13,0x03,0x12,0x02,0x11,0x01,
-		0x23,0x09,0x07,0x07,0x83,0x01,0x00,0x00,0x65,0x03,0x0C,0x00,0x10,0x00,0xA0,0x73,
-		0x00,0x6A,0xA0,0xA0,0x29,0x50,0x08,0x20,0x35,0x00,0x55,0x50,0x21,0x00,0x00,0x1A,
-		0x2A,0x44,0x80,0xA0,0x70,0x38,0x27,0x40,0x30,0x20,0x35,0x00,0x55,0x50,0x21,0x00,
-		0x00,0x1A,0x02,0x3A,0x80,0x18,0x71,0x38,0x2D,0x40,0x58,0x2C,0x45,0x00,0x55,0x50,
-		0x21,0x00,0x00,0x1E,0x01,0x1D,0x00,0x72,0x51,0xD0,0x1E,0x20,0x6E,0x28,0x55,0x00,
-		0x55,0x50,0x21,0x00,0x00,0x1E,0xF0,0x3C,0x00,0xD0,0x51,0xA0,0x35,0x50,0x60,0x88,
-		0x3A,0x00,0x55,0x50,0x21,0x00,0x00,0x1C,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x97
-
-	};
-
-	RtlCopyMemory(EdOut, PhysicalEDID, EdidSize);
-
-	return STATUS_SUCCESS;
 }
 
 
@@ -173,139 +142,20 @@ NTSTATUS InitHardware(
 	_In_ UINT32 EdiLength)
 {
 	NTSTATUS Status = { 0 };
+	BYTE PhysicalEDID[128] = { 0 };
 
-	Status = GetHDMIEdidInform(PRegBaseAddr, 0, EdiLength, MonitorEDID);
+	for (size_t i = 0; i < (EdiLength / 4); i++)
+	{
+		UINT32 ReadDate = ReadSpace(PRegBaseAddr, 4 * i);
+		PhysicalEDID[i * 4 + 0] = (BYTE)(ReadDate & 0x000f);
+		PhysicalEDID[i * 4 + 1] = (BYTE)(ReadDate & 0x00f0 >> 8);
+		PhysicalEDID[i * 4 + 2] = (BYTE)(ReadDate & 0x0f00 >> 16);
+		PhysicalEDID[i * 4 + 3] = (BYTE)(ReadDate & 0xf000 >> 24);
+	}
+
+	RtlCopyMemory(MonitorEDID, PhysicalEDID, EdiLength);
 
 	return Status;
 }
-
-
-//NTSTATUS GetRegisterKeyValue(
-//	_In_ LPCWSTR KeyPath,
-//	_In_ LPCWSTR pKeyName,
-//	_Out_ UINT32* KeyValue)
-//{
-//	NTSTATUS State = STATUS_SUCCESS;
-//
-//	UNICODE_STRING KeyPathName;
-//
-//	RtlInitUnicodeString(&KeyPathName, KeyPath);
-//
-//	HANDLE HandleRegister;
-//	OBJECT_ATTRIBUTES ObjectAttr = { 0 };
-//
-//	InitializeObjectAttributes(&ObjectAttr, &KeyPathName, OBJ_CASE_INSENSITIVE, NULL, NULL);
-//
-//	State = ZwOpenKey(&HandleRegister, KEY_ALL_ACCESS, &ObjectAttr);
-//
-//	if (State != STATUS_SUCCESS)
-//	{
-//		return State;
-//	}
-//
-//	UNICODE_STRING KeyValueName;
-//
-//	RtlInitUnicodeString(&KeyValueName, pKeyName);
-//
-//	ULONG KeySize;
-//
-//	State = ZwQueryValueKey(HandleRegister, &KeyValueName, KeyValuePartialInformation, NULL, 0, &KeySize);
-//
-//	if ((State != STATUS_SUCCESS) || (KeySize == 0))
-//	{
-//		DbgPrint("query register size information fault\n");
-//	}
-//
-//	else
-//	{
-//		PKEY_VALUE_PARTIAL_INFORMATION KeyValueInform;
-//
-//		KeyValueInform = (PKEY_VALUE_PARTIAL_INFORMATION)ExAllocatePool(PagedPool, KeySize);
-//
-//		State = ZwQueryValueKey(HandleRegister, &KeyValueName, KeyValuePartialInformation, KeyValueInform, KeySize, &KeySize);
-//
-//		if (State != STATUS_SUCCESS)
-//		{
-//			DbgPrint("query register information fault\n");
-//		}
-//		else
-//		{
-//			switch (KeyValueInform->Type)
-//			{
-//			case REG_BINARY:
-//			case REG_DWORD:
-//				KeyValue[0] = *(PUINT32)KeyValueInform->Data; //这里的KeyValue[0]，相当于把这个指针实体化了
-//				break;
-//			case REG_SZ:
-//				if ((KeyValueInform->Data[0] = '0') && ((KeyValueInform->Data[0] = 'x') || (KeyValueInform->Data[0] = 'X')))
-//				{
-//					KeyValue[0] = strtol((char*)KeyValueInform->Data, NULL, 16);
-//				}
-//				else
-//				{
-//					KeyValue[0] = strtol((char*)KeyValueInform->Data, NULL, 10);
-//				}
-//				break;
-//			default:
-//				DbgPrint("register key type desn't define\n");
-//				KeyValue[0] = { 0 };
-//				break;
-//			}
-//		}
-//		if (KeyValueInform != NULL)
-//		{
-//			ExFreePool(KeyValueInform);
-//		}
-//	}
-//	ZwClose(HandleRegister);
-//
-//	return State;
-//
-//}
-//
-//NTSTATUS SetRegisterValue(
-//	_In_ LPCWSTR KeyPath,
-//	_In_ LPCWSTR pKeyName,
-//	_In_ UINT32 KeyValue)
-//{
-//	NTSTATUS State = STATUS_SUCCESS;
-//
-//	UNICODE_STRING KeyPathName;
-//
-//	RtlInitUnicodeString(&KeyPathName, KeyPath);
-//	
-//	HANDLE HandleRegister;
-//	OBJECT_ATTRIBUTES ObjectAttr = { 0 };
-//	ULONG ReturnInform;
-//
-//	InitializeObjectAttributes(&ObjectAttr, &KeyPathName, OBJ_CASE_INSENSITIVE, NULL, NULL);
-//	//      打开或创建一个指定的注册表键
-//	State = ZwCreateKey(&HandleRegister, KEY_ALL_ACCESS, &ObjectAttr, 0, NULL, REG_OPTION_NON_VOLATILE, &ReturnInform);
-//
-//	if (State != STATUS_SUCCESS)
-//	{
-//		DbgPrint("register key open fault\n");
-//
-//		return State;
-//	}
-//
-//	UNICODE_STRING KeyName;
-//
-//	RtlInitUnicodeString(&KeyName, pKeyName);
-//
-//	ZwSetValueKey(HandleRegister, &KeyName, 0, REG_DWORD, &KeyValue, sizeof(KeyValue));
-//
-//	ZwClose(HandleRegister);
-//
-//}
-
-
-//NTSTATUS CreatDevice(
-//	_In_ PDRIVER_OBJECT pDeiverObject ,
-//	_In_ LPCWSTR        pDeviceName,
-//	_In_ LPCWSTR        pDeviceSymbleLink,
-//	_Out_
-//)
-
 
 

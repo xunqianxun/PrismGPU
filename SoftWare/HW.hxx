@@ -10,44 +10,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-	// Standard C-runtime headers
-#include <stddef.h>
-#include <string.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-
-#include <initguid.h>
-
-// NTOS headers
-#include <ntddk.h>
-
-#ifndef FAR
-#define FAR
-#endif
-
-// Windows headers
-#include <windef.h>
-#include <winerror.h>
-
-// Windows GDI headers
-#include <wingdi.h>
-
-// Windows DDI headers
-#include <winddi.h>
-#include <ntddvdeo.h>
-
-#include <d3dkmddi.h>
-#include <d3dkmthk.h>
-
-#include <ntstrsafe.h>
-#include <ntintsafe.h>
-
-#include <dispmprt.h>
 #ifdef __cplusplus
 }
 #endif
+
+#include <basetsd.h>
+//#include <windows.h>
+#include <sal.h>
+#include <ntdef.h>
 
 //平台定义 
 #define BDD_DRIVCE_NAME            L"\\Device\\PrismDriver"
@@ -68,18 +38,18 @@ extern "C" {
 #define BDD_DEVICE_NAME        L"PrismGPU"
 #define BDD_OPLAT_NAME          "PrismGPU" 
 #define BDD_ODAC_NAME           "UNKNOWN"
-#define BDD_ADAPTE_NAME         "Geforce5090"
+#define BDD_ADAPTE_NAME         "UNKNOWN"
 #define BDD_BIOS_NAME           "UNKNOWN"
 
 #define BDD_DRIVER_PICE      (0) 
 #define BDD_DRIVER_APIC      (1) 
 #define BDD_DRIVER_PRESENT_MODE           BDD_DRIVER_PICE  
 
-#define BDD_DRIVER_VENDORID    0x1022
-#define BDD_DRIVER_DEVICE_ID   0x2000
+#define BDD_DRIVER_VENDORID    0x1414
+#define BDD_DRIVER_DEVICE_ID   0x0010
 
-#define BDD_DRIVER_REG_LENGTH  0x1000
-#define BDD_DRIVER_MEM_LENGTH  16*1024*1024
+#define BDD_DRIVER_REG_LENGTH  6*1024 
+#define BDD_DRIVER_MEM_LENGTH  64*1024*1024
 
 #define BDD_DRIVER_MAXCHILD 1 //暂时使用过预定义的方式
 
@@ -161,7 +131,6 @@ typedef struct
 
 typedef struct {
 	UINT64 REGPBASE;
-	UINT64 REGVBASE;
 	UINT64 MEMPBASE;
 	HWEDIDINFO DEVICEHWEDIDINFO;
 	CRTCTIMING CrTcTimg;

@@ -190,7 +190,7 @@
     <ClCompile Include="..\BDD_DMM.cxx" />
     <ClCompile Include="..\BDD_Util.cxx" />
     <ClCompile Include="..\BltFuncs.cxx" />
-    <ClCompile Include="..\BltHw.cxx" />
+    <ClCompile Include="..\blthw.cxx" />
     <ClCompile Include="..\HW.cxx" />
     <ClCompile Include="..\memory.cxx" />
     <ResourceCompile Include="..\sampledisplay.rc" />

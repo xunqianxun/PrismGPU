@@ -13,32 +13,32 @@
 ;--
 
 [Version]
-Signature="$Windows NT$"
+Signature="$Windows NT$"  ;Signature项定义了INF工作于何种操作系统，主要选项有$Windows NT$、$Windows 95$、$Chicago$，一般选择$Chicago$即可；
 Class=Display
-ClassGUID={4d36e968-e325-11ce-bfc1-08002be10318}
+ClassGUID={4d36e968-e325-11ce-bfc1-08002be10318} ;用于指明设备类别的GUID，这些GUID的值是固定的
 Provider=%ProviderString%
-DriverVer=1/22/2025, 0.01.01.0001
+DriverVer=1/22/2025, 0.01.01.0001 ;指明驱动程序的版本信息，格式为mm/dd/yyyy [,x,y,v,z]。
 CatalogFile=SampleDisplay.cat
 PnpLockdown=1
 
-[DestinationDirs]
+[DestinationDirs] ;目标磁盘节
 DefaultDestDir = 12 ;将文件复制到 12 号目录，通常指系统目录 (System32\drivers)。
 PrismGPUSamp_Inst_CoInstaller_CopyFiles = 11
 
-[SourceDisksNames]
+[SourceDisksNames] ;源文件盘符节
 1 = %SampleDisk%,,,""
 
-[SourceDisksFiles]
+[SourceDisksFiles] ;源文件节
 SampleDisplay.sys=1 ;源磁盘是什么东西0磁盘代表时c盘吗
 
-[Manufacturer]
+[Manufacturer] ;供应商节
 %ManufacturerName%=Standard,NTamd64
 
 ;
 ;    Allow the driver to be loaded on VGA and XGA exposed by PCI bus and ACPI
 ;
 [Standard.NTamd64]
-%SampleDeviceName% = PrismGPUSamp_Inst, PCI\VEN_1754&DEV_D325
+%SampleDeviceName% = PrismGPUSamp_Inst, PCI\VEN_1022&DEV_2000
 ;%SampleDeviceName% = KDODSamp_Inst, PCI\CC_0301
 ;%SampleDeviceName% = KDODSamp_Inst, ACPI\CLS_0003&SUBCLS_0000
 ;%SampleDeviceName% = KDODSamp_Inst, ACPI\CLS_0003&SUBCLS_0001
